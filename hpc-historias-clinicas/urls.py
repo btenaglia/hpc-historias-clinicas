@@ -25,9 +25,9 @@ urlpatterns = patterns('',
     url(r'^users/', include("hpc-historias-clinicas.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
 
-    # Uncomment the next line to enable avatars
-    url(r'^avatar/', include('avatar.urls')),
-
-    # Your stuff: custom urls go here
+    # Medicos
+    url(r'^medicos', include("hpc-historias-clinicas.medicos.urls", namespace="medicos")),
+    # Ayudantes
+    url(r'^ayudantes', include("hpc-historias-clinicas.ayudantes.urls", namespace="ayudantes")),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

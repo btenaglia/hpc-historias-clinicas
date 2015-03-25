@@ -22,7 +22,6 @@ TIME_ZONE = 'America/Buenos_Aires'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'es-es'
-SITE_ID = 1
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -103,28 +102,30 @@ ROOT_URLCONF = 'hpc-historias-clinicas.urls'
 WSGI_APPLICATION = 'hpc-historias-clinicas.wsgi.application'
 # APP CONFIGURATION
 DJANGO_APPS = (
-# Default Django apps:
-'django.contrib.auth',
-'django.contrib.contenttypes',
-'django.contrib.sessions',
-'django.contrib.messages',
-'django.contrib.staticfiles',
-'django.contrib.sites',
-'django.contrib.flatpages',
-# Useful template tags:
-# 'django.contrib.humanize',
-# Admin
-'django.contrib.admin',
+    # Default Django apps:
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    # Useful template tags:
+    # 'django.contrib.humanize',
+    # Admin
+    'django.contrib.admin',
 )
 THIRD_PARTY_APPS = (
-'crispy_forms', # Form layouts
-'allauth', # registration
-'allauth.account', # registration
-'allauth.socialaccount', # registration
+    'crispy_forms', # Form layouts
+    'allauth', # registration
+    'allauth.account', # registration
+    'allauth.socialaccount', # registration
 )
 # Apps specific for this project go here.
 LOCAL_APPS = (
-'hpc-historias-clinicas.users', # usuarios
+    'hpc-historias-clinicas.users', # usuarios
+    'hpc-historias-clinicas.medicos', # medicos
+    'hpc-historias-clinicas.ayudantes', # ayudantes
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -165,19 +166,7 @@ LOGIN_REDIRECT_URL = 'users:redirect'
 LOGIN_URL = 'account_login'
 # END Custom user app defaults
 
-
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
-    }
-}
-
-
+APPEND_SLASH=False
 
 # --------------------------
 # IMPORT LOCAL SETTINGS

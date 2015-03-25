@@ -30,3 +30,11 @@ node_modules/
 
 # Compass
 .sass-cache
+
+
+.idea
+*.*~
+hpc-historias-clinicas/settings_local.py
+hpc-historias-clinicas/static
+hpc-historias-clinicas/media
+env/

@@ -26,12 +26,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
-    permanent = False
-
-    def get_redirect_url(self):
-        return reverse("users:detail",
-                       kwargs={"username": self.request.user.username})
-
+    pattern_name = 'home'
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
 

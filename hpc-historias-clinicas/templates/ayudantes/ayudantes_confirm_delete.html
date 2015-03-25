@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Ayudante{% endblock title %}
+
+{% block content %}
+
+    <h1 class="page-header">Eliminar Ayudante</h1>
+    <form action="" method="post">{% csrf_token %}
+        <p><b>ATENCIÓN:</b> Está seguro de eliminar el ayudante "{{ object.nombre }} {{ object.apellido }}"?</p>
+        <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
+        <a href="{% url 'ayudantes:ayudantes_list' %}">Volver</a>
+    </form>
+
+
+{% endblock %}
