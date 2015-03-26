@@ -6,7 +6,7 @@
 
     <h1 class="page-header">Ayudantes</h1>
 
-    <a href="{% url 'ayudantes:ayudantes_nuevo' %}" class="btn btn-primary"><i class="fa fa-plus"> Agregar Ayudante</i></a>
+    <a href="{% url 'ayudantes:create' %}" class="btn btn-primary"><i class="fa fa-plus"> Agregar Ayudante</i></a>
 
     {% if object_list %}
 
@@ -26,8 +26,8 @@
                             <td>{{ ayudante.apellido }}</td>
                             <td>{{ ayudante.dni }}</td>
                             <td>
-                                <a href="{% url 'ayudantes:ayudantes_update' ayudante.id %}"><i class="fa fa-pencil"></i></a>
-                                <a href="{% url 'ayudantes:ayudantes_delete' ayudante.id %}"><i class="fa fa-trash-o"></i></a>
+                                <a href="{% url 'ayudantes:update' ayudante.id %}"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url 'ayudantes:delete' ayudante.id %}"><i class="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
                     {% endfor %}

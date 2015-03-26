@@ -7,10 +7,10 @@ urlpatterns = patterns('',
     url(
         regex=r'^$',
         view=MedicosListView.as_view(),
-        name='medicos_list'
+        name='list'
     ),
-    url(r'^/create/$', MedicosCreateView.as_view(), name='medicos_nuevo'),
-    url(r'^/update/(?P<pk>\d+)$', MedicosUpdateView.as_view(), name='medicos_update'),
-    url(r'^/delete/(?P<pk>\d+)$', MedicosDeleteView.as_view(), name='medicos_delete'),
+    url(r'^create$', MedicosCreateView.as_view(), name='create'),
+    url(r'^update/(?P<pk>\d+)$', MedicosUpdateView.as_view(), name='update'),
+    url(r'^delete/(?P<pk>\d+)$', MedicosDeleteView.as_view(), name='delete'),
 )
 

@@ -7,7 +7,7 @@
         <div class="col-lg-12">
             <h1 class="page-header">Médicos</h1>
 
-            <a href="{% url 'medicos:medicos_nuevo' %}" class="btn btn-primary"><i class="fa fa-plus"> Agregar Médico</i></a>
+            <a href="{% url 'medicos:create' %}" class="btn btn-primary"><i class="fa fa-plus"> Agregar Médico</i></a>
 
             {% if object_list %}
 
@@ -27,8 +27,8 @@
                                     <td>{{ medico.apellido }}</td>
                                     <td>{{ medico.dni }}</td>
                                     <td>
-                                        <a href="{% url 'medicos:medicos_update' medico.id %}"><i class="fa fa-pencil"></i></a>
-                                        <a href="{% url 'medicos:medicos_delete' medico.id %}"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{% url 'medicos:update' medico.id %}"><i class="fa fa-pencil"></i></a>
+                                        <a href="{% url 'medicos:delete' medico.id %}"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

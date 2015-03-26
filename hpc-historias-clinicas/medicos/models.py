@@ -12,7 +12,7 @@ class Medicos(TimeStampedModel):
     dni = models.IntegerField(max_length=8, blank=False, null=False)
 
     def get_absolute_url(self):
-        return reverse('medicos:medicos_list')
+        return reverse('medicos:list')
 
     def __unicode__(self):
         return self.nombre + ' ' + self.apellido

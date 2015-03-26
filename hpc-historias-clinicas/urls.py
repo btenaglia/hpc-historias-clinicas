@@ -26,8 +26,8 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('allauth.urls')),
 
     # Medicos
-    url(r'^medicos', include("hpc-historias-clinicas.medicos.urls", namespace="medicos")),
+    url(r'^medicos/', include("hpc-historias-clinicas.medicos.urls", namespace="medicos")),
     # Ayudantes
-    url(r'^ayudantes', include("hpc-historias-clinicas.ayudantes.urls", namespace="ayudantes")),
+    url(r'^ayudantes/', include("hpc-historias-clinicas.ayudantes.urls", namespace="ayudantes")),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

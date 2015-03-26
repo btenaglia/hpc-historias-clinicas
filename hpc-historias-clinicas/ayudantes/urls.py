@@ -7,10 +7,10 @@ urlpatterns = patterns('',
     url(
         regex=r'^$',
         view=AyudantesListView.as_view(),
-        name='ayudantes_list'
+        name='list'
     ),
-    url(r'^/create/$', AyudantesCreateView.as_view(), name='ayudantes_nuevo'),
-    url(r'^/update/(?P<pk>\d+)$', AyudantesUpdateView.as_view(), name='ayudantes_update'),
-    url(r'^/delete/(?P<pk>\d+)$', AyudantesDeleteView.as_view(), name='ayudantes_delete'),
+    url(r'^create$', AyudantesCreateView.as_view(), name='create'),
+    url(r'^update/(?P<pk>\d+)$', AyudantesUpdateView.as_view(), name='update'),
+    url(r'^delete/(?P<pk>\d+)$', AyudantesDeleteView.as_view(), name='delete'),
 )
 
