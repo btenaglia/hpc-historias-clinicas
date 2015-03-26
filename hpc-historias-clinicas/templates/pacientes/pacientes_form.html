@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Nuevo Paciente{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{% url 'pacientes:list' %}"><i class="fa fa-reply"> Volver</i></a>
+            <h1 class="page-header">
+                {% if form.instance.id %}
+                    Editar
+                {% else %}
+                    Nuevo
+                {% endif %}
+                Paciente
+            </h1>
+            <form class="form-horizontal" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-4">
+                        {{  form.apellido|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-4">
+                        {{  form.nombre|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-4">
+                        {{  form.sexo|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        {{  form.madre|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{  form.domicilio|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{  form.domicilio_numero|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{  form.ciudad|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{  form.provincia|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{  form.telefono|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{  form.edad|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{  form.fecha_nacimiento|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{  form.documento|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        {{  form.estado_civil|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-4">
+                        {{  form.ocupacion|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-4">
+                        {{  form.religion|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{  form.procedencia|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{  form.nacionalidad|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{  form.obra_social|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{  form.numero_afiliado|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{  form.hora_ingreso|as_crispy_field  }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{  form.fecha_ingreso|as_crispy_field  }}
+                    </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Confirmar</button>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

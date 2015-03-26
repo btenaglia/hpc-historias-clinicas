@@ -8,7 +8,7 @@
     <form action="" method="post">{% csrf_token %}
         <p><b>ATENCIÓN:</b> Está seguro de eliminar el médico "{{ object.nombre }} {{ object.apellido }}"?</p>
         <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
-        <a href="{% url 'medicos:medicos_list' %}">Volver</a>
+        <a href="{% url 'medicos:list' %}">Volver</a>
     </form>
 
 

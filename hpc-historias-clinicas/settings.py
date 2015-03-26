@@ -126,6 +126,7 @@ LOCAL_APPS = (
     'hpc-historias-clinicas.users', # usuarios
     'hpc-historias-clinicas.medicos', # medicos
     'hpc-historias-clinicas.ayudantes', # ayudantes
+    'hpc-historias-clinicas.pacientes', # pacientes
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

@@ -29,5 +29,7 @@ urlpatterns = patterns('',
     url(r'^medicos/', include("hpc-historias-clinicas.medicos.urls", namespace="medicos")),
     # Ayudantes
     url(r'^ayudantes/', include("hpc-historias-clinicas.ayudantes.urls", namespace="ayudantes")),
+    # Pacientes
+    url(r'^pacientes/', include("hpc-historias-clinicas.pacientes.urls", namespace="pacientes")),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
