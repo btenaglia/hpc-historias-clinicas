@@ -1,4 +1,3 @@
-# Django settings for riauditoria.
 import os
 PROJECT_ROOT = os.path.dirname(__file__)
 # DEBUG
@@ -52,39 +51,40 @@ os.path.join(PROJECT_ROOT, 'staticfiles'),
 # List of finder classes that know how to find static_ files in
 # various locations.
 STATICFILES_FINDERS = (
-'django.contrib.staticfiles.finders.FileSystemFinder',
-'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-# 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'e89^m%8%qx)qfj^m8@*=pp9wyg=sujhy*z9xty4f^x)tzq7_&amp;m'
 # MIDDLEWARE CONFIGURATION
 MIDDLEWARE_CLASSES = (
-# Make sure djangosecure.middleware.SecurityMiddleware is listed first
-'djangosecure.middleware.SecurityMiddleware',
-'django.contrib.sessions.middleware.SessionMiddleware',
-'django.middleware.common.CommonMiddleware',
-'django.middleware.csrf.CsrfViewMiddleware',
-'django.contrib.auth.middleware.AuthenticationMiddleware',
-'django.contrib.messages.middleware.MessageMiddleware',
-'django.middleware.clickjacking.XFrameOptionsMiddleware',
-'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    # Make sure djangosecure.middleware.SecurityMiddleware is listed first
+    'djangosecure.middleware.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'pagination.middleware.PaginationMiddleware',
 )
 # END MIDDLEWARE CONFIGURATION
 # TEMPLATE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
 TEMPLATE_CONTEXT_PROCESSORS = (
-'django.contrib.auth.context_processors.auth',
-'allauth.account.context_processors.account',
-'allauth.socialaccount.context_processors.socialaccount',
-'django.core.context_processors.debug',
-'django.core.context_processors.i18n',
-'django.core.context_processors.media',
-#'django.core.context_processors.static',
-'django.core.context_processors.tz',
-'django.contrib.messages.context_processors.messages',
-'django.core.context_processors.request',
-# Your stuff: custom template context processers go here
+    'django.contrib.auth.context_processors.auth',
+    'allauth.account.context_processors.account',
+    'allauth.socialaccount.context_processors.socialaccount',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    #'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+    # Your stuff: custom template context processers go here
 )
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
 TEMPLATE_DIRS = (
@@ -120,6 +120,7 @@ THIRD_PARTY_APPS = (
     'allauth', # registration
     'allauth.account', # registration
     'allauth.socialaccount', # registration
+    'pagination', # paginacion
 )
 # Apps specific for this project go here.
 LOCAL_APPS = (

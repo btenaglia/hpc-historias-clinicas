@@ -31,7 +31,7 @@ class Pacientes(TimeStampedModel):
     provincia = models.CharField(max_length=100, blank=True, null=True)
     telefono = models.CharField(max_length=100, blank=True, null=True)
     edad = models.IntegerField(max_length=3, blank=True, null=True, default=0)
-    fecha_nacimiento = models.DateField(verbose_name=u"Fecha de Nacimiento", blank=False, null=False,)
+    fecha_nacimiento = models.DateField(verbose_name=u"Fecha de Nacimiento", blank=False, null=False, help_text=u'Formato: dd/mm/yyyy')
     documento = models.CharField(max_length=8, blank=True, null=True)
     estado_civil = models.IntegerField(choices=ESTADO_CIVIL, blank=False, null=False)
     ocupacion = models.CharField(max_length=100, blank=True, null=True)
@@ -40,8 +40,8 @@ class Pacientes(TimeStampedModel):
     nacionalidad = models.CharField(max_length=100, blank=True, null=True)
     obra_social = models.CharField(max_length=100, blank=True, null=True)
     numero_afiliado = models.CharField(max_length=100, blank=True, null=True)
-    hora_ingreso = models.TimeField(blank=False, null=False, verbose_name=u"Hora de Ingreso")
-    fecha_ingreso = models.DateField(blank=False, null=False, verbose_name=u"Fecha de Ingreso")
+    hora_ingreso = models.TimeField(blank=False, null=False, verbose_name=u"Hora de Ingreso", help_text=u'Formato: hh:mm')
+    fecha_ingreso = models.DateField(blank=False, null=False, verbose_name=u"Fecha de Ingreso", help_text=u'Formato: dd/mm/yyyy')
 
     def get_absolute_url(self):
         return reverse('pacientes:list')

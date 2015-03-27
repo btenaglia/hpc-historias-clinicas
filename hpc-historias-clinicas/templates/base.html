@@ -1,4 +1,5 @@
-{% load staticfiles i18n %}<!DOCTYPE html>
+{% load staticfiles i18n %}
+<!DOCTYPE html>
 <html lang="en" ng-app>
   <head>
     <meta charset="utf-8">
@@ -23,7 +24,8 @@
         <!-- include data table Js -->
         <link  rel="stylesheet" href="{% static 'libs/datatablejs/css/jquery.dataTables.min.css' %}">
         <link  rel="stylesheet" href="{% static 'libs/datatablejs/css/DT_bootstrap.css' %}">
-
+        <!-- include Datepicker -->
+        <link  rel="stylesheet" href="{% static 'libs/datepicker/css/datepicker.css' %}">
 <!-- end include data table Js -->
 
     {% endblock %}
@@ -45,7 +47,6 @@
         {% endblock content %}
 
     </div> <!-- /container -->
-    
     {% block modal %}{% endblock modal %}
 
         <!-- Le javascript
@@ -60,10 +61,14 @@
 
                 <!-- Your stuff: Third-party javascript libraries go here -->
 
-                <!-- place project specific Javascript in this file -->
-                <script src="{% static 'js/project.js' %}"></script>
+
+                <!-- include Datatable -->
                 <script type="text/javascript" src="{% static 'libs/datatablejs/js/jquery.dataTables.js' %}"></script>
                 <script type="text/javascript" src="{% static 'libs/datatablejs/js/DT_bootstrap.js' %}"></script>
+                <!-- include Datepicker -->
+                <script type="text/javascript" src="{% static 'libs/datepicker/js/bootstrap-datepicker.js' %}"></script>
+                <!-- place project specific Javascript in this file -->
+                <script src="{% static 'js/project.js' %}"></script>
 
         {% endblock javascript %}
   </body>

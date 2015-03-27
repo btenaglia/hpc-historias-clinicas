@@ -9,7 +9,7 @@ class Ayudantes(TimeStampedModel):
     """
     nombre = models.CharField(max_length=100, blank=False, null=False)
     apellido = models.CharField(max_length=100, blank=False, null=False)
-    dni = models.IntegerField(max_length=8, blank=False, null=False)
+    dni = models.IntegerField(max_length=8, blank=False, null=False, unique=True)
 
     def get_absolute_url(self):
         return reverse('ayudantes:list')

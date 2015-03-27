@@ -7,6 +7,16 @@ from braces.views import LoginRequiredMixin
 from .models import Ayudantes
 
 
+class AyudantesMixin(object):
+    @property
+    def success_msg(self):
+        return NotImplemented
+
+    def get_success_url(self):
+        messages.success(self.request, self.success_msg)
+        return super(AyudantesMixin, self).get_success_url()
+
+
 class AyudantesListView(LoginRequiredMixin, ListView):
     """
     Lista todos los ayudantes
@@ -14,26 +24,20 @@ class AyudantesListView(LoginRequiredMixin, ListView):
     model = Ayudantes
 
 
-class AyudantesCreateView(LoginRequiredMixin, CreateView):
+class AyudantesCreateView(LoginRequiredMixin, AyudantesMixin, CreateView):
     """
     Creacion de medico
     """
     model = Ayudantes
-
-    def get_success_url(self):
-        messages.success(self.request, "El ayudante se agregó correctamente.")
-        return super(AyudantesCreateView, self).get_success_url()
+    success_msg = 'El ayudante se agregó correctamente.'
 
 
-class AyudantesUpdateView(LoginRequiredMixin, UpdateView):
+class AyudantesUpdateView(LoginRequiredMixin, AyudantesMixin, UpdateView):
     """
     Modificacion de un ayudante
     """
     model = Ayudantes
-
-    def get_success_url(self):
-        messages.success(self.request, "El ayudante se editó correctamente.")
-        return super(AyudantesUpdateView, self).get_success_url()
+    success_msg = 'El ayudante se editó correctamente.'
 
 
 class AyudantesDeleteView(LoginRequiredMixin, DeleteView):

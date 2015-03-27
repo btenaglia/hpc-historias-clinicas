@@ -12,6 +12,16 @@ from django.views.generic import (
 from .models import Medicos
 
 
+class MedicosMixin(object):
+    @property
+    def success_msg(self):
+        return NotImplemented
+
+    def get_success_url(self):
+        messages.success(self.request, self.success_msg)
+        return super(MedicosMixin, self).get_success_url()
+
+
 class MedicosListView(LoginRequiredMixin, ListView):
     """
     Lista todos los medicos
@@ -19,26 +29,20 @@ class MedicosListView(LoginRequiredMixin, ListView):
     model = Medicos
 
 
-class MedicosCreateView(LoginRequiredMixin, CreateView):
+class MedicosCreateView(LoginRequiredMixin, MedicosMixin, CreateView):
     """
     Creacion de medico
     """
     model = Medicos
-
-    def get_success_url(self):
-        messages.success(self.request, 'El médico se agregó correctamente.')
-        return super(MedicosCreateView, self).get_success_url()
+    success_msg = 'El médico se agregó correctamente.'
 
 
-class MedicosUpdateView(LoginRequiredMixin, UpdateView):
+class MedicosUpdateView(LoginRequiredMixin, MedicosMixin, UpdateView):
     """
     Modificacion de un medico
     """
     model = Medicos
-
-    def get_success_url(self):
-        messages.success(self.request, 'El médico se editó correctamente.')
-        return super(MedicosUpdateView, self).get_success_url()
+    success_msg = 'El médico se editó correctamente.'
 
 
 class MedicosDeleteView(LoginRequiredMixin, DeleteView):
@@ -46,4 +50,4 @@ class MedicosDeleteView(LoginRequiredMixin, DeleteView):
     Eliminar un medico
     """
     model = Medicos
-    success_url = '/medicos'
+    success_url = '/medicos/'
