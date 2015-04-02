@@ -124,10 +124,17 @@ THIRD_PARTY_APPS = (
 )
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'hpc-historias-clinicas.users', # usuarios
-    'hpc-historias-clinicas.medicos', # medicos
-    'hpc-historias-clinicas.ayudantes', # ayudantes
-    'hpc-historias-clinicas.pacientes', # pacientes
+    'hpc-historias-clinicas.users', # Usuarios
+    'hpc-historias-clinicas.medicos', # Medicos
+    'hpc-historias-clinicas.ayudantes', # Ayudantes
+    'hpc-historias-clinicas.pacientes', # Pacientes
+    'hpc-historias-clinicas.anamnesis', # Anamnesis
+    'hpc-historias-clinicas.antecedentes_familiares', # Antecedentes Familiares
+    'hpc-historias-clinicas.antecedentes_personales', # Antecedentes Personales
+    'hpc-historias-clinicas.diagnosticos', # Diagnosticos
+    'hpc-historias-clinicas.habitos', # Habitos
+    'hpc-historias-clinicas.aparatos', # Aparatos
+    'hpc-historias-clinicas.examen_fisico', # Examen Fisico
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
