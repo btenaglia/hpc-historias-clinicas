@@ -103,7 +103,17 @@
                 </div>
                 <div class="control-group">
                   <div class="controls">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Confirmar</button>
+                    <button type="submit" class="btn btn-primary" name="confirmar">
+                        <i class="fa fa-check"></i> Confirmar
+                    </button>
+
+                    {% if form.instance.id == None %}
+                        <button type="submit" class="btn btn-success" name="confirmar_mas_historia">
+                            <i class="fa fa-check"></i> Confirmar y agregar Historia Clínica
+                        </button>
+                    {% endif %}
+
+
                   </div>
                 </div>
             </form>

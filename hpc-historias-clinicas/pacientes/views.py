@@ -28,6 +28,12 @@ class PacientesCreateView(LoginRequiredMixin, PacientesMixin, CreateView):
     model = Pacientes
     success_msg = 'El paciente se créo correctamente.'
 
+    def form_valid(self, form):
+        if 'confirmar_mas_historia' in self.request.POST:
+            self.success_url = '/historias'
+
+        return super(PacientesCreateView, self).form_valid(form)
+
 
 class PacientesUpdateView(LoginRequiredMixin, PacientesMixin, UpdateView):
     """
@@ -39,4 +45,4 @@ class PacientesUpdateView(LoginRequiredMixin, PacientesMixin, UpdateView):
 
 class PacientesDeleteView(LoginRequiredMixin, DeleteView):
     model = Pacientes
-    success_url = '/pacientes'
+    success_url = '/pacientes/'

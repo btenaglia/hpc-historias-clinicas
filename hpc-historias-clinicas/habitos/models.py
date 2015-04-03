@@ -13,6 +13,7 @@ class Habitos(TimeStampedModel):
                                     verbose_name=u'Drogadicción', max_length=150)
     sueno = models.CharField(blank=True, null=True,
                              verbose_name=u'Sueño', max_length=150)
+    sexualidad = models.CharField(blank=True, null=True, max_length=150)
     medicamentos = models.TextField(blank=True, null=True)
     catarsis = models.CharField(blank=True, null=True, max_length=150)
     diuresis = models.CharField(blank=True, null=True, max_length=150)

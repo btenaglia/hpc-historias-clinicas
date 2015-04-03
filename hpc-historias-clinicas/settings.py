@@ -135,6 +135,9 @@ LOCAL_APPS = (
     'hpc-historias-clinicas.habitos', # Habitos
     'hpc-historias-clinicas.aparatos', # Aparatos
     'hpc-historias-clinicas.examen_fisico', # Examen Fisico
+    'hpc-historias-clinicas.planteos', # PLanteos diagnosticos
+    'hpc-historias-clinicas.metodologias', # Metodologias de estudio y tratamiento
+    'hpc-historias-clinicas.historias', # Historias clinicas
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
