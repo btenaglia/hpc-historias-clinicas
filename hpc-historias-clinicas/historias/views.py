@@ -8,7 +8,15 @@ from braces.views import LoginRequiredMixin
 from ..pacientes.models import Pacientes
 from .models import Historias
 
-from .forms import DiagnosticosModelForm
+from .forms import (DiagnosticosModelForm,
+                    AnamnesisModelForm,
+                    AntecedentesPersonalesModelForm,
+                    HabitosModelForm,
+                    AntecedentesFamiliaresModelForm,
+                    AparatosModelForm,
+                    ExamenFisicoModelForm,
+                    PlanteosModelForm,
+                    MetodologiasModelForm)
 
 
 class HistoriasCreateView(LoginRequiredMixin, CreateView):
@@ -20,6 +28,14 @@ class HistoriasCreateView(LoginRequiredMixin, CreateView):
         context = super(HistoriasCreateView, self).get_context_data(**kwargs)
         # -- para mostrar los datos de paciente
         context['paciente'] = get_object_or_404(Pacientes, id=self.kwargs['paciente'])
-
-        context['form_diagnostico'] = self.form_diagnostico
+        # -- formularios
+        context['form_diagnostico'] = DiagnosticosModelForm
+        context['form_anamnesis'] = AnamnesisModelForm
+        context['form_antecedentes_personales'] = AntecedentesPersonalesModelForm
+        context['form_habitos'] = HabitosModelForm
+        context['form_antecedentes_familiares'] = AntecedentesFamiliaresModelForm
+        context['form_aparatos'] = AparatosModelForm
+        context['form_examen_fisico'] = ExamenFisicoModelForm
+        context['form_planteos'] = PlanteosModelForm
+        context['form_metodologias'] = MetodologiasModelForm
         return context

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-6">
         <label><strong>Código</strong></label><br>
-        {{ paciente.fecha_nacimiento|date:"dmY" }}
+        <span class="text-success"><strong>{{ paciente.fecha_nacimiento|date:"dmY" }}</strong></span>
       </div>
       <div class="col-lg-6">
           {{ form.tipo|as_crispy_field }}

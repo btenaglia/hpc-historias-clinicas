@@ -38,22 +38,28 @@
                     {% include 'historias/_form_diagnosticos.html' %}
                </div>
                <div class="tab-pane fade" id="anamnesis">
-                  ANAMNESIS
+                  {% include 'historias/_form_anamnesis.html' %}
                </div>
                <div class="tab-pane fade" id="antecedentes_personales">
-                  ANTE PERSONALES
+                  {% include 'historias/_form_antecedentes_personales.html' %}
+               </div>
+               <div class="tab-pane fade" id="habitos">
+                  {% include 'historias/_form_habitos.html' %}
+               </div>
+               <div class="tab-pane fade" id="antecedentes_familiares">
+                  {% include 'historias/_form_antecedentes_familiares.html' %}
                </div>
                <div class="tab-pane fade" id="aparatos">
-                  Anamnesis por aparatos o sistemas
+                  {% include 'historias/_form_aparatos.html' %}
                </div>
                <div class="tab-pane fade" id="examen_fisico">
-                  Ex fisi
+                  {% include 'historias/_form_examen_fisico.html' %}
                </div>
                <div class="tab-pane fade" id="planteos">
-                  Plant
+                  {% include 'historias/_form_planteos.html' %}
                </div>
                <div class="tab-pane fade" id="metodologia">
-                  Plant
+                  {% include 'historias/_form_metodologias.html' %}
                </div>
 
             </div>
