@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Nueva Historia Clínica{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Nueva Historia Clínica</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <!-- info del paciente -->
+            {% include 'historias/_info_paciente.html' %}
+            <!-- / info del paciente -->
+        </div>
+        <div class="col-lg-9">
+            <ul id="myTab" class="nav nav-tabs">
+               <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+               <li><a href="#diagnostico" data-toggle="tab">Diagnóstico</a></li>
+               <li><a href="#anamnesis" data-toggle="tab">Anamnesis y exámen físico</a></li>
+               <li><a href="#antecedentes_personales" data-toggle="tab">Antecedentes personales</a></li>
+               <li><a href="#habitos" data-toggle="tab">Hábitos</a></li>
+               <li><a href="#antecedentes_familiares" data-toggle="tab">Antecedentes familiares</a></li>
+               <li><a href="#aparatos" data-toggle="tab">Anamnesis por aparatos o sistemas</a></li>
+               <li><a href="#examen_fisico" data-toggle="tab">Exámen físico</a></li>
+               <li><a href="#planteos" data-toggle="tab">Planteos</a></li>
+               <li><a href="#metodologia" data-toggle="tab">Metodología</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+               <div class="tab-pane fade in active" id="general">
+                    {% include 'historias/_form_general.html' %}
+               </div>
+               <div class="tab-pane fade" id="diagnostico">
+                    {% include 'historias/_form_diagnosticos.html' %}
+               </div>
+               <div class="tab-pane fade" id="anamnesis">
+                  ANAMNESIS
+               </div>
+               <div class="tab-pane fade" id="antecedentes_personales">
+                  ANTE PERSONALES
+               </div>
+               <div class="tab-pane fade" id="aparatos">
+                  Anamnesis por aparatos o sistemas
+               </div>
+               <div class="tab-pane fade" id="examen_fisico">
+                  Ex fisi
+               </div>
+               <div class="tab-pane fade" id="planteos">
+                  Plant
+               </div>
+               <div class="tab-pane fade" id="metodologia">
+                  Plant
+               </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

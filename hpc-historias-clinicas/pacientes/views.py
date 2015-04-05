@@ -29,8 +29,11 @@ class PacientesCreateView(LoginRequiredMixin, PacientesMixin, CreateView):
     success_msg = 'El paciente se créo correctamente.'
 
     def form_valid(self, form):
+        # si quieren dirigirse a agregar una nueva Historia,
+        # necesito obtener el ultimo paciente agregado
         if 'confirmar_mas_historia' in self.request.POST:
-            self.success_url = '/historias'
+            lastId = Pacientes.objects.latest('id')
+            self.success_url = '/historias/create/%s' % str(lastId.id)
 
         return super(PacientesCreateView, self).form_valid(form)
 

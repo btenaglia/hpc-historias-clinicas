@@ -1,0 +1,20 @@
+{% load crispy_forms_tags %}
+<div class="well">
+    <div class="row">
+      <div class="col-lg-6">
+        <label><strong>Código</strong></label><br>
+        {{ paciente.fecha_nacimiento|date:"dmY" }}
+      </div>
+      <div class="col-lg-6">
+          {{ form.tipo|as_crispy_field }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+          {{ form.fecha_ingreso|as_crispy_field }}
+      </div>
+      <div class="col-lg-6">
+          {{ form.hora_ingreso|as_crispy_field }}
+      </div>
+    </div>
+</div>

@@ -12,5 +12,7 @@ class Diagnosticos(TimeStampedModel):
                                          verbose_name=u'Diagnóstico')
     descripcion = models.TextField(blank=True, null=True,
                                    help_text=u'Escriba una descripcion si lo considera útil')
-    fecha = models.DateField(blank=False, null=False)
-    hora = models.TimeField(blank=False, null=False)
+    fecha = models.DateField(blank=False, null=False,
+                             help_text=u'Formato: dd/mm/yyyy')
+    hora = models.TimeField(blank=False, null=False,
+                            help_text=u'Formato: hh:mm')
