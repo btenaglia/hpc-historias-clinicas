@@ -21,21 +21,22 @@ class PacientesListView(LoginRequiredMixin, ListView):
     model = Pacientes
 
 
-class PacientesCreateView(LoginRequiredMixin, PacientesMixin, CreateView):
+class PacientesCreateView(LoginRequiredMixin, CreateView):
     """
     Crear un nuevo paciente
     """
     model = Pacientes
-    success_msg = 'El paciente se créo correctamente.'
+    success_msg = 'El paciente se créo correctamente, ahora agregue una historia clínica'
 
-    def form_valid(self, form):
-        # si quieren dirigirse a agregar una nueva Historia,
-        # necesito obtener el ultimo paciente agregado
+    def get_success_url(self):
+        # -- redirigir a la pagina para crear una hist. clinica
+        # -- si desean agregarla luego de crear el paciente
         if 'confirmar_mas_historia' in self.request.POST:
-            lastId = Pacientes.objects.latest('id')
-            self.success_url = '/historias/create/%s' % str(lastId.id)
+            ultimo_paciente = Pacientes.objects.latest('id')
+            self.success_url = '/historias/create/%s' % str(ultimo_paciente.id)
 
-        return super(PacientesCreateView, self).form_valid(form)
+        messages.success(self.request, self.success_msg)
+        return super(PacientesCreateView, self).get_success_url()
 
 
 class PacientesUpdateView(LoginRequiredMixin, PacientesMixin, UpdateView):
