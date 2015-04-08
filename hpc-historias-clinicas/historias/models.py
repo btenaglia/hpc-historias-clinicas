@@ -25,7 +25,7 @@ class Historias(TimeStampedModel):
         (2, 'Óbito'),
         (3, 'Pase de servicio'),
     )
-    paciente = models.OneToOneField(Pacientes, blank=False, null=False)
+    paciente = models.ForeignKey(Pacientes, blank=False, null=False)
     codigo = models.CharField(blank=False, null=False, max_length=10)
     tipo = models.IntegerField(choices=TIPO, default=1, blank=False, null=False)
     estado = models.IntegerField(choices=ESTADO, blank=True, null=True)
@@ -40,4 +40,24 @@ class Historias(TimeStampedModel):
     metodologias = models.OneToOneField(Metodologias, blank=False, null=False)
     hora_ingreso = models.TimeField(blank=False, null=False, verbose_name=u"Hora de Ingreso", help_text=u'Formato: hh:mm')
     fecha_ingreso = models.DateField(blank=False, null=False, verbose_name=u"Fecha de Ingreso", help_text=u'Formato: dd/mm/yyyy')
+
+
+class Ubicaciones(TimeStampedModel):
+    SALAS = (
+        ('SALA 1', 'SALA 1'),
+        ('SALA 2', 'SALA 1')
+    )
+
+    CAMAS = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3')
+    )
+
+    historia = models.ForeignKey(Historias)
+    sala = models.CharField(choices=SALAS, max_length=10, blank=False, null=False)
+    cama = models.CharField(choices=CAMAS, max_length=10, blank=False, null=False)
+
+    class Meta:
+        unique_together = ('sala', 'cama',)
 

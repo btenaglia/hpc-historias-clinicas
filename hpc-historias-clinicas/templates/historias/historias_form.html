@@ -30,39 +30,43 @@
                <li><a href="#planteos" data-toggle="tab">Planteos</a></li>
                <li><a href="#metodologia" data-toggle="tab">Metodología</a></li>
             </ul>
-            <div id="myTabContent" class="tab-content">
-               <div class="tab-pane fade in active" id="general">
-                    {% include 'historias/_form_general.html' %}
-               </div>
-               <div class="tab-pane fade" id="diagnostico">
-                    {% include 'historias/_form_diagnosticos.html' %}
-               </div>
-               <div class="tab-pane fade" id="anamnesis">
-                  {% include 'historias/_form_anamnesis.html' %}
-               </div>
-               <div class="tab-pane fade" id="antecedentes_personales">
-                  {% include 'historias/_form_antecedentes_personales.html' %}
-               </div>
-               <div class="tab-pane fade" id="habitos">
-                  {% include 'historias/_form_habitos.html' %}
-               </div>
-               <div class="tab-pane fade" id="antecedentes_familiares">
-                  {% include 'historias/_form_antecedentes_familiares.html' %}
-               </div>
-               <div class="tab-pane fade" id="aparatos">
-                  {% include 'historias/_form_aparatos.html' %}
-               </div>
-               <div class="tab-pane fade" id="examen_fisico">
-                  {% include 'historias/_form_examen_fisico.html' %}
-               </div>
-               <div class="tab-pane fade" id="planteos">
-                  {% include 'historias/_form_planteos.html' %}
-               </div>
-               <div class="tab-pane fade" id="metodologia">
-                  {% include 'historias/_form_metodologias.html' %}
-               </div>
-
-            </div>
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+                <div id="myTabContent" class="tab-content">
+                   <div class="tab-pane fade in active" id="general">
+                        {% include 'historias/_form_general.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="diagnostico">
+                        {% include 'historias/_form_diagnosticos.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="anamnesis">
+                      {% include 'historias/_form_anamnesis.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="antecedentes_personales">
+                      {% include 'historias/_form_antecedentes_personales.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="habitos">
+                      {% include 'historias/_form_habitos.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="antecedentes_familiares">
+                      {% include 'historias/_form_antecedentes_familiares.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="aparatos">
+                      {% include 'historias/_form_aparatos.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="examen_fisico">
+                      {% include 'historias/_form_examen_fisico.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="planteos">
+                      {% include 'historias/_form_planteos.html' %}
+                   </div>
+                   <div class="tab-pane fade" id="metodologia">
+                      {% include 'historias/_form_metodologias.html' %}
+                   </div>
+                </div>
+                <input type="submit" value="Crear Historia Clínica" class="btn btn-success">
+            </form>
         </div>
 
     </div>

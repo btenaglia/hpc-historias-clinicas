@@ -9,7 +9,7 @@ class MotivosConsultas(TimeStampedModel):
 
 
 class Anamnesis(TimeStampedModel):
-    motivo_consulta = models.ForeignKey(MotivosConsultas, blank=False, null=False,
+    motivo_consulta = models.ForeignKey(MotivosConsultas, blank=True, null=True,
                                         verbose_name=u'Motivo de consulta')
     enfermedad_actual = models.TextField(blank=True, null=True,
                                    help_text=u'Enfermedad actual')
