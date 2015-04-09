@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Nueva Historia Clínica{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Ubicar Paciente</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <!-- info del paciente -->
+            {% include 'historias/_info_paciente.html' %}
+            <!-- / info del paciente -->
+        </div>
+        <div class="col-lg-9">
+            <form method="POST">
+                <div class="well">
+                    <label>Código de la Historia:</label>
+                    <span class="text-success">
+                        <strong>{{ historia.codigo }}</strong>
+                    </span>
+                </div>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" value="Ubicar" class="btn btn-success">
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

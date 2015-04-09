@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render_to_response, render, redirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render_to_response, render, redirect, get_object_or_404
 from django.contrib import messages
-from django.template import RequestContext
+from django.views.generic import ListView, CreateView
+from braces.views import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.template import defaultfilters
+from django.db import IntegrityError
 from ..pacientes.models import Pacientes
+from .models import Historias, Ubicaciones
 from .forms import (DiagnosticosModelForm,
                     AnamnesisModelForm,
                     AntecedentesPersonalesModelForm,
@@ -19,8 +20,51 @@ from .forms import (DiagnosticosModelForm,
                     HistoriasModelForm)
 
 
+class HistoriasListView(LoginRequiredMixin, ListView):
+    """
+    Listado de historias clinicas
+    """
+    model = Historias
+
+
+class UbicacionCreateView(LoginRequiredMixin, CreateView):
+    """
+    Asignar ubicacion para un determinada historia clínica
+    """
+    model = Ubicaciones
+    fields = ['cama', 'sala']
+    success_url = '/historias'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(UbicacionCreateView, self).get_context_data(**kwargs)
+        historia = get_object_or_404(Historias, id=self.kwargs['historia'])
+        ctx['historia'] = historia
+        ctx['paciente'] = get_object_or_404(Pacientes, id=historia.paciente.id)
+        return ctx
+
+    def post(self, request, *args, **kwargs):
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        self.object = None
+
+        if form.is_valid():
+            try:
+                # -- asigno la historia
+                form.instance.historia_id = self.kwargs['historia']
+                form.save()
+                return self.form_valid(form)
+            except IntegrityError:
+                messages.error(self.request, 'Error: La historia clínica ya cuenta con una ubicación.')
+                return self.form_invalid(**{'form': form})
+        else:
+            return self.form_invalid(**{'form': form})
+
+
 @login_required(redirect_field_name='accounts/login/')
 def crear_historia(request, paciente):
+    """
+    Creacion de una historia clinica
+    """
     ctx = {
         'paciente': get_object_or_404(Pacientes, id=paciente),
         'form_historia': HistoriasModelForm(prefix='historia'),

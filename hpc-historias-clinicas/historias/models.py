@@ -45,7 +45,16 @@ class Historias(TimeStampedModel):
 class Ubicaciones(TimeStampedModel):
     SALAS = (
         ('SALA 1', 'SALA 1'),
-        ('SALA 2', 'SALA 1')
+        ('SALA 2', 'SALA 1'),
+        ('SALA 3', 'SALA 3'),
+        ('SALA 4', 'SALA 4'),
+        ('SALA 5', 'SALA 5'),
+        ('GAURDIA', 'GAURDIA'),
+        ('NEO', 'NEO'),
+        ('UTI', 'UTI'),
+        ('UCO', 'UCO'),
+        ('PRE PARTO', 'PRE PARTO'),
+
     )
 
     CAMAS = (
@@ -54,7 +63,7 @@ class Ubicaciones(TimeStampedModel):
         ('3', '3')
     )
 
-    historia = models.ForeignKey(Historias)
+    historia = models.ForeignKey(Historias, unique=True)
     sala = models.CharField(choices=SALAS, max_length=10, blank=False, null=False)
     cama = models.CharField(choices=CAMAS, max_length=10, blank=False, null=False)
 
