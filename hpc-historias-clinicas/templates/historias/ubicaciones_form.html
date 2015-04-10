@@ -7,7 +7,12 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Ubicar Paciente</h1>
+            <h1 class="page-header">
+                {% if form.instance.id %}
+                    Re
+                {% endif %}
+                Ubicar Paciente
+            </h1>
         </div>
     </div>
 
@@ -21,13 +26,12 @@
             <form method="POST">
                 <div class="well">
                     <label>Código de la Historia:</label>
-                    <span class="text-success">
-                        <strong>{{ historia.codigo }}</strong>
-                    </span>
+                    <span class="label label-success">{{ historia.codigo }}</span>
                 </div>
                 {% csrf_token %}
                 {{ form|crispy }}
-                <input type="submit" value="Ubicar" class="btn btn-success">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Confirmar</button>
+                <a href="{% url 'historias:list' %}">Cancelar</a>
             </form>
         </div>
 

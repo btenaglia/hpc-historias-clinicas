@@ -2,7 +2,7 @@
 
 from django.shortcuts import render_to_response, render, redirect, get_object_or_404
 from django.contrib import messages
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from braces.views import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
@@ -27,20 +27,33 @@ class HistoriasListView(LoginRequiredMixin, ListView):
     model = Historias
 
 
-class UbicacionCreateView(LoginRequiredMixin, CreateView):
+class HistoriasMixin(object):
+    """
+    Funcionalidad común para las ubicaciones
+    """
+    def success_msg(self):
+        return NotImplemented
+
+    def get_context_data(self, **kwargs):
+        ctx = super(HistoriasMixin, self).get_context_data(**kwargs)
+        historia = get_object_or_404(Historias, id=self.kwargs['historia'])
+        ctx['historia'] = historia
+        ctx['paciente'] = get_object_or_404(Pacientes, id=historia.paciente.id)
+        return ctx
+
+    def get_success_url(self):
+        messages.success(self.request, self.success_msg)
+        return super(HistoriasMixin, self).get_success_url()
+
+
+class UbicacionCreateView(LoginRequiredMixin, HistoriasMixin, CreateView):
     """
     Asignar ubicacion para un determinada historia clínica
     """
     model = Ubicaciones
     fields = ['cama', 'sala']
     success_url = '/historias'
-
-    def get_context_data(self, **kwargs):
-        ctx = super(UbicacionCreateView, self).get_context_data(**kwargs)
-        historia = get_object_or_404(Historias, id=self.kwargs['historia'])
-        ctx['historia'] = historia
-        ctx['paciente'] = get_object_or_404(Pacientes, id=historia.paciente.id)
-        return ctx
+    success_msg = 'El paciente se ubicó correctamente.'
 
     def post(self, request, *args, **kwargs):
         form_class = self.get_form_class()
@@ -58,6 +71,19 @@ class UbicacionCreateView(LoginRequiredMixin, CreateView):
                 return self.form_invalid(**{'form': form})
         else:
             return self.form_invalid(**{'form': form})
+
+
+class UbicacionUpdateView(LoginRequiredMixin, HistoriasMixin, UpdateView):
+    """
+    Reubicar un paciente
+    """
+    model = Ubicaciones
+    fields = ['cama', 'sala']
+    success_url = '/historias'
+    success_msg = 'El paciente se reubicó correctamente.'
+
+    def get_object(self, queryset=None):
+        return Ubicaciones.objects.filter(historia=self.kwargs['historia']).get()
 
 
 @login_required(redirect_field_name='accounts/login/')
@@ -113,7 +139,7 @@ def crear_historia(request, paciente):
             # -- si es internacion, ir a agregarle una ubicacion
             if form_historia.instance.tipo == 1:
                 messages.success(request, msg + ', ahora asignele una uicación al paciente')
-                return redirect('crear_ubicacion', historia=historia.id)
+                return redirect('historias:ubicacion_create', historia=historia.id)
             else:
                 messages.success(request, msg)
                 return redirect('historias:list')

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load pagination_tags %}
+{% load historias_tags %}
 
 {% block title %}Historias clínicas{% endblock title %}
 
@@ -11,7 +12,7 @@
 
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Nueva Historia Clínica para ... <span class="caret"></span>
+                    <i class="fa fa-plus-square"></i> Nueva Historia Clínica para ... <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{% url 'pacientes:create' %}"><i class="fa fa-user-plus"></i> Paciente no Existente</a></li>
@@ -25,6 +26,7 @@
                         <tr>
                             <th>Código</th>
                             <th>Tipo</th>
+                            <th>Estado</th>
                             <th>Fecha ingreso</th>
                             <th>Hora ingreso</th>
                             <th>Nombre del paciente</th>
@@ -37,8 +39,21 @@
 
                         {% for historia in object_list %}
                             <tr>
-                                <td><span class="text-warning"><strong>{{ historia.codigo }}</strong></span></td>
+                                <td><span class="label label-success">{{ historia.codigo }}</span></td>
                                 <td>{% if historia.tipo == 1 %} Internación {% else %} Inter consulta{% endif %}</td>
+                                <td>
+                                    {% if historia.estado == 1 %}
+                                        <span class="label label-success">Alta</span>
+                                    {% else %}
+                                        {% if historia.estado == 2 %}
+                                            <span class="label label-danger">Óbito</span>
+                                        {% else %}
+                                            {% if historia.estado == 3 %}
+                                                <span class="label label-primary">Pase de servicio</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
                                 <td>{{ historia.fecha_ingreso|date:"SHORT_DATE_FORMAT" }}</td>
                                 <td>{{ historia.hora_ingreso }}</td>
                                 <td>{{ historia.paciente.nombre }} {{ historia.paciente.apellido }}</td>
@@ -68,10 +83,15 @@
                                         </li>
                                         {% if historia.tipo == 1 %}
                                             <li role="presentation">
-
-                                                <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_create' historia.id %}">
-                                                    <i class="fa fa-bed"></i> Ubicar paciente
-                                                </a>
+                                                {% if historia|tiene_ubicacion:historia.id == 1 %}
+                                                    <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_update' historia.id %}">
+                                                        <i class="fa fa-bed"></i> Reubicar paciente
+                                                    </a>
+                                                {% else %}
+                                                    <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_create' historia.id %}">
+                                                        <i class="fa fa-bed"></i> Ubicar paciente
+                                                    </a>
+                                                {% endif %}
                                             </li>
                                         {% endif %}
                                         <li role="presentation">
