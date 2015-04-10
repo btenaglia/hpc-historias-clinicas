@@ -29,14 +29,16 @@ class HistoriasListView(LoginRequiredMixin, ListView):
 
 class HistoriasMixin(object):
     """
-    Funcionalidad común para las ubicaciones
+    Funcionalidad común para las historias
     """
+    success_url = '/historias'
+
     def success_msg(self):
         return NotImplemented
 
     def get_context_data(self, **kwargs):
         ctx = super(HistoriasMixin, self).get_context_data(**kwargs)
-        historia = get_object_or_404(Historias, id=self.kwargs['historia'])
+        historia = get_object_or_404(Historias, id=self.kwargs['pk'])
         ctx['historia'] = historia
         ctx['paciente'] = get_object_or_404(Pacientes, id=historia.paciente.id)
         return ctx
@@ -52,7 +54,6 @@ class UbicacionCreateView(LoginRequiredMixin, HistoriasMixin, CreateView):
     """
     model = Ubicaciones
     fields = ['cama', 'sala']
-    success_url = '/historias'
     success_msg = 'El paciente se ubicó correctamente.'
 
     def post(self, request, *args, **kwargs):
@@ -79,11 +80,18 @@ class UbicacionUpdateView(LoginRequiredMixin, HistoriasMixin, UpdateView):
     """
     model = Ubicaciones
     fields = ['cama', 'sala']
-    success_url = '/historias'
     success_msg = 'El paciente se reubicó correctamente.'
 
     def get_object(self, queryset=None):
-        return Ubicaciones.objects.filter(historia=self.kwargs['historia']).get()
+        return Ubicaciones.objects.filter(historia=self.kwargs['pk']).get()
+
+
+class HistoriaEstadoUpdateView(LoginRequiredMixin, HistoriasMixin, UpdateView):
+    """ Modificar el estado de una historia """
+    model = Historias
+    fields = ['estado']
+    template_name = 'historias/historias_estados_form.html'
+    success_msg = "Se ha cambiado el estado de la historia."
 
 
 @login_required(redirect_field_name='accounts/login/')

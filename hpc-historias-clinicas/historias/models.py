@@ -57,15 +57,9 @@ class Ubicaciones(TimeStampedModel):
 
     )
 
-    CAMAS = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3')
-    )
-
     historia = models.ForeignKey(Historias, unique=True)
     sala = models.CharField(choices=SALAS, max_length=10, blank=False, null=False)
-    cama = models.CharField(choices=( (str(x), x) for x in range(1, 33) ), max_length=10, blank=False, null=False)
+    cama = models.CharField(choices=( (str(x), x) for x in range(1, 33) ), max_length=2, blank=False, null=False)
 
     class Meta:
         unique_together = ('sala', 'cama',)
