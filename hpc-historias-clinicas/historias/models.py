@@ -61,6 +61,10 @@ class Ubicaciones(TimeStampedModel):
     sala = models.CharField(choices=SALAS, max_length=10, blank=False, null=False)
     cama = models.CharField(choices=( (str(x), x) for x in range(1, 33) ), max_length=2, blank=False, null=False)
 
+    @classmethod
+    def liberar_ubicacion(cls, historia_id):
+        return cls.objects.filer(historia=historia_id).delete()
+
     class Meta:
         unique_together = ('sala', 'cama',)
 

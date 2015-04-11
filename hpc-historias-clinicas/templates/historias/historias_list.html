@@ -67,7 +67,7 @@
                                       </button>
                                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                         <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="#">
+                                            <a role="menuitem" tabindex="-1" href="{% url 'historias:update' historia.id %}">
                                                 <i class="fa fa-plus"></i> Ampliar información
                                             </a>
                                         </li>
@@ -81,7 +81,7 @@
                                                 <i class="fa fa-print"></i> Imprimir
                                             </a>
                                         </li>
-                                        {% if historia.tipo == 1 %}
+                                        {% if historia.tipo == 1 and historia.estado == Null %}
                                             <li role="presentation">
                                                 {% if historia|tiene_ubicacion:historia.id == 1 %}
                                                     <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_update' historia.id %}">
@@ -95,7 +95,7 @@
                                             </li>
                                         {% endif %}
                                         <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="#">
+                                            <a role="menuitem" tabindex="-1" href="{% url 'historias:update' historia.id %}">
                                                 <i class="fa fa-pencil"></i> Editar datos
                                             </a>
                                         </li>
