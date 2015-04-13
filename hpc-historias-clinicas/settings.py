@@ -138,6 +138,7 @@ LOCAL_APPS = (
     'hpc-historias-clinicas.planteos', # PLanteos diagnosticos
     'hpc-historias-clinicas.metodologias', # Metodologias de estudio y tratamiento
     'hpc-historias-clinicas.historias', # Historias clinicas
+    'hpc-historias-clinicas.inter_consultas', # Inter Consultas
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
