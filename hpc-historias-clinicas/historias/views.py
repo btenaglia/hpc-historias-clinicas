@@ -73,7 +73,7 @@ class UbicacionCreateView(LoginRequiredMixin, HistoriasMixin, CreateView):
         if form.is_valid():
             try:
                 # -- asigno la historia
-                form.instance.historia_id = self.kwargs['historia']
+                form.instance.historia_id = self.kwargs['pk']
                 form.save()
                 return self.form_valid(form)
             except IntegrityError:
@@ -101,6 +101,12 @@ class HistoriaEstadoUpdateView(LoginRequiredMixin, HistoriasMixin, UpdateView):
     fields = ['estado']
     template_name = 'historias/historias_estados_form.html'
     success_msg = "Se ha cambiado el estado de la historia."
+
+    def form_valid(self, form):
+        # -- liberamos la ubicacion
+        if form.instance.estado is not None:
+            Ubicaciones.liberar_ubicacion(form.instance.id)
+        return super(HistoriaEstadoUpdateView, self).form_valid(form)
 
 
 @login_required(redirect_field_name='accounts/login/')
@@ -156,7 +162,7 @@ def crear_historia(request, paciente):
             # -- si es internacion, ir a agregarle una ubicacion
             if form_historia.instance.tipo == 1:
                 messages.success(request, msg + ', ahora asignele una uicación al paciente.')
-                return redirect('historias:ubicacion_create', historia=historia.id)
+                return redirect('historias:ubicacion_create', pk=historia.id)
             else:
                 messages.success(request, msg)
                 return redirect('historias:list')

@@ -33,5 +33,9 @@ urlpatterns = patterns('',
     url(r'^pacientes/', include("hpc-historias-clinicas.pacientes.urls", namespace="pacientes")),
     # Historias clínicas
     url(r'^historias', include("hpc-historias-clinicas.historias.urls", namespace="historias")),
+    # Diagnosticos
+    url(r'^diagnosticos', include("hpc-historias-clinicas.diagnosticos.urls", namespace="diagnosticos")),
+    # Motivos
+    url(r'^motivos', include("hpc-historias-clinicas.anamnesis.urls", namespace="motivos")),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

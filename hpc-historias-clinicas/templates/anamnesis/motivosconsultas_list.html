@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load pagination_tags %}
+
+{% block title %}Motivos de consulta{% endblock title %}
+
+{% block content %}
+
+    {% autopaginate object_list 10 %}
+
+    <h1 class="page-header">Motivos de consulta</h1>
+
+
+    <a href="{% url 'motivos:create' %}" class="btn btn-primary"><i class="fa fa-plus"> Agregar Motivo de consulta</i></a>
+
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dt_grid">
+        <thead>
+            <tr>
+                <th>Motivo de Consulta</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if object_list %}
+                {% for motivo in object_list %}
+                    <tr>
+                        <td>{{ motivo.motivo }}</td>
+                        <td>
+                            <a href="{% url 'motivos:update' motivo.id %}"><i class="fa fa-pencil"></i></a>
+                            <a href="{% url 'motivos:delete' motivo.id %}"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    {% paginate %}
+
+{% endblock %}

@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.core.urlresolvers import reverse
 from ..core.models import TimeStampedModel
 
 
 class TipoDiagnosticos(TimeStampedModel):
     nombre = models.CharField(max_length=150, blank=False, null=False, verbose_name=u'Diagnóstico')
+
+    def get_absolute_url(self):
+        return reverse('diagnosticos:list')
+
+    def __unicode__(self):
+        return self.nombre
 
 
 class Diagnosticos(TimeStampedModel):

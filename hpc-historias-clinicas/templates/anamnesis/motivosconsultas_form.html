@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Ayudantes{% endblock title %}
+{% block title %}Motivo de consulta{% endblock title %}
 
 {% block content %}
 
     <div class="row">
         <div class="col-lg-9">
-            <a href="{% url 'ayudantes:list' %}"><i class="fa fa-reply"> Volver</i></a>
+            <a href="{% url 'motivos:list' %}"><i class="fa fa-reply"> Volver</i></a>
             <h1 class="page-header">
 
                 {% if form.instance.id %}
@@ -15,7 +15,7 @@
                 {% else %}
                     Nuevo
                 {% endif %}
-                Ayudate
+                Motivo de consulta
             </h1>
             <form class="form-horizontal" method="post">
                 {% csrf_token %}

@@ -63,7 +63,7 @@ class Ubicaciones(TimeStampedModel):
 
     @classmethod
     def liberar_ubicacion(cls, historia_id):
-        return cls.objects.filer(historia=historia_id).delete()
+        return cls.objects.filter(historia=historia_id).delete()
 
     class Meta:
         unique_together = ('sala', 'cama',)
