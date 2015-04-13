@@ -1,0 +1,36 @@
+<!-- ------------------------------
+    NUEVA DE INTER CONSULTAS
+--------------------------------- -->
+
+{% extends 'inter_consultas/_interconsultas_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block ic_volver %}
+    <!-- link Volver -->
+    <a href="{% url 'inter_consultas:list' historia.id %}"><i class="fa fa-reply"> Volver</i></a>
+    <!-- / link Volver -->
+{% endblock ic_volver %}
+
+{% block ic_titulo %}
+    {% if form.instance.id %}
+            Editar
+    {% else %}
+            Nueva
+    {% endif %}
+    Inter Consulta
+{% endblock ic_titulo %}
+
+{% block ic_contenido %}
+
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Confirmar</button>
+          </div>
+        </div>
+    </form>
+
+{% endblock ic_contenido %}

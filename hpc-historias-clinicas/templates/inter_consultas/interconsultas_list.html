@@ -1,76 +1,49 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
+<!-- ------------------------------
+    LISTADO DE INTER CONSULTAS
+--------------------------------- -->
 
-{% block title %}Inter consultas{% endblock title %}
+{% extends 'inter_consultas/_interconsultas_base.html' %}
 
-{% block content %}
+{% load pagination_tags %}
 
-    <div class="row">
-        <div class="col-lg-12">
+{% block ic_titulo %} Inter Consultas {% endblock ic_titulo %}
 
-            <h1 class="page-header">Inter consultas</h1>
-        </div>
-    </div>
+{% block ic_contenido %}
 
-    <div class="row">
-        <div class="col-lg-3">
-            <!-- info de la historia -->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <i class="fa fa-bars"></i> Historia clínica
-                </div>
-                <div class="panel-body">
-                    <div class="well well-lg">
-                      <label><strong>Código: </strong></label>
-                      <span class="label label-success">{{ historia.codigo }}</span>
-                      <br>
-                      <label><strong>Fecha Ingreso: </strong></label>
-                      {{ historia.fecha_ingreso|date:"SHORT_DATE_FORMAT" }}
-                      <br>
-                      <label><strong>Hora Ingreso: </strong></label>
-                      {{ historia.hora_ingreso }}
-                    </div>
-                </div>
-            </div><!-- / info de la historia -->
-            <!-- info info del paciente -->
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <i class="fa fa-user"></i> Paciente
-                </div>
-                <div class="panel-body">
-                    <div class="well well-lg">
-                      <label><strong>Nombre: </strong></label>
-                      {{ historia.paciente.nombre }}
-                      <br>
-                      <label><strong>Apellido: </strong></label>
-                      {{ historia.paciente.apellido }}
-                      <br>
-                      <label><strong>Sexo: </strong></label>
-                      {% if historia.paciente.sexo == 0 %}Masculino{% else %}Femenino{% endif %}
-                      <br>
-                      <label><strong>Madre: </strong></label>
-                      {{ historia.paciente.madre }}
-                      <br>
-                      <label><strong>F. nacimiento: </strong></label>
-                      {{ historia.paciente.fecha_nacimiento|date:"SHORT_DATE_FORMAT" }}
-                      <br>
-                      <label><strong>Estado civil: </strong></label>
-                      {% if historia.paciente.estado_civil == 0 %}
-                        Soltero
-                      {% elif historia.paciente.estado_civil == 1 %}
-                        Casado
-                      {% elif historia.paciente.estado_civil == 2 %}
-                        Viudo
-                      {% elif historia.paciente.estado_civil == 3 %}
-                        Divorciado
-                      {% endif %}
-                    </div>
-                </div>
-            </div><!-- / info del paciente -->
-        </div>
-        <div class="col-lg-9">
+    {% autopaginate object_list 10 %}
 
-        </div>
-    </div>
+    <a href="{% url 'inter_consultas:create' historia.id %}" class="btn btn-primary"><i class="fa fa-plus"> Nueva Inter Consulta</i></a>
 
-{% endblock %}
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dt_grid">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Descripción</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if object_list %}
+                {% for ic in object_list %}
+                    <tr>
+                        <td>{{ ic.fecha|date:"SHORT_DATE_FORMAT" }}</td>
+                        <td>
+                            {% if ic.descripcion|length > 70%}
+                                {{ ic.descripcion|truncatechars:70 }}
+                                <a href="{% url 'inter_consultas:update' ic.id ic.historia_id %}">[+]</a>
+                            {% else %}
+                                {{ ic.descripcion }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'inter_consultas:update' ic.id ic.historia_id %}"><i class="fa fa-pencil"></i></a>
+                            <a href="{% url 'inter_consultas:delete' ic.id ic.historia_id %}"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    {% paginate %}
+
+{% endblock ic_contenido %}

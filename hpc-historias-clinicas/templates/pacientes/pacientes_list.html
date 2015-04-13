@@ -21,7 +21,7 @@
                                 <th>Dni</th>
                                 <th>Fecha de Nacimiento</th>
                                 <th>Nombre de la madre</th>
-                                <th></th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,9 +33,34 @@
                                     <td>{{ paciente.fecha_nacimiento|date:"SHORT_DATE_FORMAT" }}</td>
                                     <td>{{ paciente.madre }}</td>
                                     <td>
-                                        <a href="{% url 'pacientes:update' paciente.id %}" title="Editar"><i class="fa fa-pencil"></i></a>
-                                        <a href="{% url 'pacientes:delete' paciente.id %}" title="Eliminar"><i class="fa fa-trash-o"></i></a>
-                                        <a href="{% url 'historias:create' paciente.id %}" title="Agregar Historia Clínica"><i class="fa fa-file-text-o"></i></a>
+                                        <div class="dropdown">
+                                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                            Elija una opción
+                                            <span class="caret"></span>
+                                          </button>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href="{% url 'historias:create' paciente.id %}">
+                                                        <i class="fa fa-plus-square"></i> Agregar historia clínica
+                                                    </a>
+                                                </li>
+                                                 <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href="{% url 'historias:paciente' paciente.id %}">
+                                                        <i class="fa fa-bars"></i></i> Ver sus historias clínicas
+                                                    </a>
+                                                </li>
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href="{% url 'pacientes:update' paciente.id %}">
+                                                        <i class="fa fa-pencil"></i> Editar paciente
+                                                    </a>
+                                                </li>
+                                                <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href="{% url 'pacientes:delete' paciente.id %}">
+                                                        <i class="fa fa-trash-o"></i> Eliminar paciente
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </td>
                                 </tr>
                             {% endfor %}

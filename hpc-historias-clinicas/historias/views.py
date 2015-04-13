@@ -36,6 +36,19 @@ class HistoriasListView(LoginRequiredMixin, ListView):
     model = Historias
 
 
+class HistoriasPacienteListView(LoginRequiredMixin, ListView):
+    """ Ver historias de un paciente determinado """
+    model = Historias
+
+    def get_queryset(self):
+        return Historias.objects.filter(paciente_id=self.kwargs['paciente']).all()
+
+    def get_context_data(self, **kwargs):
+        ctx = super(HistoriasPacienteListView, self).get_context_data(**kwargs)
+        ctx['paciente'] = Pacientes.objects.filter(pk=self.kwargs['paciente']).get()
+        return ctx
+
+
 class HistoriasMixin(object):
     """
     Funcionalidad común para las historias
