@@ -28,8 +28,6 @@ class InterConsultasListView(LoginRequiredMixin, InterConsultasMixin, ListView):
     """
     Obtengo las inter-consultas de una historia clinica
     """
-    model = InterConsultas
-
     def get_queryset(self):
         return InterConsultas.objects.filter(historia=self.kwargs['historia'])
 

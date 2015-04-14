@@ -1,31 +1,31 @@
 <!-- -------------------------------------
-    TEMPLATE BASE DE INTER CONSULTAS
+    TEMPLATE BASE DE EVOLUCIONES
 ----------------------------------------- -->
 
 {% extends 'base.html' %}
 
-{% block title %}Inter consultas{% endblock title %}
+{% block title %}Evoluciones{% endblock title %}
 
 {% block content %}
 
     <div class="row">
         <div class="col-lg-12">
-            {% block ic_volver %}
+            {% block evoluciones_volver %}
                 <a href="{% url 'historias:list' %}"><i class="fa fa-reply"> Volver</i></a>
-            {% endblock ic_volver %}
+            {% endblock evoluciones_volver %}
             <h1 class="page-header">
-                {% block ic_titulo %}{% endblock ic_titulo %}
+                {% block evoluciones_titulo %}{% endblock evoluciones_titulo %}
             </h1>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-3">
-            {% include "_info_historias_pacientes.html" %}
+            {% include '_info_historias_pacientes.html' %}
         </div>
         <div class="col-lg-9">
-            {% block ic_contenido %}
-            {% endblock ic_contenido %}
+            {% block evoluciones_contenido %}
+            {% endblock evoluciones_contenido %}
         </div>
     </div>
 

@@ -82,9 +82,14 @@
                                         <span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                         <li role="presentation">
+                                        <li role="presentation">
                                             <a role="menuitem" tabindex="-1" href="{% url 'inter_consultas:list' historia.id %}">
                                                 <i class="fa fa-stethoscope"></i> Inter consultas
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="{% url 'evoluciones:list' historia.id %}">
+                                                <i class="fa fa-check-square-o"></i> Evoluciones
                                             </a>
                                         </li>
                                         <li role="presentation">

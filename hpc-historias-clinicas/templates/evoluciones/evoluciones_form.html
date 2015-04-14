@@ -1,0 +1,36 @@
+<!-- ------------------------------
+    NUEVA EVOLUCION
+--------------------------------- -->
+
+{% extends 'evoluciones/_evoluciones_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block evoluciones_volver %}
+    <!-- link Volver -->
+    <a href="{% url 'evoluciones:list' historia.id %}"><i class="fa fa-reply"> Volver</i></a>
+    <!-- / link Volver -->
+{% endblock evoluciones_volver %}
+
+{% block evoluciones_titulo %}
+    {% if form.instance.id %}
+            Editar
+    {% else %}
+            Nueva
+    {% endif %}
+    Evolucion
+{% endblock evoluciones_titulo %}
+
+{% block evoluciones_contenido %}
+
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Confirmar</button>
+          </div>
+        </div>
+    </form>
+
+{% endblock evoluciones_contenido %}
