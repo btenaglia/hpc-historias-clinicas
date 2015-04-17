@@ -37,3 +37,6 @@ pytz==2014.10
 
 # Your custom requirements go here
 django-pagination==1.0.7
+django-easy-pdf==0.1.0
+xhtml2pdf==0.0.6
+reportlab==3.1.44

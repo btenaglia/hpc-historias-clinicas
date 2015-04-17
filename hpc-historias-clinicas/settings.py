@@ -121,6 +121,7 @@ THIRD_PARTY_APPS = (
     'allauth.account', # registration
     'allauth.socialaccount', # registration
     'pagination', # paginacion
+    'easy_pdf',
 )
 # Apps specific for this project go here.
 LOCAL_APPS = (
