@@ -1,0 +1,52 @@
+<style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td, th {
+      /*border: 1px solid #999;*/
+      padding: 3px;
+      text-align: left;
+    }
+</style>
+
+{% block content %}
+    <div style='margin-left: 600px'>
+        {{ evolucion.historia.codigo }}
+    </div>
+
+    <br>
+    <br>
+
+    <table>
+        <tr>
+            <td></td>
+            <td>
+                {{evolucion.historia.paciente.nombre }}
+            </td>
+            <td></td>
+            <td>
+                {{evolucion.historia.paciente.apellido }}
+            </td>
+            <td>
+                {{evolucion.historia.fecha_ingreso }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Sexo
+                &nbsp;
+                {% if evolucion.historia.paciente.sexo == 1 %}
+                 &nbsp;&nbsp;
+                {% else %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endif %}
+                X
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    {{evolucion.descripcion}}
+{% endblock %}

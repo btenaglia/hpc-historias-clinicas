@@ -41,5 +41,7 @@ urlpatterns = patterns('',
     url(r'^inter/consultas', include("hpc-historias-clinicas.inter_consultas.urls", namespace="inter_consultas")),
     # Evoluciones
     url(r'^evoluciones', include("hpc-historias-clinicas.evoluciones.urls", namespace="evoluciones")),
+    # Reportes
+    url(r'^reportes', include("hpc-historias-clinicas.reportes.urls", namespace="reportes")),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
