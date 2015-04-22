@@ -21,6 +21,11 @@ class EvolucionesMixin(object):
 
     def get_success_url(self):
         messages.success(self.request, self.success_msg)
+        # -- si se elige la opcion para confirmar e imprimir
+        if 'confirmar_imprimir' in self.request.POST:
+            ultima_evolucion = Evoluciones.objects.latest('id')
+            return '/reportes/evolucion/%s' % str(ultima_evolucion.id)
+
         return '/evoluciones/%s' % (self.kwargs['historia'])
 
 
