@@ -13,6 +13,10 @@ class EvolucionesMixin(object):
     def success_msg(self):
         return NotImplemented
 
+    def descarga_msg(self , evolucion_id):
+	# -- msg para la descar de la evolucion
+	return ' Click en el siguiente link para <a href="/reportes/evolucion/%s">Descargar e Imprimir</a>' % str(evolucion_id)
+
     def get_context_data(self, **kwargs):
         # -- obtengo los datos de la historia clínica
         ctx = super(EvolucionesMixin, self).get_context_data(**kwargs)
@@ -20,12 +24,7 @@ class EvolucionesMixin(object):
         return ctx
 
     def get_success_url(self):
-        messages.success(self.request, self.success_msg)
-        # -- si se elige la opcion para confirmar e imprimir
-        if 'confirmar_imprimir' in self.request.POST:
-            ultima_evolucion = Evoluciones.objects.latest('id')
-            return '/reportes/evolucion/%s' % str(ultima_evolucion.id)
-
+	messages.success(self.request, self.success_msg)
         return '/evoluciones/%s' % (self.kwargs['historia'])
 
 
@@ -41,6 +40,15 @@ class EvolucionesCreateView(LoginRequiredMixin, EvolucionesMixin, CreateView):
     model = Evoluciones
     fields = ['fecha', 'descripcion']
     success_msg = 'Se agregó una nueva evolución.'
+
+    def get_success_url(self):
+        # -- ontengo el id de la reciente evolucion agregada,
+        # -- se necesita para armar el link de descarga
+        pk = Evoluciones.objects.latest('id').id
+        if pk:
+            self.success_msg += self.descarga_msg(pk)
+
+	return super(EvolucionesCreateView, self).get_success_url()
 
     def post(self, request, *args, **kwargs):
         # -- Es necesario indicarle el Id de la historia
@@ -62,6 +70,12 @@ class EvolucionesUpdateView(LoginRequiredMixin, EvolucionesMixin, UpdateView):
     fields = ['fecha', 'descripcion']
     success_msg = 'La evolución se modificó con éxito.'
 
+    def get_success_url(self):
+	# -- obtengo id de la evolucion ya que se necesita para armar el link de descarga
+        if self.kwargs['pk']:
+            self.success_msg += self.descarga_msg(self.kwargs['pk'])
+
+        return super(EvolucionesUpdateView, self).get_success_url()
 
 class EvolucionesDeleteView(LoginRequiredMixin, EvolucionesMixin, DeleteView):
     """Eliminar evolucion"""

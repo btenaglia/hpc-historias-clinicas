@@ -174,7 +174,7 @@ def crear_historia(request, paciente):
             msg = 'La historia clinica se creó con éxito.'
             # -- si es internacion, ir a agregarle una ubicacion
             if form_historia.instance.tipo == 1:
-                messages.success(request, msg + ', ahora asignele una uicación al paciente.')
+                messages.success(request, msg + ', ahora asignele una ubicación al paciente.')
                 return redirect('historias:ubicacion_create', pk=historia.id)
             else:
                 messages.success(request, msg)

@@ -45,7 +45,7 @@ class Historias(TimeStampedModel):
 class Ubicaciones(TimeStampedModel):
     SALAS = (
         ('SALA 1', 'SALA 1'),
-        ('SALA 2', 'SALA 1'),
+        ('SALA 2', 'SALA 2'),
         ('SALA 3', 'SALA 3'),
         ('SALA 4', 'SALA 4'),
         ('SALA 5', 'SALA 5'),
