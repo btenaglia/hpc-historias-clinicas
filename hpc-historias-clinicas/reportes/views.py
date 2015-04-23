@@ -3,7 +3,25 @@ from django.shortcuts import render_to_response, HttpResponse
 from django.shortcuts import get_object_or_404
 from easy_pdf.views import PDFTemplateView
 from ..evoluciones.models import Evoluciones
+from ..inter_consultas.models import InterConsultas
 
+
+class ReporteInterConsulta(PDFTemplateView):
+    """
+    Impresion de una hoja de inter consulta
+    """
+    template_name = 'reportes/inter_consulta.html'
+ 
+    def get_context_data(self, pk):
+        ctx = super(ReporteInterConsulta, self).get_context_data()
+        ic = get_object_or_404(InterConsultas, pk=pk)                 
+        ctx['historia'] = ic.historia
+        ctx['madre'] = True
+        ctx['inter_consulta'] = ic
+        # -- asigno el nombre al archivo pdf
+        self.pdf_filename = "inter_consulta_%s.pdf" % ic.historia.codigo
+        return ctx
+   
 
 class ReporteEvolucion(PDFTemplateView):
     """

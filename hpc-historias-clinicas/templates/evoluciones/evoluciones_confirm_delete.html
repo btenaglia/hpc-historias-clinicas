@@ -11,7 +11,7 @@
 {% block evoluciones_contenido %}
 
     <form action="" method="post">{% csrf_token %}
-        <p><b>ATENCIÓN:</b> Está seguro de eliminar la inter consulta"?</p>
+        <p><b>ATENCIÓN:</b> Está seguro de eliminar la evolucion"?</p>
         <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
         <a href="{% url 'evoluciones:list' historia.id%}">Volver</a>
     </form>
