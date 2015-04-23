@@ -58,14 +58,18 @@
                                 <td><span class="label label-success">{{ historia.codigo }}</span></td>
                                 <td>{% if historia.tipo == 1 %} Internación {% else %} Inter consulta{% endif %}</td>
                                 <td>
-                                    {% if historia.estado == 1 %}
-                                        <span class="label label-success">Alta</span>
+                                    {% if historia.estado == None %}
+					<span class="label label-warning">Open</span>
                                     {% else %}
-                                        {% if historia.estado == 2 %}
-                                            <span class="label label-danger">Óbito</span>
+                                        {% if historia.estado == 1 %}
+                                            <span class="label label-success">Alta</span>
                                         {% else %}
-                                            {% if historia.estado == 3 %}
-                                                <span class="label label-primary">Pase de servicio</span>
+                                            {% if historia.estado == 2 %}
+                                                <span class="label label-danger">Óbito</span>
+                                            {% else %}
+                                                {% if historia.estado == 3 %}
+                                                    <span class="label label-primary">Pase de servicio</span>
+                                                {% endif %}
                                             {% endif %}
                                         {% endif %}
                                     {% endif %}

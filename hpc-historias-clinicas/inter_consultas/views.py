@@ -13,6 +13,9 @@ class InterConsultasMixin(object):
     def success_msg(self):
         return NotImplemented
 
+    def descarga_msg(self, ic_id):
+        return " Click en el siguiente link para <a href='/reportes/inter/consultas/%s'>Descargar e Imprimir</a>" % str(ic_id)
+
     def get_context_data(self, **kwargs):
         """Es necesario traer los datos de la historia clinica"""
         ctx = super(InterConsultasMixin, self).get_context_data(**kwargs)
@@ -38,6 +41,17 @@ class InterConsultasCreateView(LoginRequiredMixin, InterConsultasMixin, CreateVi
     fields = ['fecha', 'descripcion']
     success_msg = 'La inter consulta se agregó con éxito.'
 
+    def get_success_url(self):
+        # -- armo el msg para la descarga de la inter consulta
+        # -- obtengo el ultimo id ingresado, es necesario para
+        # -- armar la ulr de descarga
+        pk = InterConsultas.objects.latest('id').id
+        if pk:
+            self.success_msg += self.descarga_msg(pk)
+
+        return super(InterConsultasCreateView, self).get_success_url()
+
+
     def post(self, request, *args, **kwargs):
         # -- Es necesario indicarle el Id de la historia
         form_class = self.get_form_class()
@@ -57,6 +71,16 @@ class InterConsultasUpdateView(LoginRequiredMixin, InterConsultasMixin, UpdateVi
     model = InterConsultas
     fields = ['fecha', 'descripcion']
     success_msg = 'La inter consulta se editó con éxito.'
+
+    def get_success_url(self):
+        # -- armo el msg para la descarga de la inter consulta
+        # -- obtengo el ultimo id ingresado, es necesario para
+        # -- armar la ulr de descarga
+        pk = self.kwargs['pk']
+        if pk:
+            self.success_msg += self.descarga_msg(pk)
+
+        return super(InterConsultasUpdateView, self).get_success_url()
 
 
 class InterConsultasDeleteView(LoginRequiredMixin, InterConsultasMixin, DeleteView):
