@@ -75,7 +75,7 @@ class UbicacionCreateView(LoginRequiredMixin, HistoriasMixin, CreateView):
     Asignar ubicacion para un determinada historia clínica
     """
     model = Ubicaciones
-    fields = ['cama', 'sala']
+    fields = ['sala', 'cama']
     success_msg = 'El paciente se ubicó correctamente.'
 
     def post(self, request, *args, **kwargs):
@@ -171,14 +171,9 @@ def crear_historia(request, paciente):
             historia.metodologias = form_metodologias.save()
             historia.save()
 
-            msg = 'La historia clinica se creó con éxito.'
-            # -- si es internacion, ir a agregarle una ubicacion
-            if form_historia.instance.tipo == 1:
-                messages.success(request, msg + ', ahora asignele una ubicación al paciente.')
-                return redirect('historias:ubicacion_create', pk=historia.id)
-            else:
-                messages.success(request, msg)
-                return redirect('historias:list')
+            messages.success(request, 'La historia clinica se creó con éxito, ahora asignele una ubicación al paciente.')
+            return redirect('historias:ubicacion_create', pk=historia.id)
+
         else:
             # -- si hay un error, debo agregar en el contexto para mostrar los
             # -- errores en el form y mostrar el respectivo msg

@@ -60,6 +60,8 @@ class Ubicaciones(TimeStampedModel):
         ('UTI', 'UTI'),
         ('UCO', 'UCO'),
         ('PRE PARTO', 'PRE PARTO'),
+        ('CLARITA', 'CLARITA'),
+        ('HOSPITAL DE DIA', 'HOSPITAL DE DIA'),
 
     )
 
