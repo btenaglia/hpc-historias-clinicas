@@ -6,6 +6,10 @@ from ..evoluciones.models import Evoluciones
 from ..inter_consultas.models import InterConsultas
 
 
+class ReporteHistoriaClinica(PDFTemplateView):
+    template_name = 'reportes/historia.html'
+
+
 class ReporteInterConsulta(PDFTemplateView):
     """
     Impresion de una hoja de inter consulta

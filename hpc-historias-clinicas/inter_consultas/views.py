@@ -51,7 +51,6 @@ class InterConsultasCreateView(LoginRequiredMixin, InterConsultasMixin, CreateVi
 
         return super(InterConsultasCreateView, self).get_success_url()
 
-
     def post(self, request, *args, **kwargs):
         # -- Es necesario indicarle el Id de la historia
         form_class = self.get_form_class()

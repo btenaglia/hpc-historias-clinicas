@@ -2,9 +2,9 @@
 <div class="well">
     <div class="row">
       <div class="col-lg-6">
-        <label><strong>Código</strong></label><br>
+        <label><strong>Código</strong></label>
         <input type="hidden" value='{{ paciente.fecha_nacimiento|date:"dmY" }}' id='codigo' name="codigo">
-        <span class="text-success"><strong>{{ paciente.fecha_nacimiento|date:"dmY" }}</strong></span>
+        <span class="label label-success"><strong>{{ paciente.fecha_nacimiento|date:"dmY" }}</strong></span>
       </div>
       <div class="col-lg-6">
           {{ form_historia.tipo|as_crispy_field }}
