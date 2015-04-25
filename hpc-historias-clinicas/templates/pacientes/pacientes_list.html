@@ -29,7 +29,13 @@
                                 <tr>
                                     <td>{{ paciente.nombre }}</td>
                                     <td>{{ paciente.apellido }}</td>
-                                    <td>{{ paciente.documento }}</td>
+                                    <td>
+                                        {% if paciente.documento != "" %}
+                                            {{ paciente.documento }}
+                                        {% else %}
+                                            <i class="fa fa-exclamation-triangle"></i> No recuerda
+                                        {% endif %}
+                                    </td>
                                     <td>{{ paciente.fecha_nacimiento|date:"SHORT_DATE_FORMAT" }}</td>
                                     <td>{{ paciente.madre }}</td>
                                     <td>
