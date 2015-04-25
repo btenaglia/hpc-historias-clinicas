@@ -15,7 +15,7 @@ from ..metodologias.models import Metodologias
 class HistoriasModelForm(ModelForm):
     class Meta:
         model = Historias
-        fields = ['tipo', 'fecha_ingreso', 'hora_ingreso']
+        fields = ['tipo', 'fecha_ingreso', 'hora_ingreso', 'medico', 'dpto_cirugia']
 
 
 class DiagnosticosModelForm(ModelForm):

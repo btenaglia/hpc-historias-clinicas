@@ -4,6 +4,7 @@ from django.db import models
 from ..core.models import TimeStampedModel
 
 from ..pacientes.models import Pacientes
+from ..medicos.models import Medicos
 from ..diagnosticos.models import Diagnosticos
 from ..anamnesis.models import Anamnesis
 from ..antecedentes_personales.models import AntecedentesPersonales
@@ -13,6 +14,16 @@ from ..aparatos.models import Aparatos
 from ..examen_fisico.models import ExamenFisico
 from ..planteos.models import Planteos
 from ..metodologias.models import Metodologias
+
+
+class DptosCirugiaGeneral(TimeStampedModel):
+    """
+    Departamentos de cirugia general
+    """
+    nombre = models.CharField(blank=False, null=False, max_length=150)
+
+    def __unicode__(self):
+        return self.nombre
 
 
 class Historias(TimeStampedModel):
@@ -26,7 +37,10 @@ class Historias(TimeStampedModel):
         (2, 'Óbito'),
         (3, 'Pase de servicio'),
     )
+
     paciente = models.ForeignKey(Pacientes, blank=False, null=False)
+    medico = models.ForeignKey(Medicos, blank=False, null=False, verbose_name=u'Médico Responsable')
+    dpto_cirugia = models.ForeignKey(DptosCirugiaGeneral, blank=False, null=False, verbose_name=u'Dpto. Cirugía')
     codigo = models.CharField(blank=False, null=False, max_length=10)
     tipo = models.IntegerField(choices=TIPO, default=1, blank=False, null=False)
     estado = models.IntegerField(choices=ESTADO, blank=True, null=True)
