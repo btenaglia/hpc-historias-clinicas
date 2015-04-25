@@ -2,7 +2,7 @@
 {% load pagination_tags %}
 {% load historias_tags %}
 
-{% block title %}Historias clínicas{% endblock title %}
+{% block title %}Historias Clínicas{% endblock title %}
 
 {% block content %}
     {% autopaginate object_list 30 %}
@@ -46,8 +46,8 @@
                             <th>Fecha ingreso</th>
                             <th>Hora ingreso</th>
                             <th>Nombre del paciente</th>
-                            <th>Nombre de la madre</th>
                             <th>Dni</th>
+                            <th>Nombre de la madre</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
@@ -59,7 +59,7 @@
                                 <td>{% if historia.tipo == 1 %} Internación {% else %} Inter consulta{% endif %}</td>
                                 <td>
                                     {% if historia.estado == None %}
-					<span class="label label-warning">Open</span>
+					                    <span class="label label-warning">Open</span>
                                     {% else %}
                                         {% if historia.estado == 1 %}
                                             <span class="label label-success">Alta</span>
@@ -76,9 +76,13 @@
                                 </td>
                                 <td>{{ historia.fecha_ingreso|date:"SHORT_DATE_FORMAT" }}</td>
                                 <td>{{ historia.hora_ingreso }}</td>
-                                <td>{{ historia.paciente.nombre }} {{ historia.paciente.apellido }}</td>
+                                <td>
+                                    <a href="{% url 'pacientes:update' historia.paciente.id %}">
+                                        {{ historia.paciente.nombre }} {{ historia.paciente.apellido }}
+                                    </a>
+                                </td>
+                                <td>{{ historia.paciente.documento }}</td>
                                 <td>{{ historia.paciente.madre }}</td>
-                                <td>{{ historia.paciente.dni }}</td>
                                 <td>
                                     <div class="dropdown">
                                       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">

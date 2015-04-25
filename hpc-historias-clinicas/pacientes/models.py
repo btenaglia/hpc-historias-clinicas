@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from datetime import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
 from ..core.models import TimeStampedModel
@@ -40,8 +40,12 @@ class Pacientes(TimeStampedModel):
     nacionalidad = models.CharField(max_length=100, blank=True, null=True)
     obra_social = models.CharField(max_length=100, blank=True, null=True)
     numero_afiliado = models.CharField(max_length=100, blank=True, null=True)
-    hora_ingreso = models.TimeField(blank=False, null=False, verbose_name=u"Hora de Ingreso", help_text=u'Formato: hh:mm')
-    fecha_ingreso = models.DateField(blank=False, null=False, verbose_name=u"Fecha de Ingreso", help_text=u'Formato: dd/mm/yyyy')
+    hora_ingreso = models.TimeField(blank=False, null=False, verbose_name=u"Hora de Ingreso",
+                                    help_text=u'Formato: hh:mm',
+                                    default=datetime.now())
+    fecha_ingreso = models.DateField(blank=False, null=False, verbose_name=u"Fecha de Ingreso",
+                                     help_text=u'Formato: dd/mm/yyyy',
+                                     default=datetime.now())
 
     def get_absolute_url(self):
         return reverse('pacientes:list')

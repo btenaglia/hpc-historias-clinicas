@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
 from ..core.models import TimeStampedModel
@@ -20,6 +21,7 @@ class Diagnosticos(TimeStampedModel):
     descripcion = models.TextField(blank=True, null=True,
                                    help_text=u'Escriba una descripcion si lo considera útil')
     fecha = models.DateField(blank=False, null=False,
-                             help_text=u'Formato: dd/mm/yyyy')
+                             help_text=u'Formato: dd/mm/yyyy',
+                             default=datetime.now())
     hora = models.TimeField(blank=False, null=False,
-                            help_text=u'Formato: hh:mm')
+                            help_text=u'Formato: hh:mm', default=datetime.now())

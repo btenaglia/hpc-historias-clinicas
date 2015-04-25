@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 from django.db import models
 from ..core.models import TimeStampedModel
 
@@ -38,8 +39,13 @@ class Historias(TimeStampedModel):
     examen_fisico = models.OneToOneField(ExamenFisico, blank=False, null=False)
     planteos = models.OneToOneField(Planteos, blank=False, null=False)
     metodologias = models.OneToOneField(Metodologias, blank=False, null=False)
-    hora_ingreso = models.TimeField(blank=False, null=False, verbose_name=u"Hora de Ingreso", help_text=u'Formato: hh:mm')
-    fecha_ingreso = models.DateField(blank=False, null=False, verbose_name=u"Fecha de Ingreso", help_text=u'Formato: dd/mm/yyyy')
+    hora_ingreso = models.TimeField(blank=False, null=False,
+                                    verbose_name=u"Hora de Ingreso",
+                                    help_text=u'Formato: hh:mm',
+                                    default=datetime.datetime.now())
+    fecha_ingreso = models.DateField(blank=False, null=False, verbose_name=u"Fecha de Ingreso",
+                                     help_text=u'Formato: dd/mm/yyyy',
+                                     default=datetime.datetime.now())
 
 
 class Ubicaciones(TimeStampedModel):
