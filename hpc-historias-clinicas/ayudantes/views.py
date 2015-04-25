@@ -45,4 +45,4 @@ class AyudantesDeleteView(LoginRequiredMixin, DeleteView):
     Eliminar un ayudante
     """
     model = Ayudantes
-    success_url = '/ayudantes'
+    success_url = '/ayudantes/'
