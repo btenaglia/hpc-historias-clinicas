@@ -14,4 +14,4 @@ def obtener_ubicacion(historia_id):
     """
     Obtener la sala y la cama de la historia clinica
     """
-    return Ubicaciones.objects.values('cama', 'sala').filter(historia=historia_id)[:1]
+    return Ubicaciones.objects.values('cama', 'sala', 'comentario').filter(historia=historia_id)[:1]
