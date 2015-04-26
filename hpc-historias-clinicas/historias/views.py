@@ -35,6 +35,42 @@ class HistoriasListView(LoginRequiredMixin, ListView):
     """
     model = Historias
 
+    def get_queryset(self):
+        qs = super(HistoriasListView, self).get_queryset()
+
+        # -- filtro por estado
+        estado = self.request.GET.get('estado')
+        if estado:
+            print estado
+            if estado == "0":
+                qs = qs.filter(estado__isnull=True)
+            else:
+                qs = qs.filter(estado=estado)
+
+        # -- filtro por codigo
+        codigo = self.request.GET.get('codigo')
+        if codigo:
+            qs = qs.filter(codigo=codigo)
+
+        # filtro por fecha ingreso
+        fecha_ingreso = self.request.GET.get('fecha_ingreso')
+        if fecha_ingreso:
+            date = fecha_ingreso.split('/')
+            date = date[2]+'-'+date[1]+'-'+date[0]
+            qs = qs.filter(fecha_ingreso=date)
+
+        # filtro por nombre del paciente
+        paciente_nombre = self.request.GET.get('paciente_nombre')
+        if paciente_nombre:
+            qs = qs.filter(paciente__nombre__icontains=paciente_nombre)
+
+        # filtro por apellido del paciente
+        paciente_apellido = self.request.GET.get('paciente_apellido')
+        if paciente_apellido:
+            qs = qs.filter(paciente__apellido__icontains=paciente_apellido)
+
+        return qs
+
 
 class HistoriasPacienteListView(LoginRequiredMixin, ListView):
     """ Ver historias de un paciente determinado """
@@ -75,7 +111,7 @@ class UbicacionCreateView(LoginRequiredMixin, HistoriasMixin, CreateView):
     Asignar ubicacion para un determinada historia clínica
     """
     model = Ubicaciones
-    fields = ['sala', 'cama']
+    fields = ['sala', 'cama', 'comentario']
     success_msg = 'El paciente se ubicó correctamente.'
 
     def post(self, request, *args, **kwargs):
@@ -101,7 +137,7 @@ class UbicacionUpdateView(LoginRequiredMixin, HistoriasMixin, UpdateView):
     Reubicar un paciente
     """
     model = Ubicaciones
-    fields = ['cama', 'sala']
+    fields = ['sala', 'cama', 'comentario']
     success_msg = 'El paciente se reubicó correctamente.'
 
     def get_object(self, queryset=None):

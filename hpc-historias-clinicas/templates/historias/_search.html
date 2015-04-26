@@ -1,0 +1,38 @@
+<br><br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <i class="fa fa-search"></i> Filtro
+    </div>
+    <div class="panel-body">
+        <div class="well well-lg">
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <input type="text" class="form-control" name='codigo' id="codigo" placeholder="Nº" size="7">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="paciente_nombre"  id="paciente_nombre" placeholder="Nombre Paciente">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="paciente_apellido"  id="paciente_apellido" placeholder="Apellido Paciente">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control dateinput" name='fecha_ingreso' id="fecha_ingreso" placeholder="Fecha Ingreso">
+            </div>
+            <div class="form-group">
+              <select name='estado' class="form-control">
+                  <option value="">Seleccione un estado</option>
+                  <option value="0">Open</option>
+                  <option value=1>Alta</option>
+                  <option value=2>Óbito</option>
+                  <option value=3>Pase de servicio</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Filtrar</button>
+          </form>
+            <br>
+          <div class="pull-right">
+              <a href="{% url 'historias:list' %}"><i class="fa fa-refresh"></i> Limpiar filtros</a>
+          </div>
+        </div>
+    </div>
+</div>

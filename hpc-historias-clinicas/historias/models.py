@@ -63,6 +63,12 @@ class Historias(TimeStampedModel):
 
 
 class Ubicaciones(TimeStampedModel):
+    """
+    Sala
+    Cama
+    Comentario (es un comentario respecto a una cama, ya que algunas salas tienen camas
+    especiales), por eso, tb tiene que ser tomado como único en la validacion
+    """
     SALAS = (
         ('SALA 1', 'SALA 1'),
         ('SALA 2', 'SALA 2'),
@@ -79,14 +85,27 @@ class Ubicaciones(TimeStampedModel):
 
     )
 
+    CAMAS = (
+        ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'),
+        ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10'), ('11', '11'), ('11bis', '11bis'),
+        ('12', '12'), ('13', '13'), ('14', '14'),
+        ('15', '15'), ('16', '16'), ('17', '17'), ('18', '18'), ('19', '19'),
+        ('20', '20'), ('21', '21'), ('22', '22'), ('23', '23'), ('24', '24'), ('25', '25'),
+        ('26', '26'), ('27', '27'), ('28', '28'), ('29', '29'),
+        ('30', '30'), ('31', '31'), ('32', '32'), ('Otros', 'Otros'),
+    )
+
     historia = models.ForeignKey(Historias, unique=True)
     sala = models.CharField(choices=SALAS, max_length=10, blank=False, null=False)
-    cama = models.CharField(choices=( (str(x), x) for x in range(1, 33) ), max_length=2, blank=False, null=False)
+    cama = models.CharField(choices=CAMAS, max_length=5, blank=False, null=False)
+    comentario = models.CharField(max_length=20, blank=True, null=True,
+                                  verbose_name=u'Comentario para una cama',
+                                  help_text=u'Campo útil para indicar el número o nombre de camas no proporcionadas por el sistema')
 
     @classmethod
     def liberar_ubicacion(cls, historia_id):
         return cls.objects.filter(historia=historia_id).delete()
 
     class Meta:
-        unique_together = ('sala', 'cama',)
+        unique_together = ('sala', 'cama', 'comentario')
 
