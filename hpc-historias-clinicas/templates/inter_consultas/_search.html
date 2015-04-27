@@ -1,0 +1,23 @@
+<br><br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <i class="fa fa-search"></i> Filtro
+    </div>
+    <div class="panel-body">
+        <div class="well well-lg">
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <input type="text" class="form-control dateinput" name='fecha' id="fecha" placeholder="Fecha">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name='palabra_clave' id="palabra_clave" placeholder="Palabra Clave" size="50">
+            </div>
+            <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Filtrar</button>
+          </form>
+            <br>
+          <div class="pull-right">
+              <a href="{% url 'inter_consultas:list' historia.id %}"><i class="fa fa-refresh"></i> Limpiar filtros</a>
+          </div>
+        </div>
+    </div>
+</div>

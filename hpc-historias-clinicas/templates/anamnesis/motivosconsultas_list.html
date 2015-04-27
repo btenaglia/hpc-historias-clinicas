@@ -16,6 +16,7 @@
         <thead>
             <tr>
                 <th>Motivo de Consulta</th>
+                <th>Descripción</th>
                 <th></th>
             </tr>
         </thead>
@@ -24,6 +25,13 @@
                 {% for motivo in object_list %}
                     <tr>
                         <td>{{ motivo.motivo }}</td>
+                        <td>
+                            {% if motivo.descripcion|length > 70 %}
+                                {{ motivo.descripcion|truncatechars:70 }}
+                                <a href="{% url 'motivos:update' motivo.id %}">[+]</a>
+                            {% else %}
+                                {{ motivo.descripcion }}
+                            {% endif %}
                         <td>
                             <a href="{% url 'motivos:update' motivo.id %}"><i class="fa fa-pencil"></i></a>
                             <a href="{% url 'motivos:delete' motivo.id %}"><i class="fa fa-trash-o"></i></a>

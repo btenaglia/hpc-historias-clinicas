@@ -32,7 +32,21 @@ class EvolucionesListView(LoginRequiredMixin, EvolucionesMixin, ListView):
     """Lista de evoluciones"""
     def get_queryset(self):
         # -- traigo todas las evoluciones de una historia determinada
-        return Evoluciones.objects.filter(historia=self.kwargs['historia'])
+        qs = Evoluciones.objects.filter(historia=self.kwargs['historia'])
+
+        # filtro por fecha ingreso
+        fecha = self.request.GET.get('fecha')
+        if fecha:
+            date = fecha.split('/')
+            date = date[2]+'-'+date[1]+'-'+date[0]
+            qs = qs.filter(fecha=date)
+
+        # filtro por palabra clave
+        palabra_clave = self.request.GET.get('palabra_clave')
+        if palabra_clave:
+            qs = qs.filter(descripcion__icontains=palabra_clave)
+
+        return qs
 
 
 class EvolucionesCreateView(LoginRequiredMixin, EvolucionesMixin, CreateView):

@@ -5,7 +5,7 @@
 {% block title %}Historias Clínicas{% endblock title %}
 
 {% block content %}
-    {% autopaginate object_list 30 %}
+    {% autopaginate object_list 50 %}
     <div class="row">
         <div class="col-lg-12">
             {% if paciente %}
@@ -37,7 +37,9 @@
             {% endif %}
 
             <!-- Filtro buscador -->
-            {% include 'historias/_search.html' %}
+            {% if filtro %}
+                {% include 'historias/_search.html' %}
+            {% endif %}
             <!-- / Filtro buscador -->
 
             {% if object_list %}
@@ -85,7 +87,7 @@
                                         <i class="fa fa-tags"></i> {{ub.0.sala}}
                                         <br>
                                         <i class="fa fa-bed"></i> {{ub.0.cama}}
-                                        {% if ub.0.comentario != Null %}
+                                        {% if ub.0.comentario != "" %}
                                             <br>
                                             <i class="fa fa-comment"></i> {{ub.0.comentario}}
                                         {% endif %}

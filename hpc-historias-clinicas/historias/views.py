@@ -35,6 +35,11 @@ class HistoriasListView(LoginRequiredMixin, ListView):
     """
     model = Historias
 
+    def get_context_data(self, **kwargs):
+        ctx = super(HistoriasListView, self).get_context_data(**kwargs)
+        ctx['filtro'] = True
+        return ctx
+
     def get_queryset(self):
         qs = super(HistoriasListView, self).get_queryset()
 
@@ -82,6 +87,7 @@ class HistoriasPacienteListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         ctx = super(HistoriasPacienteListView, self).get_context_data(**kwargs)
         ctx['paciente'] = Pacientes.objects.filter(pk=self.kwargs['paciente']).get()
+        ctx['filtro'] = False
         return ctx
 
 
