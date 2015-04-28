@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
+from django.core import serializers
+from django.http import HttpResponse
+
 from braces.views import LoginRequiredMixin
 from .models import MotivosConsultas
 
@@ -37,3 +40,10 @@ class MotivosDeleteView(LoginRequiredMixin, MotivosMixin, DeleteView):
     model = MotivosConsultas
     success_msg = 'El motivo de consulta fué eliminado.'
     success_url = '/motivos'
+
+
+def traer_enfermedad(request):
+    print 'hello'
+    tipo_motivos = MotivosConsultas.objects.filter(id=request.GET['pk'])
+    data = serializers.serialize('json', tipo_motivos, fields={'descripcion'})
+    return HttpResponse(data, content_type='application/json')
