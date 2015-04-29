@@ -1,0 +1,36 @@
+<br><br>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <i class="fa fa-search"></i> Filtro
+    </div>
+    <div class="panel-body">
+        <div class="well well-lg">
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <select name='sala' class="form-control">
+                  <option value="">Seleccione una sala</option>
+                  {% for sala in salas %}
+                    <option value="{{sala.0}}">{{sala.0}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <select name='cama' class="form-control">
+                  <option value="">Seleccione una cama</option>
+                  {% for cama in camas %}
+                    <option value="{{cama.0}}">{{cama.0}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name='comentario' id="comentario" placeholder="Comentario" size="25">
+            </div>
+            <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Filtrar</button>
+          </form>
+            <br>
+          <div class="pull-right">
+              <a href="{% url 'historias:ubicaciones_filter' %}"><i class="fa fa-refresh"></i> Limpiar filtros</a>
+          </div>
+        </div>
+    </div>
+</div>

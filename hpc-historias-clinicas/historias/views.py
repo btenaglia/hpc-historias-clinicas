@@ -300,3 +300,34 @@ def editar_historia(request, pk):
 
     return render(request, 'historias/historias_form.html', ctx)
 
+
+class UbicacionesFilterListView(LoginRequiredMixin, ListView):
+    """ Vista para realizar filtros de las historias a partir de ubicaciones """
+    model=Ubicaciones
+    template_name = 'historias/ubicaciones_filter_list.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(UbicacionesFilterListView, self).get_context_data(**kwargs)
+        ctx['salas'] = Ubicaciones.SALAS
+        ctx['camas'] = Ubicaciones.CAMAS
+        return ctx
+
+    def get_queryset(self):
+        qs = super(UbicacionesFilterListView, self).get_queryset()
+        # -- sala
+        sala = self.request.GET.get('sala')
+        if sala:
+            qs = qs.filter(sala=sala)
+        # -- cama
+        cama = self.request.GET.get('cama')
+        if cama:
+            qs = qs.filter(cama=cama)
+        # -- comentario
+        comentario = self.request.GET.get('comentario')
+        if comentario:
+            qs = qs.filter(comentario=comentario)
+
+        return qs
+
+
+

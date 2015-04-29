@@ -6,7 +6,8 @@ from .views import (crear_historia,
                     UbicacionCreateView,
                     UbicacionUpdateView,
                     HistoriaEstadoUpdateView,
-                    HistoriasPacienteListView)
+                    HistoriasPacienteListView,
+                    UbicacionesFilterListView)
 
 urlpatterns = patterns('',
 
@@ -17,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^/ubicacion/update/(?P<pk>\d+)$', UbicacionUpdateView.as_view(), name='ubicacion_update'),
     url(r'^/estado/update/(?P<pk>\d+)$', HistoriaEstadoUpdateView.as_view(), name='estado_update'),
     url(r'^/paciente/(?P<paciente>\d+)$', HistoriasPacienteListView.as_view(), name='paciente'),
+    url(r'^/ubicaciones/$', UbicacionesFilterListView.as_view(), name='ubicaciones_filter'),
 
 )
 

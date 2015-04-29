@@ -26,4 +26,14 @@ $(document).ready(function() {
 	});
     }
 
+    /* ------------------------------------------
+        Escribir en la solapa de 'Planteos' el
+        cotenido de diagnostico
+    -------------------------------------------- */
+    $('#id_diagnostico-descripcion').on('blur', copiar_diagnostico);
+    function copiar_diagnostico(){
+        diagnostico = 'Diagnóstico: ' + $("#id_diagnostico-tipo_diagnostico option:selected").text();
+        $("#id_planteos-planteo").val( diagnostico +'\n'+ $(this).val() );
+    }
+
 });
