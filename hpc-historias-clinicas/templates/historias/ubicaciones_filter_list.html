@@ -76,57 +76,8 @@
                                 </td>
                                 <td>{{ ubicacion.historia.diagnostico.tipo_diagnostico.nombre }}</td>
                                 <td>
-                                    <div class="dropdown">
-                                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                        Elija una opción
-                                        <span class="caret"></span>
-                                      </button>
-                                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="{% url 'inter_consultas:list' ubicacion.historia.id %}">
-                                                <i class="fa fa-stethoscope"></i> Inter consultas
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="{% url 'evoluciones:list' ubicacion.historia.id %}">
-                                                <i class="fa fa-check-square-o"></i> Evoluciones
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="{% url 'historias:update' ubicacion.historia.id %}">
-                                                <i class="fa fa-plus"></i> Ampliar información
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="{% url 'historias:estado_update' ubicacion.historia.id %}">
-                                                <i class="fa fa-cog"></i> Cambiar estado
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="#">
-                                                <i class="fa fa-print"></i> Imprimir
-                                            </a>
-                                        </li>
-                                        {% if historia.estado == Null %}
-                                            <li role="presentation">
-                                                {% if historia|tiene_ubicacion:historia.id == 1 %}
-                                                    <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_update' ubicacion.historia.id %}">
-                                                        <i class="fa fa-bed"></i> Reubicar paciente
-                                                    </a>
-                                                {% else %}
-                                                    <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_create' ubicacion.historia.id %}">
-                                                        <i class="fa fa-bed"></i> Ubicar paciente
-                                                    </a>
-                                                {% endif %}
-                                            </li>
-                                        {% endif %}
-                                        <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="{% url 'historias:update' ubicacion.historia.id %}">
-                                                <i class="fa fa-pencil"></i> Editar datos
-                                            </a>
-                                        </li>
-                                      </ul>
-                                    </div>
+                                    <!-- Menú con opciones -->
+                                    {% include 'historias/_opciones.html' with historia=ubicacion.historia %}
                                 </td>
                             </tr>
                         {% endfor %}
