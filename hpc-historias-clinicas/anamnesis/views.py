@@ -43,7 +43,7 @@ class MotivosDeleteView(LoginRequiredMixin, MotivosMixin, DeleteView):
 
 
 def traer_enfermedad(request):
-    print 'hello'
+    """ Recupero la descripcion de un motivo """
     tipo_motivos = MotivosConsultas.objects.filter(id=request.GET['pk'])
     data = serializers.serialize('json', tipo_motivos, fields={'descripcion'})
     return HttpResponse(data, content_type='application/json')

@@ -8,9 +8,11 @@ $(document).ready(function() {
         // -- hide dropdown when change dates
         $('.dropdown-menu').hide();
     });
-           
-    // -- Rellenar el text area de enfermedad trayendo la descripcion de
-   // -- un motivo deconsulta 
+
+     /* --------------------------------------------------------------------------------------------
+     -- Rellenar el text area de enfermedad trayendo la descripcion de -----------------------------
+     -- un motivo deconsulta           -------------------------------------------------------------
+     -----------------------------------------------------------------------------------------------*/
     $("#id_anamnesis-motivo_consulta").on('change', traer_enfermedad);
     function traer_enfermedad() {
         $.ajax({
