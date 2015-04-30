@@ -1,0 +1,59 @@
+<!-- formulario para alta o edicion de foja quirurgica -->
+
+{% extends 'fojas_quirurgicas/_fojas_quirurgicas_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block fq_volver %}
+    <!-- link Volver -->
+    <a href="{% url 'fojas_quirurgicas:list' historia.id %}"><i class="fa fa-reply"> Volver</i></a>
+    <!-- / link Volver -->
+{% endblock fq_volver %}
+
+{% block fq_titulo %}
+    {% if form.instance.id %}
+            Editar
+    {% else %}
+            Nueva
+    {% endif %}
+    Foja Quirurgica
+{% endblock fq_titulo %}
+
+{% block fq_contenido %}
+
+    <form  class="form-horizontal" method="post">
+        {% csrf_token %}
+        <div class='row'>
+            <div class="col-lg-3">
+                {{ form.cirujano|as_crispy_field }}
+            </div>
+            <div class="col-lg-3">
+                {{ form.ayudante_1|as_crispy_field }}
+            </div>
+            <div class="col-lg-3">
+                {{ form.ayudante_2|as_crispy_field }}
+            </div>
+            <div class="col-lg-3">
+                {{ form.ayudante_3|as_crispy_field }}
+            </div>
+        </div>
+        <div class='row'>
+                <div class="col-lg-4">
+                    {{ form.fecha|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form.hora_comienzo|as_crispy_field }}
+                </div>
+                <div class="col-lg-4">
+                    {{ form.hora_fin|as_crispy_field }}
+                </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Confirmar</button>
+          </div>
+        </div>
+    </form>
+
+{% endblock fq_contenido %}

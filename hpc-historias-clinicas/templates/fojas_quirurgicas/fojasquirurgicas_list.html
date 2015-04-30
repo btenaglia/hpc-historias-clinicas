@@ -6,7 +6,54 @@
 {% block fq_titulo %} Fojas Quirurgicas {% endblock fq_titulo %}
 
 {% block fq_contenido %}
+	
+		<a href="{% url 'fojas_quirurgicas:create' historia.id %}" class="btn btn-primary"><i class="fa fa-plus"> Nueva Foja Quirurgica</i></a>
 
         {% autopaginate object_list 40 %}
+
+        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dt_grid">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora Comienzo</th>
+                <th>Hora Fin</th>
+                <th>Cirujano</th>
+                <th>Ayudantes</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if object_list %}
+                {% for foja in object_list %}
+                    <tr>
+                        <td>{{ foja.fecha|date:"SHORT_DATE_FORMAT" }}</td>
+                        <td>{{ foja.hora_comienzo }}</td>
+                        <td>{{ foja.hora_fin }}</td>
+                        <td>
+                            {{ foja.cirujano.nombre }} {{ foja.cirujano.apellido }}
+                        </td>
+                        <td>
+                            {% if foja.ayudante_1  %}
+                                <i class="fa fa-dot-circle-o"></i> {{ foja.ayudante_1.nombre }} {{ foja.ayudante_1.apellido }}
+                            {% endif %}
+                            {% if foja.ayudante_2 %}
+                                <br>
+                                <i class="fa fa-dot-circle-o"></i> {{ foja.ayudante_2.nombre }} {{ foja.ayudante_2.apellido }}
+                            {% endif %}
+                            {% if foja.ayudante_3 %}
+                                <br>
+                                <i class="fa fa-dot-circle-o"></i> {{ foja.ayudante_3.nombre }} {{ foja.ayudante_3.apellido }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'fojas_quirurgicas:update' foja.id foja.historia_id %}"><i class="fa fa-pencil"></i></a>
+                            <a href="{% url 'fojas_quirurgicas:delete' foja.id foja.historia_id %}"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    {% paginate %}
 
 {% endblock fq_contenido %}
