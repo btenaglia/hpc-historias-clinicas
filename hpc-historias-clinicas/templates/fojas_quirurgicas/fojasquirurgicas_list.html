@@ -1,0 +1,12 @@
+<!-- Listado de Fojas Quirurgicas -->
+{% extends 'fojas_quirurgicas/_fojas_quirurgicas_base.html' %}
+
+{% load pagination_tags %}
+
+{% block fq_titulo %} Fojas Quirurgicas {% endblock fq_titulo %}
+
+{% block fq_contenido %}
+
+        {% autopaginate object_list 40 %}
+
+{% endblock fq_contenido %}

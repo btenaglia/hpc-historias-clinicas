@@ -1,0 +1,33 @@
+<!-- -------------------------------------
+    TEMPLATE BASE DE FOJAS QUIRURGICAS
+----------------------------------------- -->
+
+{% extends 'base.html' %}
+
+{% block title %}Fojas Quirurgicas{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            {% block fq_volver %}
+                <a href="{% url 'historias:list' %}"><i class="fa fa-reply"> Volver</i></a>
+            {% endblock fq_volver %}
+            <h1 class="page-header">
+                {% block fq_titulo %}{% endblock fq_titulo %}
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            {% include "_info_historias_pacientes.html" %}
+        </div>
+        <div class="col-lg-9">
+            {% block fq_contenido %}
+                <!-- content here :-) -->
+            {% endblock fq_contenido %}
+        </div>
+    </div>
+
+{% endblock %}

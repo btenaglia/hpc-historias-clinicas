@@ -37,6 +37,8 @@ urlpatterns = patterns('',
     url(r'^inter/consultas', include("hpc-historias-clinicas.inter_consultas.urls", namespace="inter_consultas")),
     # Evoluciones
     url(r'^evoluciones', include("hpc-historias-clinicas.evoluciones.urls", namespace="evoluciones")),
+    # Fojas Quirurgicas
+    url(r'^fojas/quirurgicas', include("hpc-historias-clinicas.fojas_quirurgicas.urls", namespace="fojas_quirurgicas")),
     # Reportes
     url(r'^reportes', include("hpc-historias-clinicas.reportes.urls", namespace="reportes")),
 
