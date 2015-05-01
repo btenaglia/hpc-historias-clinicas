@@ -23,3 +23,4 @@ class FojasQuirurgicas(TimeStampedModel):
     fecha = models.DateField(blank=False, null=False, default=datetime.now())
     hora_comienzo = models.TimeField(blank=False, null=False, verbose_name=u'Hora / Comienzo Operacón')
     hora_fin = models.TimeField(blank=False, null=False, verbose_name=u'Hora / Terminó Operacón')
+    procedimiento_quirurgico = models.TextField(verbose_name=u'Procedimiento Quirurgico')

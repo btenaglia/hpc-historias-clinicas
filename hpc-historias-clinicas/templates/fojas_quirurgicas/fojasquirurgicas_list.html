@@ -19,6 +19,7 @@
                 <th>Hora Fin</th>
                 <th>Cirujano</th>
                 <th>Ayudantes</th>
+                <th>Procedimiento</th>
                 <th></th>
             </tr>
         </thead>
@@ -43,6 +44,14 @@
                             {% if foja.ayudante_3 %}
                                 <br>
                                 <i class="fa fa-dot-circle-o"></i> {{ foja.ayudante_3.nombre }} {{ foja.ayudante_3.apellido }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if foja.procedimiento_quirurgico|length > 30 %}
+                                {{ foja.procedimiento_quirurgico|truncatechars:30 }}
+                                <a href="{% url 'fojas_quirurgicas:update' foja.id foja.historia_id %}">[+]</a>
+                            {% else %}
+                                {{ foja.procedimiento_quirurgico }}
                             {% endif %}
                         </td>
                         <td>
