@@ -9,6 +9,13 @@ $(document).ready(function() {
         $('.dropdown-menu').hide();
     });
 
+    /* --------------------------------------------
+        Lanzar modal para crear historia clinica
+    --------------------------------------------- */
+    $('#nueva_historia').click(function(){
+        $("#nueva_historia_modal").modal("show");
+    });
+
      /* --------------------------------------------------------------------------------------------
      -- Rellenar el text area de enfermedad trayendo la descripcion de -----------------------------
      -- un motivo deconsulta           -------------------------------------------------------------

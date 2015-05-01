@@ -19,8 +19,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-book"></i> Historias Clínicas <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{% url 'historias:list' %}">Listado de historias clínicas</a></li>
-                        <li><a href="{% url 'historias:ubicaciones_filter' %}">Filtro por ubicaciones</a></li>
+                        <li><a href="#" id="nueva_historia"><i class="fa fa-plus-square"></i> Crear Historia Clínica</a></li>
+                        <li><a href="{% url 'historias:list' %}"><i class="fa fa-bars"></i> Listado de historias clínicas</a></li>
+                        <li><a href="{% url 'historias:ubicaciones_filter' %}"><i class="fa fa-filter"></i> Filtro por ubicaciones</a></li>
                         <li class="divider"></li>
                         <li><a href="{% url 'diagnosticos:list' %}">Definiciones de Diagnósticos</a></li>
                         <li><a href="{% url 'motivos:list' %}">Motivos de consulta</a></li>
@@ -48,3 +49,52 @@
         </ul>
     </div>
 </nav>
+
+<!-- Nueva historia clinica MODAL -->
+<div class="modal fade" id="nueva_historia_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+            Crear Historia Clínica para...
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div style="float:right">
+                    <div class="box">
+				        <div class="icon">
+                            <a href="{% url 'pacientes:create' %}">
+                                <div class="image">
+                                    <i class="fa fa-user-plus fa-5x"></i>
+                                </div>
+                                Nuevo paciente
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div style="float:left">
+                    <div class="box">
+				        <div class="icon">
+                            <a href="{% url 'pacientes:list' %}">
+                                <div class="image">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                Paciente existente
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- / Nueva historia clinica MODAL -->
