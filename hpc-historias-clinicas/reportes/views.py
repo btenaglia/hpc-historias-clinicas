@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from easy_pdf.views import PDFTemplateView
 from ..evoluciones.models import Evoluciones
 from ..inter_consultas.models import InterConsultas
+from ..fojas_quirurgicas.models import FojasQuirurgicas
 
 
 class ReporteHistoriaClinica(PDFTemplateView):
@@ -42,4 +43,20 @@ class ReporteEvolucion(PDFTemplateView):
         ctx['evolucion'] = evolucion
         # -- asigno el nombre al archivo pdf
         self.pdf_filename = "evolucion_%s.pdf" % evolucion.historia.codigo
+        return ctx
+
+
+class ReporteFojaQuirurgica(PDFTemplateView):
+    """
+    Impresion de una hoja de Foja Quirurgica
+    """
+    template_name = 'reportes/foja_quirurgica.html'
+
+    def get_context_data(self, pk):
+        ctx = super(ReporteFojaQuirurgica, self).get_context_data()
+        foja = get_object_or_404(FojasQuirurgicas, pk=pk)
+        ctx['historia'] = foja.historia
+        ctx['foja'] = foja
+        # -- asigno el nombre al archivo pdf
+        self.pdf_filename = "foja_quirurgica_%s.pdf" % foja.historia.codigo
         return ctx

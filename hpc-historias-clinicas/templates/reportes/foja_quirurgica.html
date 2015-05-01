@@ -1,0 +1,57 @@
+<style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td, th {
+      /*border: 1px solid #999;*/
+      padding: 4px;
+      text-align: left;
+    }
+</style>
+
+<div style='margin-left: 600px'>
+    {{ historia.codigo }}
+</div>
+<br>
+<br>
+<table>
+    <tr>
+        <td width="30%"></td>
+        <td>
+            {{ historia.paciente.nombre }}
+        </td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>
+            {{ foja.cirujano }}
+        </td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>{{ foja.ayudante_1 }}</td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>{{ foja.ayudante_2 }}</td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>{{ foja.ayudante_3 }}</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td width="15%"></td>
+        <td>
+            {{ foja.fecha|date:"d" }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {{ foja.fecha|date:"m" }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {{ foja.fecha|date:"Y" }}
+        </td>
+        <td width="25%"></td>
+        <td>{{ foja.hora_comienzo }}</td>
+        <td width="25%"></td>
+        <td>{{ foja.hora_fin }}</td>
+    </tr>
+</table>

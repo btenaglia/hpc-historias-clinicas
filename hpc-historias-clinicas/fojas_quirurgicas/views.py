@@ -5,6 +5,7 @@ from django.contrib import messages
 from braces.views import LoginRequiredMixin
 
 from .models import FojasQuirurgicas
+from ..medicos.models import Medicos
 from ..historias.models import Historias
 
 
@@ -30,8 +31,30 @@ class FojasQuirurgicasListView(LoginRequiredMixin, FojasQuirurgicasMixin, ListVi
     """Listado de fojas quirurgicas de las historias"""
     def get_queryset(self):
         qs = FojasQuirurgicas.objects.filter(historia=self.kwargs['historia'])
-        # -- TODO - Filtros
+
+        # filtro por fecha
+        fecha = self.request.GET.get('fecha')
+        if fecha:
+            date = fecha.split('/')
+            date = date[2]+'-'+date[1]+'-'+date[0]
+            qs = qs.filter(fecha=date)
+
+        # filtro por cirujano
+        cirujano = self.request.GET.get('cirujano')
+        if cirujano:
+            qs = qs.filter(cirujano=cirujano)
+
+        # palabra clave en procedimiento
+        palabra = self.request.GET.get('palabra')
+        if palabra:
+            qs = qs.filter(procedimiento_quirurgico__icontains=palabra)
+
         return qs
+
+    def get_context_data(self, **kwargs):
+        ctx = super(FojasQuirurgicasListView, self).get_context_data(**kwargs)
+        ctx['cirujanos'] = Medicos.objects.all()
+        return ctx
 
 
 class FojasQuirurgicasCreateView(LoginRequiredMixin, FojasQuirurgicasMixin, CreateView):
