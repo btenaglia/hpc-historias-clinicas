@@ -42,19 +42,17 @@
             <i class="fa fa-print"></i> Imprimir
         </a>
     </li>
-    {% if historia.estado == Null %}
-        <li role="presentation">
-            {% if historia|tiene_ubicacion:historia.id == 1 %}
-                <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_update' historia.id %}">
-                    <i class="fa fa-bed"></i> Reubicar paciente
-                </a>
-            {% else %}
-                <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_create' historia.id %}">
-                    <i class="fa fa-bed"></i> Ubicar paciente
-                </a>
-            {% endif %}
-        </li>
-    {% endif %}
+    <li role="presentation">
+        {% if historia|tiene_ubicacion:historia.id == 1 %}
+            <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_update' historia.id %}">
+                <i class="fa fa-bed"></i> Reubicar paciente
+            </a>
+        {% else %}
+            <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_create' historia.id %}">
+                <i class="fa fa-bed"></i> Ubicar paciente
+            </a>
+        {% endif %}
+    </li>
     <li role="presentation">
         <a role="menuitem" tabindex="-1" href="{% url 'historias:update' historia.id %}">
             <i class="fa fa-pencil"></i> Editar datos
