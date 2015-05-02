@@ -16,6 +16,15 @@ $(document).ready(function() {
         $("#nueva_historia_modal").modal("show");
     });
 
+    /* --------------------------
+        Abrir pop-over con info
+        del paciente
+    ----------------------------- */
+    $('.popover_info_paciente').popover({
+        animation: true,
+        html: true
+    });
+
      /* --------------------------------------------------------------------------------------------
      -- Rellenar el text area de enfermedad trayendo la descripcion de -----------------------------
      -- un motivo deconsulta           -------------------------------------------------------------

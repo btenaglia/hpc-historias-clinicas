@@ -1,0 +1,15 @@
+<!-- -------------------------------------------------
+    Pop-over con informacion del paciente
+--------------------------------------------------- -->
+
+<a tabindex="0" class="popover_info_paciente" data-toggle="popover" data-trigger="focus"
+   title="<i class='fa fa-user'></i> Datos del Paciente"
+   data-content="
+   <b>Paciente:</b> {{ historia.paciente.nombre }} {{ historia.paciente.apellido }}<br>
+   <b>DNI:</b> {% if historia.paciente.documento != '' %}{{ historia.paciente.documento }}{% else %}<i class='fa fa-exclamation-triangle'></i> No recuerda{% endif %}<br>
+   <b>Nombre de la madre:</b> {{ historia.paciente.madre }}<br>
+   <b>Fecha nacimeinto:</b> {{ historia.paciente.fecha_nacimiento|date:'SHORT_DATE_FORMAT' }}
+   ">
+    <i class="fa fa-info-circle"></i>
+    {{ historia.paciente.nombre }} {{ historia.paciente.apellido }}
+</a>

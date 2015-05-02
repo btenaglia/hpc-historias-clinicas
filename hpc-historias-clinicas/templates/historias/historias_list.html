@@ -94,11 +94,7 @@
                                     {% endif %}
 
                                 </td>
-                                <td>
-                                    <a href="{% url 'pacientes:update' historia.paciente.id %}">
-                                        {{ historia.paciente.nombre }} {{ historia.paciente.apellido }}
-                                    </a>
-                                </td>
+                                <td>{% include 'historias/_popover_info_paciente.html' %}</td>
                                 <td>
                                     {% if historia.paciente.documento != "" %}
                                         {{ historia.paciente.documento }}
