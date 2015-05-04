@@ -15,7 +15,7 @@ class EvolucionesMixin(object):
 
     def descarga_msg(self , evolucion_id):
         # -- msg para la descar de la evolucion
-        return ' Click en el siguiente link para <a href="/reportes/evolucion/%s">Descargar e Imprimir</a>' % str(evolucion_id)
+        return ' Click en el siguiente link para <a target="_blank" href="/reportes/evolucion/%s">Descargar e Imprimir</a>' % str(evolucion_id)
 
     def get_context_data(self, **kwargs):
         # -- obtengo los datos de la historia clínica

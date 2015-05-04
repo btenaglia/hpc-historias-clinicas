@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, HttpResponse
 from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView
 from easy_pdf.views import PDFTemplateView
+from ..historias.models import Historias
 from ..evoluciones.models import Evoluciones
 from ..inter_consultas.models import InterConsultas
 from ..fojas_quirurgicas.models import FojasQuirurgicas
 
 
-class ReporteHistoriaClinica(PDFTemplateView):
+class ReporteHistoriaClinica(DetailView):
+    """
+    Página para poder imprimir todas las historias clínicas
+    """
     template_name = 'reportes/historia.html'
+    model = Historias
+    context_object_name = 'historia'
 
 
 class ReporteInterConsulta(PDFTemplateView):
@@ -23,8 +30,6 @@ class ReporteInterConsulta(PDFTemplateView):
         ctx['historia'] = ic.historia
         ctx['madre'] = True
         ctx['inter_consulta'] = ic
-        # -- asigno el nombre al archivo pdf
-        self.pdf_filename = "inter_consulta_%s.pdf" % ic.historia.codigo
         return ctx
    
 
@@ -41,8 +46,6 @@ class ReporteEvolucion(PDFTemplateView):
         ctx['historia'] = evolucion.historia
         ctx['madre'] = False
         ctx['evolucion'] = evolucion
-        # -- asigno el nombre al archivo pdf
-        self.pdf_filename = "evolucion_%s.pdf" % evolucion.historia.codigo
         return ctx
 
 
@@ -57,6 +60,4 @@ class ReporteFojaQuirurgica(PDFTemplateView):
         foja = get_object_or_404(FojasQuirurgicas, pk=pk)
         ctx['historia'] = foja.historia
         ctx['foja'] = foja
-        # -- asigno el nombre al archivo pdf
-        self.pdf_filename = "foja_quirurgica_%s.pdf" % foja.historia.codigo
         return ctx

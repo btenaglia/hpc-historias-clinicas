@@ -59,7 +59,7 @@
                         <td>
                             <a href="{% url 'fojas_quirurgicas:update' foja.id foja.historia_id %}"><i class="fa fa-pencil"></i></a>
                             <a href="{% url 'fojas_quirurgicas:delete' foja.id foja.historia_id %}"><i class="fa fa-trash-o"></i></a>
-                            <a href="{% url 'reportes:fojas_quirurgicas' foja.id %}"><i class="fa fa-print"></i></a>
+                            <a href="{% url 'reportes:fojas_quirurgicas' foja.id %}" target="_blank"><i class="fa fa-print"></i></a>
                         </td>
                     </tr>
                 {% endfor %}

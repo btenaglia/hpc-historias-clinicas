@@ -85,11 +85,13 @@
           <a href="{% url 'historias:estado_update' historia.id %}">
             <i class="fa fa-cog"></i> Cambiar estado
           </a>
-          <br>
-          <a role="menuitem" tabindex="-1" href="#">
-            <i class="fa fa-print"></i> Imprimir historia clínica
-          </a>
-          <br>
+            <br>
+          {% if '/reportes/historia/' not in  request.get_full_path %}
+              <a role="menuitem" href="{% url 'reportes:historia' historia.id %}">
+                <i class="fa fa-print"></i> Imprimir historia clínica
+              </a>
+            <br>
+          {% endif %}
             {% if historia|tiene_ubicacion:historia.id == 1 %}
                 <a href="{% url 'historias:ubicacion_update' historia.id %}">
                     <i class="fa fa-bed"></i> Reubicar paciente

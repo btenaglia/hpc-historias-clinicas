@@ -14,7 +14,7 @@ class FojasQuirurgicasMixin(object):
         return NotImplemented
 
     def descarga_msg(self, foja_id):
-        return " Click en el siguiente link para <a href='/reportes/foja/quirurgica/%s'>Descargar e Imprimir</a>" % str(foja_id)
+        return " Click en el siguiente link para <a target='_blank' href='/reportes/foja/quirurgica/%s'>Descargar e Imprimir</a>" % str(foja_id)
 
     def get_context_data(self, **kwargs):
         """Es necesario traer los datos de la historia clinica"""

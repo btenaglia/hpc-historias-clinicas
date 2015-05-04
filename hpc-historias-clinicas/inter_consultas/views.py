@@ -14,7 +14,7 @@ class InterConsultasMixin(object):
         return NotImplemented
 
     def descarga_msg(self, ic_id):
-        return " Click en el siguiente link para <a href='/reportes/inter/consultas/%s'>Descargar e Imprimir</a>" % str(ic_id)
+        return " Click en el siguiente link para <a target='_blank' href='/reportes/inter/consultas/%s'>Descargar e Imprimir</a>" % str(ic_id)
 
     def get_context_data(self, **kwargs):
         """Es necesario traer los datos de la historia clinica"""

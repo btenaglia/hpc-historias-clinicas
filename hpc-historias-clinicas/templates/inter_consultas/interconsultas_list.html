@@ -40,7 +40,7 @@
                         <td>
                             <a href="{% url 'inter_consultas:update' ic.id ic.historia_id %}"><i class="fa fa-pencil"></i></a>
                             <a href="{% url 'inter_consultas:delete' ic.id ic.historia_id %}"><i class="fa fa-trash-o"></i></a>
-                            <a href="{% url 'reportes:inter_consultas' ic.id %}"><i class="fa fa-print"></i></a>
+                            <a href="{% url 'reportes:inter_consultas' ic.id %}" target="_blank"><i class="fa fa-print"></i></a>
                         </td>
                     </tr>
                 {% endfor %}

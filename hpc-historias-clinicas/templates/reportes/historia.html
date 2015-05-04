@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %}Imprimir Historia Clínica{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{% url 'historias:list' %}"><i class="fa fa-reply"> Volver</i></a>
+            <h1 class="page-header">
+                Imprimir Historia Clínica
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            {% include "_info_historias_pacientes.html" %}
+        </div>
+        <div class="col-lg-9">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <!-- panel grupo de hojas -->
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a class="print-page" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <i class="fa fa-print"></i> Grupo de hojas
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+                    <div class="well well-lg">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="box">
+                                    <div class="icon">
+                                        <a href="#">
+                                            <div class="image">
+                                                <i class="fa fa-files-o fa-5x"></i>
+                                            </div>
+                                            Páginas 1, 3, 5 y 7
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="box">
+                                    <div class="icon">
+                                        <a href="#">
+                                            <div class="image">
+                                                <i class="fa fa-files-o fa-5x"></i>
+                                            </div>
+                                            Páginas 4, 6
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- / panel grupo de hojas -->
+              <!-- panel hojas individuales -->
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa fa-print"></i> Hojas individuales
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    <div class="well well-lg">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="box">
+                                        <div class="icon">
+                                            <a href="#">
+                                                <div class="image">
+                                                    <i class="fa fa-file-o fa-5x"></i>
+                                                </div>
+                                                Página 1
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="box">
+                                        <div class="icon">
+                                            <a href="#">
+                                                <div class="image">
+                                                    <i class="fa fa-file-o fa-5x"></i>
+                                                </div>
+                                                Página 3
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="box">
+                                        <div class="icon">
+                                            <a href="#">
+                                                <div class="image">
+                                                    <i class="fa fa-file-o fa-5x"></i>
+                                                </div>
+                                                Página 4
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="box">
+                                        <div class="icon">
+                                            <a href="#">
+                                                <div class="image">
+                                                    <i class="fa fa-file-o fa-5x"></i>
+                                                </div>
+                                                Página 5
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="box">
+                                        <div class="icon">
+                                            <a href="#">
+                                                <div class="image">
+                                                    <i class="fa fa-file-o fa-5x"></i>
+                                                </div>
+                                                Página 6
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="box">
+                                        <div class="icon">
+                                            <a href="#">
+                                                <div class="image">
+                                                    <i class="fa fa-file-o fa-5x"></i>
+                                                </div>
+                                                Página 7
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- / panel hojas individuales -->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
