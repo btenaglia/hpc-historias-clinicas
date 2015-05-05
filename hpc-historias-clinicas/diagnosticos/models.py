@@ -18,8 +18,6 @@ class TipoDiagnosticos(TimeStampedModel):
 class Diagnosticos(TimeStampedModel):
     tipo_diagnostico = models.ForeignKey(TipoDiagnosticos, blank=True, null=True,
                                          verbose_name=u'Diagnóstico')
-    descripcion = models.TextField(blank=True, null=True,
-                                   help_text=u'Escriba una descripcion si lo considera útil')
     fecha = models.DateField(blank=False, null=False,
                              help_text=u'Formato: dd/mm/yyyy',
                              default=datetime.now())
