@@ -21,6 +21,8 @@ class FojasQuirurgicas(TimeStampedModel):
     ayudante_3 = models.ForeignKey(Ayudantes, blank=True, null=True, verbose_name=u'3er Ayudante',
                                    related_name='ayudante_3')
     fecha = models.DateField(blank=False, null=False, default=datetime.now())
-    hora_comienzo = models.TimeField(blank=False, null=False, verbose_name=u'Hora / Comienzo Operacón')
-    hora_fin = models.TimeField(blank=False, null=False, verbose_name=u'Hora / Terminó Operacón')
-    procedimiento_quirurgico = models.TextField(verbose_name=u'Procedimiento Quirurgico')
+    hora_comienzo = models.TimeField(blank=False, null=False, verbose_name=u'Hora / Comienzo Operacón',
+                                     default=datetime.now())
+    hora_fin = models.TimeField(blank=False, null=False, verbose_name=u'Hora / Terminó Operacón',
+                                default=datetime.now())
+    procedimiento_quirurgico = models.TextField(verbose_name=u'Procedimiento Quirurgico', blank=True, null=True)

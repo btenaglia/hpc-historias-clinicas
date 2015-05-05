@@ -5,28 +5,53 @@
     </div>
     <div class="panel-body">
         <div class="well well-lg">
+
           <form class="form-inline" role="form">
-            <div class="form-group">
-              <input type="text" class="form-control" name='codigo' id="codigo" placeholder="Nº" size="7">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" name="paciente_nombre"  id="paciente_nombre" placeholder="Nombre Paciente">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" name="paciente_apellido"  id="paciente_apellido" placeholder="Apellido Paciente">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control dateinput" name='fecha_ingreso' id="fecha_ingreso" placeholder="Fecha Ingreso">
-            </div>
-            <div class="form-group">
-              <select name='estado' class="form-control">
-                  <option value="">Seleccione un estado</option>
-                  <option value="0">Open</option>
-                  <option value=1>Alta</option>
-                  <option value=2>Óbito</option>
-                  <option value=3>Pase de servicio</option>
-              </select>
-            </div>
+
+              <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name='codigo' id="codigo" placeholder="Nº" size="7">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                      <input size="35px" type="text" class="form-control" name="paciente_nombre"  id="paciente_nombre" placeholder="Nombre Paciente">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                      <input size="35px" type="text" class="form-control" name="paciente_apellido"  id="paciente_apellido" placeholder="Apellido Paciente">
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-4">
+                      <div class="form-group">
+                          <input size="35px" type="text" class="form-control dateinput" name='fecha_ingreso' id="fecha_ingreso" placeholder="Fecha Ingreso">
+                        </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <select name='estado' class="form-control" >
+                          <option value="">Seleccione un estado</option>
+                          <option value="0">Open</option>
+                          <option value=1>Alta</option>
+                          <option value=2>Óbito</option>
+                          <option value=3>Pase de servicio</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                      <select name='diagnostico' class="form-control" >
+                          <option value="">Seleccione un diagnósticos</option>
+                          {% for diagnostico in diagnosticos %}
+                            <option value="{{diagnostico.id}}">{{diagnostico}}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+              </div>
+
             <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Filtrar</button>
           </form>
             <br>

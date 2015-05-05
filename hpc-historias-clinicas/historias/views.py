@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from ..pacientes.models import Pacientes
 from .models import Historias, Ubicaciones
-from ..diagnosticos.models import Diagnosticos
+from ..diagnosticos.models import Diagnosticos, TipoDiagnosticos
 from ..anamnesis.models import Anamnesis
 from ..antecedentes_familiares.models import AntecedentesFamiliares
 from ..antecedentes_personales.models import AntecedentesPersonales
@@ -38,6 +38,7 @@ class HistoriasListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         ctx = super(HistoriasListView, self).get_context_data(**kwargs)
         ctx['filtro'] = True
+        ctx['diagnosticos'] = TipoDiagnosticos.objects.all()
         return ctx
 
     def get_queryset(self):
@@ -73,6 +74,11 @@ class HistoriasListView(LoginRequiredMixin, ListView):
         paciente_apellido = self.request.GET.get('paciente_apellido')
         if paciente_apellido:
             qs = qs.filter(paciente__apellido__icontains=paciente_apellido)
+
+        # filtro por diagnostico
+        diagnostico = self.request.GET.get('diagnostico')
+        if diagnostico:
+            qs = qs.filter(diagnostico__tipo_diagnostico__id=diagnostico)
 
         return qs
 
