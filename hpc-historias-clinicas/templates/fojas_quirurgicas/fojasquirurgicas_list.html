@@ -17,11 +17,9 @@
         <thead>
             <tr>
                 <th>Fecha</th>
-                <th>Hora Comienzo</th>
-                <th>Hora Fin</th>
                 <th>Cirujano</th>
-                <th>Ayudantes</th>
                 <th>Procedimiento</th>
+                <th>Descripcion</th>
                 <th></th>
             </tr>
         </thead>
@@ -30,23 +28,11 @@
                 {% for foja in object_list %}
                     <tr>
                         <td>{{ foja.fecha|date:"SHORT_DATE_FORMAT" }}</td>
-                        <td>{{ foja.hora_comienzo }}</td>
-                        <td>{{ foja.hora_fin }}</td>
                         <td>
                             {{ foja.cirujano.nombre }} {{ foja.cirujano.apellido }}
                         </td>
                         <td>
-                            {% if foja.ayudante_1  %}
-                                <i class="fa fa-dot-circle-o"></i> {{ foja.ayudante_1.nombre }} {{ foja.ayudante_1.apellido }}
-                            {% endif %}
-                            {% if foja.ayudante_2 %}
-                                <br>
-                                <i class="fa fa-dot-circle-o"></i> {{ foja.ayudante_2.nombre }} {{ foja.ayudante_2.apellido }}
-                            {% endif %}
-                            {% if foja.ayudante_3 %}
-                                <br>
-                                <i class="fa fa-dot-circle-o"></i> {{ foja.ayudante_3.nombre }} {{ foja.ayudante_3.apellido }}
-                            {% endif %}
+                            {{ foja.procedimiento_quirurgico.nombre }}
                         </td>
                         <td>
                             {% if foja.descripcion|length > 30 %}

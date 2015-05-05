@@ -26,6 +26,7 @@ class FojasQuirurgicas(TimeStampedModel):
                                      default=datetime.now())
     hora_fin = models.TimeField(blank=False, null=False, verbose_name=u'Hora / Terminó Operacón',
                                 default=datetime.now())
-    procedimiento_quirurgico = models.ForeignKey(ProcedimientosQuirurgicos, blank=False, null=False)
-    descripcion = models.TextField(verbose_name=u'Procedimiento Quirurgico',
+    procedimiento_quirurgico = models.ForeignKey(ProcedimientosQuirurgicos, 
+        blank=False, null=False, verbose_name='Nombre del procedimiento quirúrgico')
+    descripcion = models.TextField(verbose_name=u'Descripción',
                                                 blank=True, null=True)

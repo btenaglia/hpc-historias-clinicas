@@ -32,14 +32,14 @@ $(document).ready(function() {
     $("#id_anamnesis-motivo_consulta").on('change', traer_enfermedad);
     function traer_enfermedad() {
         $.ajax({
-		data: { 'pk': $(this).val() },
-		url: '/motivos/traer/enfermedad/',
-		type: 'GET',
-		success: function(data){
-                       $("#id_anamnesis-enfermedad_actual").val("");
-			$("#id_anamnesis-enfermedad_actual").val( data[0].fields.descripcion );
-		}
-	});
+    		data: { 'pk': $(this).val() },
+    		url: '/motivos/traer/enfermedad/',
+    		type: 'GET',
+    		success: function(data){
+                           $("#id_anamnesis-enfermedad_actual").val("");
+    			$("#id_anamnesis-enfermedad_actual").val( data[0].fields.descripcion );
+		    }
+	     });
     }
 
     /* ------------------------------------------
@@ -51,5 +51,24 @@ $(document).ready(function() {
         diagnostico = $("#id_diagnostico-tipo_diagnostico option:selected").text();
         $("#id_planteos-planteo").val( diagnostico  );
     }
+
+
+    /* --------------------------------------------
+     -- Rellenar el text area de descripcion de ---
+     -- de un procedimiento quirurgico           --
+     ----------------------------------------------*/
+    $("#id_procedimiento_quirurgico").on('change', traer_descripcion_proc_quirurgico);
+    function traer_descripcion_proc_quirurgico() {
+        $.ajax({
+            data: { 'pk': $(this).val() },
+            url: '/procedimientos/quirurgicos/traer/descripcion/',
+            type: 'GET',
+            success: function(data){
+                $("#id_descripcion").val("");
+                $("#id_descripcion").val( data[0].fields.descripcion );
+            }
+        });
+    }
+
 
 });

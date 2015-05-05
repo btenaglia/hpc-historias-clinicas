@@ -13,7 +13,7 @@
               <select name='cirujano' class="form-control">
                   <option value="">Seleccione una cirujano</option>
                   {% for cirujano in cirujanos %}
-                    <option value="{{cirujano.id}}">{{cirujano.nombre}}{{cirujano.apellido}}</option>
+                    <option value="{{cirujano.id}}">{{cirujano.nombre}} {{cirujano.apellido}}</option>
                   {% endfor %}
               </select>
             </div>

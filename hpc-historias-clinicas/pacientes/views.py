@@ -20,6 +20,37 @@ class PacientesMixin(object):
 class PacientesListView(LoginRequiredMixin, ListView):
     model = Pacientes
 
+    def get_queryset(self):
+        qs = super(PacientesListView, self).get_queryset()
+
+        # -- filtro por Nombre
+        nombre = self.request.GET.get('nombre')
+        if nombre:
+                qs = qs.filter(nombre__icontains=nombre)
+
+        # -- filtro por apellido
+        apellido = self.request.GET.get('apellido')
+        if apellido:
+            qs = qs.filter(apellido__icontains=apellido)
+
+        # filtro por fecha de nacimiento
+        fecha_nacimiento = self.request.GET.get('fecha_nacimiento')
+        if fecha_nacimiento:
+            date = fecha_nacimiento.split('/')
+            date = date[2]+'-'+date[1]+'-'+date[0]
+            qs = qs.filter(fecha_nacimiento=date)
+
+        # filtro por Dni del paciente
+        dni = self.request.GET.get('dni')
+        if dni:
+            qs = qs.filter(documento=dni)
+
+        # filtro por Nombre de la madre
+        madre = self.request.GET.get('madre')
+        if madre:
+            qs = qs.filter(madre__icontains=madre)
+
+        return qs
 
 class PacientesCreateView(LoginRequiredMixin, CreateView):
     """
