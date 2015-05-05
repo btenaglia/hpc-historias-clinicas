@@ -61,7 +61,7 @@ class FojasQuirurgicasCreateView(LoginRequiredMixin, FojasQuirurgicasMixin, Crea
     """Nueva foja quirurgica"""
     model = FojasQuirurgicas
     fields = ['cirujano', 'ayudante_1', 'ayudante_2', 'ayudante_3', 'fecha',
-              'hora_comienzo', 'hora_fin', 'procedimiento_quirurgico']
+              'hora_comienzo', 'hora_fin', 'procedimiento_quirurgico', 'descripcion']
     success_msg = 'La foja quirurgica se agregó con éxito.'
 
     def post(self, request, *args, **kwargs):
@@ -91,7 +91,7 @@ class FojasQuirurgicasUpdateView(LoginRequiredMixin, FojasQuirurgicasMixin, Upda
     """ Edicion de una foja quirurgica """
     model = FojasQuirurgicas
     fields = ['cirujano', 'ayudante_1', 'ayudante_2', 'ayudante_3', 'fecha',
-              'hora_comienzo', 'hora_fin', 'procedimiento_quirurgico']
+              'hora_comienzo', 'hora_fin', 'procedimiento_quirurgico', 'descripcion']
     success_msg = 'La foja quirurgica se editó con éxito.'  
 
     def get_success_url(self):

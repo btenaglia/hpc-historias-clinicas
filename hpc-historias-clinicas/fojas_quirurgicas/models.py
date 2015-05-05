@@ -5,6 +5,7 @@ from django.db import models
 from ..medicos.models import Medicos
 from ..ayudantes.models import Ayudantes
 from ..historias.models import Historias
+from ..procedimientos_quirurgicos.models import ProcedimientosQuirurgicos
 from ..core.models import TimeStampedModel
 
 
@@ -25,4 +26,6 @@ class FojasQuirurgicas(TimeStampedModel):
                                      default=datetime.now())
     hora_fin = models.TimeField(blank=False, null=False, verbose_name=u'Hora / Terminó Operacón',
                                 default=datetime.now())
-    procedimiento_quirurgico = models.TextField(verbose_name=u'Procedimiento Quirurgico', blank=True, null=True)
+    procedimiento_quirurgico = models.ForeignKey(ProcedimientosQuirurgicos, blank=False, null=False)
+    descripcion = models.TextField(verbose_name=u'Procedimiento Quirurgico',
+                                                blank=True, null=True)

@@ -49,11 +49,11 @@
                             {% endif %}
                         </td>
                         <td>
-                            {% if foja.procedimiento_quirurgico|length > 30 %}
-                                {{ foja.procedimiento_quirurgico|truncatechars:30 }}
+                            {% if foja.descripcion|length > 30 %}
+                                {{ foja.descripcion|truncatechars:30 }}
                                 <a href="{% url 'fojas_quirurgicas:update' foja.id foja.historia_id %}">[+]</a>
                             {% else %}
-                                {{ foja.procedimiento_quirurgico }}
+                                {{ foja.descripcion }}
                             {% endif %}
                         </td>
                         <td>
