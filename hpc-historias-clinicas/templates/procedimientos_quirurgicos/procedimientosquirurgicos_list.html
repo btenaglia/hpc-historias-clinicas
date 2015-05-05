@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load pagination_tags %}
+
+{% block title %}Procedimientos Quirúrgicos{% endblock title %}
+
+{% block content %}
+
+    {% autopaginate object_list 20 %}
+
+    <h1 class="page-header">Procedimientos Quirúrgicos</h1>
+
+
+    <a href="{% url 'procedimientos_quirurgicos:create' %}" class="btn btn-primary"><i class="fa fa-plus"> Agregar Procedimiento Quirúrgico</i></a>
+
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dt_grid">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if object_list %}
+                {% for procedimiento in object_list %}
+                    <tr>
+                        <td>{{ procedimiento.nombre }}</td>
+                        <td>
+                            {% if procedimiento.descripcion|length > 70 %}
+                                {{ procedimiento.descripcion|truncatechars:70 }}
+                                <a href="{% url 'procedimientos_quirurgicos:update' motivo.id %}">[+]</a>
+                            {% else %}
+                                {{ procedimiento.descripcion }}
+                            {% endif %}
+                        <td>
+                            <a href="{% url 'procedimientos_quirurgicos:update' procedimiento.id %}"><i class="fa fa-pencil"></i></a>
+                            <a href="{% url 'procedimientos_quirurgicos:delete' procedimiento.id %}"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    {% paginate %}
+
+{% endblock %}

@@ -41,5 +41,7 @@ urlpatterns = patterns('',
     url(r'^fojas/quirurgicas', include("hpc-historias-clinicas.fojas_quirurgicas.urls", namespace="fojas_quirurgicas")),
     # Reportes
     url(r'^reportes', include("hpc-historias-clinicas.reportes.urls", namespace="reportes")),
+    # Procedimiento quirurgicos
+    url(r'^procedimientos/quirurgicos', include("hpc-historias-clinicas.procedimientos_quirurgicos.urls", namespace="procedimientos_quirurgicos")),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

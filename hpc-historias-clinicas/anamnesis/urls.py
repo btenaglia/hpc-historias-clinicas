@@ -4,7 +4,7 @@ from .views import (MotivosListView,
                     MotivosCreateView,
                     MotivosUpdateView,
                     MotivosDeleteView,
-		    traer_enfermedad)
+                    traer_enfermedad)
 
 urlpatterns = patterns('',
 
