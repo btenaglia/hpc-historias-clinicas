@@ -137,3 +137,7 @@ table.dataTable  {
 .panel-title>.small, .panel-title>.small>a, .panel-title>a, .panel-title>small, .panel-title>small>a {
   color: #fff;
 }
+
+ul {
+    list-style-type: none
+}

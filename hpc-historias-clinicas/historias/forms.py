@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import forms
 
 from .models import Historias
 from ..diagnosticos.models import Diagnosticos
@@ -9,7 +10,7 @@ from ..antecedentes_familiares.models import AntecedentesFamiliares
 from ..aparatos.models import Aparatos
 from ..examen_fisico.models import ExamenFisico
 from ..planteos.models import Planteos
-from ..metodologias.models import Metodologias
+from ..metodologias.models import Metodologias, TipoMetodologias
 
 
 class HistoriasModelForm(ModelForm):
@@ -58,7 +59,13 @@ class PlanteosModelForm(ModelForm):
         model = Planteos
 
 
-class MetodologiasModelForm(ModelForm):
-    class Meta:
-        model = Metodologias
+class MetodologiasModelForm(forms.Form):
+    def __init__(self,  *args, **kwargs):
+        super(MetodologiasModelForm, self).__init__( *args, **kwargs)
+        tipos_metodologias = TipoMetodologias.objects.values_list('id', 'nombre').all()
+        # for tipo in tipos_metodologias:
+        #     self.fields['tipo_metodologia_'+str(tipo.id)] = forms.BooleanField()
+
+        self.fields['tipo_metodologias']=forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=tipos_metodologias, label="Notify and subscribe users to this post:")
+
 
