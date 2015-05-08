@@ -13,7 +13,6 @@ from ..antecedentes_familiares.models import AntecedentesFamiliares
 from ..aparatos.models import Aparatos
 from ..examen_fisico.models import ExamenFisico
 from ..planteos.models import Planteos
-from ..metodologias.models import Metodologias
 
 
 class DptosCirugiaGeneral(TimeStampedModel):
@@ -52,7 +51,6 @@ class Historias(TimeStampedModel):
     aparatos = models.OneToOneField(Aparatos, blank=False, null=False)
     examen_fisico = models.OneToOneField(ExamenFisico, blank=False, null=False)
     planteos = models.OneToOneField(Planteos, blank=False, null=False)
-    metodologias = models.OneToOneField(Metodologias, blank=False, null=False)
     hora_ingreso = models.TimeField(blank=False, null=False,
                                     verbose_name=u"Hora de Ingreso",
                                     help_text=u'Formato: hh:mm',

@@ -59,13 +59,17 @@ class PlanteosModelForm(ModelForm):
         model = Planteos
 
 
-class MetodologiasModelForm(forms.Form):
+class MetodologiasForm(forms.Form):
+    """
+    Armo un formulario con checkboxes de acuerdo
+    a la cantidad de tipo de metodologias.
+    """
     def __init__(self,  *args, **kwargs):
-        super(MetodologiasModelForm, self).__init__( *args, **kwargs)
+        super(MetodologiasForm, self).__init__( *args, **kwargs)
         tipos_metodologias = TipoMetodologias.objects.values_list('id', 'nombre').all()
-        # for tipo in tipos_metodologias:
-        #     self.fields['tipo_metodologia_'+str(tipo.id)] = forms.BooleanField()
-
-        self.fields['tipo_metodologias']=forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=tipos_metodologias, label="Notify and subscribe users to this post:")
+        self.fields['tipo_metodologias'] = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                                                   choices=tipos_metodologias,
+                                                                   initial=kwargs['initial'] if 'initial' in kwargs else {},
+                                                                   label="")
 
 

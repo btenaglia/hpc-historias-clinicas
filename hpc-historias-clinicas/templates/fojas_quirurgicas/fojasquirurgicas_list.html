@@ -7,7 +7,7 @@
 
 {% block fq_contenido %}
 	
-		<a href="{% url 'fojas_quirurgicas:create' historia.id %}" class="btn btn-primary"><i class="fa fa-plus"> Nueva Foja Quirurgica</i></a>
+		<a href="{% url 'fojas_quirurgicas:create' historia.id %}" class="btn btn-primary"><i class="fa fa-plus"> Nueva Foja Quirúrgica</i></a>
 
         {% include 'fojas_quirurgicas/_search.html' %}
 
@@ -18,8 +18,8 @@
             <tr>
                 <th>Fecha</th>
                 <th>Cirujano</th>
-                <th>Procedimiento</th>
-                <th>Descripcion</th>
+                <th>Nombre del procedimiento</th>
+                <th>Descripción</th>
                 <th></th>
             </tr>
         </thead>

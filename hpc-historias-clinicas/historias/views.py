@@ -25,7 +25,7 @@ from .forms import (DiagnosticosModelForm,
                     AparatosModelForm,
                     ExamenFisicoModelForm,
                     PlanteosModelForm,
-                    MetodologiasModelForm,
+                    MetodologiasForm,
                     HistoriasModelForm)
 
 
@@ -186,7 +186,7 @@ def crear_historia(request, paciente):
         'form_aparatos': AparatosModelForm(prefix='aparatos'),
         'form_examen_fisico': ExamenFisicoModelForm(prefix='examen_fisico'),
         'form_planteos': PlanteosModelForm(prefix='planteos'),
-        'form_metodologias': MetodologiasModelForm(prefix='metodologias')
+        'form_metodologias': MetodologiasForm(prefix='metodologias')
     }
 
     if request.method == "POST":
@@ -199,7 +199,6 @@ def crear_historia(request, paciente):
         form_aparatos = AparatosModelForm(request.POST, prefix='aparatos')
         form_examen_fisico = ExamenFisicoModelForm(request.POST, prefix='examen_fisico')
         form_planteos = PlanteosModelForm(request.POST, prefix='planteos')
-        form_metodologias = MetodologiasModelForm(request.POST, prefix='metodologias')
 
         if form_historia.is_valid() and form_diagnostico.is_valid():
             # -- asigno el paciente antes de guardar
@@ -216,8 +215,9 @@ def crear_historia(request, paciente):
             historia.aparatos = form_aparatos.save()
             historia.examen_fisico = form_examen_fisico.save()
             historia.planteos = form_planteos.save()
-            historia.metodologias = form_metodologias.save()
             historia.save()
+
+            editar_metodologias(request.POST.getlist('metodologias-tipo_metodologias'), historia)
 
             messages.success(request, 'La historia clinica se creó con éxito, ahora asignele una ubicación al paciente.')
             return redirect('historias:ubicacion_create', pk=historia.id)
@@ -252,7 +252,7 @@ def editar_historia(request, pk):
         diagnostico_instance = get_object_or_404(Diagnosticos, pk=historia.diagnostico_id)
         examen_fisico_instance = get_object_or_404(ExamenFisico, pk=historia.examen_fisico_id)
         habitos_instance = get_object_or_404(Habitos, pk=historia.habitos_id)
-        metodologias_instance = get_object_or_404(Metodologias, pk=historia.metodologias_id)
+        metodologias_instance = Metodologias.objects.filter(historia=historia.id).all()
         planteos_instance = get_object_or_404(Planteos, pk=historia.planteos_id)
 
         ctx = {
@@ -266,7 +266,8 @@ def editar_historia(request, pk):
             'form_aparatos': AparatosModelForm(prefix='aparatos', instance=aparatos_instance),
             'form_examen_fisico': ExamenFisicoModelForm(prefix='examen_fisico', instance=examen_fisico_instance),
             'form_planteos': PlanteosModelForm(prefix='planteos', instance=planteos_instance),
-            'form_metodologias': MetodologiasModelForm(prefix='metodologias', instance=metodologias_instance)
+            'form_metodologias': MetodologiasForm(prefix='metodologias',
+                                                  initial= { str(m.tipo_metodologia_id):1 for m in metodologias_instance})
         }
 
     if request.method == "POST":
@@ -282,7 +283,6 @@ def editar_historia(request, pk):
         form_examen_fisico = ExamenFisicoModelForm(request.POST, prefix='examen_fisico',
                                                    instance=examen_fisico_instance)
         form_planteos = PlanteosModelForm(request.POST, prefix='planteos', instance=planteos_instance)
-        form_metodologias = MetodologiasModelForm(request.POST, prefix='metodologias', instance=metodologias_instance)
 
         if form_historia.is_valid() and form_diagnostico.is_valid():
             historia = form_historia.save(commit=False)
@@ -294,8 +294,11 @@ def editar_historia(request, pk):
             historia.aparatos = form_aparatos.save()
             historia.examen_fisico = form_examen_fisico.save()
             historia.planteos = form_planteos.save()
-            historia.metodologias = form_metodologias.save()
             historia.save()
+
+            # -- edito las metodologias
+            Metodologias.objects.filter(historia=historia.id).delete()
+            editar_metodologias(request.POST.getlist('metodologias-tipo_metodologias'), historia)
 
             messages.success(request, 'La historia clínica se editó con éxito.')
             return redirect('historias:list')
@@ -305,6 +308,18 @@ def editar_historia(request, pk):
             ctx['form_diagnostico'] = form_diagnostico
 
     return render(request, 'historias/historias_form.html', ctx)
+
+
+def editar_metodologias(tipos_metodologias, historia):
+    """
+    Recorrer todos los tipos de metodologias que
+    existe y asignarlo a una historia
+    """
+    for m in tipos_metodologias:
+        metodologia = Metodologias()
+        metodologia.historia_id = historia.id
+        metodologia.tipo_metodologia_id = m
+        metodologia.save()
 
 
 class UbicacionesFilterListView(LoginRequiredMixin, ListView):
