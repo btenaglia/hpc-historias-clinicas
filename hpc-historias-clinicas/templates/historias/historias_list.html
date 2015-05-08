@@ -26,7 +26,7 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{% url 'pacientes:create' %}"><i class="fa fa-user-plus"></i> Paciente no Existente</a></li>
-                    <li><a href="{% url 'pacientes:list' %}"><i class="fa fa-user"></i> Paciente ya Existente</a></li>
+                    <li><a href="{% url 'pacientes:list' %}?nueva_historia=true"><i class="fa fa-user"></i> Paciente ya Existente</a></li>
                 </ul>
             </div>
 

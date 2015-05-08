@@ -20,8 +20,12 @@ class PacientesMixin(object):
 class PacientesListView(LoginRequiredMixin, ListView):
     model = Pacientes
 
+
     def get_queryset(self):
         qs = super(PacientesListView, self).get_queryset()
+
+        if self.request.GET.get('nueva_historia'):
+            messages.success(self.request, 'Elija un paciente de la lista y agregue una historia clinica.')
 
         # -- filtro por Nombre
         nombre = self.request.GET.get('nombre')
