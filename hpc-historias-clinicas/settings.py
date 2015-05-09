@@ -143,6 +143,7 @@ LOCAL_APPS = (
     'hpc-historias-clinicas.evoluciones', # Evoluciones
     'hpc-historias-clinicas.fojas_quirurgicas', # Fojas quirurgicas
     'hpc-historias-clinicas.procedimientos_quirurgicos', # Procedimientos quirurgicos
+    'hpc-historias-clinicas.epicrisis', # Epicrisis
 
 )
 
