@@ -12,7 +12,7 @@ class Epicrisis(TimeStampedModel):
     - La epicrisis es un documento que se completa cuando
     se de de alta el paciente
     """
-    historia = models.ForeignKey(Historias)
+    historia = models.ForeignKey(Historias, unique=True)
     equipo_referencia = models.CharField(max_length=150, blank=True, null=True,
                                          verbose_name=u"Equipo de referencia en la internación",
                                          default=u"Cirugía general")
@@ -27,8 +27,8 @@ class Epicrisis(TimeStampedModel):
     laboratorio_alta = models.TextField(blank=True, null=True, verbose_name=u"Laboratorio al alta")
     tratamiento_alta = models.TextField(blank=True, null=True,
                                         verbose_name=u"Tratamiento al alta",
-                                        default=u"Control por consultorio externo."
-                                                u"Curaciones de la herida."
+                                        default=u"Control por consultorio externo. "
+                                                u"Curaciones de la herida. "
                                                 u"Antibiótico terapia.")
     pendientes = models.TextField(blank=True, null=True,
                                   verbose_name=u"Pendientes de resolución en el proceso"

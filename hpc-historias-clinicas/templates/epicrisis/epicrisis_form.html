@@ -1,0 +1,45 @@
+<!-- -------------------------------------
+    Alta / Edicion de Epicrisis
+----------------------------------------- -->
+
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Epicrisis{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{% url 'historias:list' %}"><i class="fa fa-reply"> Volver</i></a>
+            <h1 class="page-header">Epicrisis</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <!-- mostra boton para imprimir -->
+            {% if form.instance.id %}
+                <a class="btn btn-danger"><i class="fa fa-print"></i> Imprimir</a><br><br>
+            {% endif %}
+            <!-- / mostra boton para imprimir -->
+            {% include '_info_historias_pacientes.html' %}
+        </div>
+        <div class="col-lg-9">
+                <form class="form-horizontal" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="control-group">
+                      <div class="controls">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-check"></i> Confirmar
+                        </button>
+                        <a href="{% url 'historias:list' %}">Cancelar</a>
+                      </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+
+{% endblock %}

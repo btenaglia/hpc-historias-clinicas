@@ -2,7 +2,7 @@ import os
 PROJECT_ROOT = os.path.dirname(__file__)
 # DEBUG
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = True
+DEBUG = False
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
 TEMPLATE_DEBUG = DEBUG
 # END DEBUG

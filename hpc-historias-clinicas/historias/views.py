@@ -17,6 +17,7 @@ from ..examen_fisico.models import ExamenFisico
 from ..habitos.models import Habitos
 from ..metodologias.models import Metodologias
 from ..planteos.models import Planteos
+from ..epicrisis.models import Epicrisis
 from .forms import (DiagnosticosModelForm,
                     AnamnesisModelForm,
                     AntecedentesPersonalesModelForm,
@@ -167,6 +168,16 @@ class HistoriaEstadoUpdateView(LoginRequiredMixin, HistoriasMixin, UpdateView):
         # -- liberamos la ubicacion
         if form.instance.estado is not None:
             Ubicaciones.liberar_ubicacion(form.instance.id)
+            # -- si es un Alta, vamos a la epicrisis
+            if form.instance.estado == 1:
+                # -- dependiendo si ya tiene o no epicrisis
+                # -- redireccionamos al form de alta o edicion
+                epicrisis = Epicrisis.objects.filter(historia=form.instance.id)[:1]
+                if epicrisis:
+                    self.success_url = '/epicrisis/update/'+str(epicrisis[0].id)+'/'+str(form.instance.id)
+                else:
+                    self.success_url = '/epicrisis/create/'+str(form.instance.id)
+
         return super(HistoriaEstadoUpdateView, self).form_valid(form)
 
 

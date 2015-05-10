@@ -2,6 +2,7 @@
 {% load inter_consultas_tags %}
 {% load evoluciones_tags %}
 {% load fojas_quirurgicas_tags %}
+{% load epicrisis_tags %}
 
 <!-- -------------------------------------------
     Diferentes opciones/operaciones que
@@ -41,6 +42,20 @@
             <i class="fa fa-cog"></i> Cambiar estado
         </a>
     </li>
+    {% if historia.estado == 1 %}
+        <li role="presentation">
+            {% tiene_epicrisis historia.id as epicrisis %}
+            {% if epicrisis %}
+                <a role="menuitem" tabindex="-1" href="{% url 'epicrisis:update' epicrisis.0.id historia.id %}">
+                    <i class="fa fa-sign-out"></i> Epicrisis
+                </a>
+            {% else %}
+                <a role="menuitem" tabindex="-1" href="{% url 'epicrisis:create' historia.id %}">
+                    <i class="fa fa-sign-out"></i> Epicrisis
+                </a>
+            {% endif %}
+        </li>
+    {% endif %}
     <li role="presentation">
         <a role="menuitem" tabindex="-1" href="{% url 'reportes:historia' historia.id %}">
             <i class="fa fa-print"></i> Imprimir

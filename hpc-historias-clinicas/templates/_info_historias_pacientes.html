@@ -1,4 +1,5 @@
 {% load historias_tags %}
+{% load epicrisis_tags %}
 
 <!-- info de la historia -->
 <div class="panel panel-primary">
@@ -86,6 +87,18 @@
             <i class="fa fa-cog"></i> Cambiar estado
           </a>
             <br>
+        {% if historia.estado == 1 %}
+            {% tiene_epicrisis historia.id as epicrisis %}
+            {% if epicrisis %}
+                <a href="{% url 'epicrisis:update' epicrisis.0.id historia.id %}">
+                    <i class="fa fa-sign-out"></i> Epicrisis
+                </a><br>
+            {% else %}
+                <a href="{% url 'epicrisis:create' historia.id %}">
+                    <i class="fa fa-sign-out"></i> Epicrisis
+                </a><br>
+            {% endif %}
+        {% endif %}
           {% if '/reportes/historia/' not in  request.get_full_path %}
               <a role="menuitem" href="{% url 'reportes:historia' historia.id %}">
                 <i class="fa fa-print"></i> Imprimir historia clínica
@@ -105,6 +118,7 @@
           <a href="{% url 'historias:update' historia.id %}">
             <i class="fa fa-pencil"></i> Editar historia clínica
           </a>
+
         </div>
     </div>
 </div>
