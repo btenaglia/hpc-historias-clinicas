@@ -1,10 +1,18 @@
 <!-- -------------------------------------------------
     Pop-over con informacion del paciente
 --------------------------------------------------- -->
+{% load static %}
+{% load thumbnail %}
 
 <a tabindex="0" class="popover_info_paciente" data-toggle="popover" data-trigger="focus"
    title="<i class='fa fa-user'></i> Datos del Paciente"
    data-content="
+   {% if historia.paciente.foto %}
+        <img src='{% thumbnail historia.paciente.foto 50x50 crop %}'>
+    {% else %}
+        <img src='{% static 'images/paciente_sin_foto.jpg' %}'>
+    {% endif %}
+    <br>
    <b>Paciente:</b> {{ historia.paciente.nombre }} {{ historia.paciente.apellido }}<br>
    <b>DNI:</b> {% if historia.paciente.documento != '' %}{{ historia.paciente.documento }}{% else %}<i class='fa fa-exclamation-triangle'></i> No recuerda{% endif %}<br>
    <b>Nombre de la madre:</b> {{ historia.paciente.madre }}<br>

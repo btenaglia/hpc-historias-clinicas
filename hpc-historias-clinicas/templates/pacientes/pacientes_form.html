@@ -16,8 +16,13 @@
                 {% endif %}
                 Paciente
             </h1>
-            <form class="form-horizontal" method="post">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        {{  form.foto|as_crispy_field  }}
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-4">
                         {{  form.apellido|as_crispy_field  }}

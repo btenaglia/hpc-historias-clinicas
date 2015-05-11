@@ -2,6 +2,7 @@
 from datetime import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
+from easy_thumbnails.fields import ThumbnailerImageField
 from ..core.models import TimeStampedModel
 
 
@@ -46,6 +47,8 @@ class Pacientes(TimeStampedModel):
     fecha_ingreso = models.DateField(blank=False, null=False, verbose_name=u"Fecha de Ingreso",
                                      help_text=u'Formato: dd/mm/yyyy',
                                      default=datetime.now())
+    foto = ThumbnailerImageField(blank=True, null=True, upload_to='pacientes_fotos',
+                                 verbose_name=u"Foto del paciente")
 
     def get_absolute_url(self):
         return reverse('pacientes:list')

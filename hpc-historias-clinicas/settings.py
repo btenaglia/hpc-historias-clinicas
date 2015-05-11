@@ -122,6 +122,7 @@ THIRD_PARTY_APPS = (
     'allauth.socialaccount', # registration
     'pagination', # paginacion
     'easy_pdf',
+    'easy_thumbnails',
 )
 # Apps specific for this project go here.
 LOCAL_APPS = (
@@ -185,7 +186,9 @@ LOGIN_REDIRECT_URL = 'users:redirect'
 LOGIN_URL = 'account_login'
 # END Custom user app defaults
 
-APPEND_SLASH=False
+APPEND_SLASH = False
+
+THUMBNAIL_BASEDIR = 'thumbs'
 
 # --------------------------
 # IMPORT LOCAL SETTINGS
