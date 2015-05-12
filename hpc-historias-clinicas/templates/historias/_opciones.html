@@ -47,13 +47,10 @@
             {% tiene_epicrisis historia.id as epicrisis %}
             {% if epicrisis %}
                 <a role="menuitem" tabindex="-1" href="{% url 'epicrisis:update' epicrisis.0.id historia.id %}">
-                    <i class="fa fa-sign-out"></i> Epicrisis
-                </a>
             {% else %}
                 <a role="menuitem" tabindex="-1" href="{% url 'epicrisis:create' historia.id %}">
-                    <i class="fa fa-sign-out"></i> Epicrisis
-                </a>
             {% endif %}
+                <i class="fa fa-sign-out"></i> Epicrisis </a>
         </li>
     {% endif %}
     <li role="presentation">

@@ -118,13 +118,11 @@
             {% tiene_epicrisis historia.id as epicrisis %}
             {% if epicrisis %}
                 <a href="{% url 'epicrisis:update' epicrisis.0.id historia.id %}">
-                    <i class="fa fa-sign-out"></i> Epicrisis
-                </a><br>
             {% else %}
                 <a href="{% url 'epicrisis:create' historia.id %}">
-                    <i class="fa fa-sign-out"></i> Epicrisis
-                </a><br>
             {% endif %}
+                <i class="fa fa-sign-out"></i> Epicrisis</a>
+                <br>
         {% endif %}
           {% if '/reportes/historia/' not in  request.get_full_path %}
               <a role="menuitem" href="{% url 'reportes:historia' historia.id %}">

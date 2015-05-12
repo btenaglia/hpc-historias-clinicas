@@ -14,7 +14,9 @@ class EpicrisisMixin(object):
 
     def descarga_msg(self, epicrisis_id):
         # -- msg para la descar la epicrisis
-        return ' Click en el siguiente link para <a target="_blank" href="/reportes/evolucion/%s">Descargar e Imprimir</a>' % str(epicrisis_id)
+        return ' Click en el siguiente link para ' \
+               '<a target="_blank" href="/reportes/epicrisis/%s">Descargar e Imprimir</a>' \
+               % str(epicrisis_id)
 
     def get_context_data(self, **kwargs):
         # -- obtengo los datos de la historia clínica

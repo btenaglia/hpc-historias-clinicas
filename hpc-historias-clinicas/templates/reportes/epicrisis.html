@@ -1,0 +1,132 @@
+<style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td, th {
+      /*border: 1px solid #999;*/
+      padding: 2px;
+      text-align: left;
+    }
+</style>
+
+<br>
+<br>
+<br>
+<table>
+    <tr>
+        <td width="40%"></td>
+        <td>
+            {{ epicrisis.equipo_referencia }}
+        </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>
+            {{ epicrisis.historia.codigo }}
+        </td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>
+            {{ epicrisis.historia.paciente.nombre }} {{ epicrisis.historia.paciente.apellido }}
+        </td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>
+            {% if epicrisis.historia.paciente.edad > 0 %}
+                {{ epicrisis.historia.paciente.edad }}
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>
+            {% if epicrisis.historia.paciente.sexo == 1 %}
+                Femenino
+            {% else %}
+                Masculino
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>
+            {{ epicrisis.historia.fecha_ingreso|date:"d/m/Y" }}
+        </td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>
+            {{ epicrisis.historia.diagnostico.tipo_diagnostico.nombre }}
+        </td>
+    </tr>
+</table>
+<br>
+        <!-- antecedentes -->
+        {{ epicrisis.antecedentes }}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+        <!-- detalle problemas abordados -->
+        {{ epicrisis.problemas }}
+<br>
+<br>
+<br>
+<br>
+<table>
+    <tr>
+        <td width="30%"></td>
+        <td>{{ epicrisis.fecha_egreso }}</td>
+    </tr>
+    <tr>
+        <td width="30%"></td>
+        <td>{{ epicrisis.diagnostico_egreso }}</td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+        <!-- resultados de examenes complementarios -->
+        {{ epicrisis.resultado_examenes }}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+        <!-- laboratorio al alta -->
+        {{ epicrisis.laboratorio_alta }}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+        <!-- tratamiento al alta -->
+        {{ epicrisis.tratamiento_alta }}
+<br>
+<br>
+<br>
+        <!-- pendientes de resolucion -->
+        {{ epicrisis.pendientes }}
+<br>
+<br>
+<br>
+        <!-- equipo y centro de referencia al alta -->
+        {{ epicrisis.equipo_referencia_alta }}
+<br>
+<br>
+<br>
+        <!-- fecha / hora proxima consulta -->
+        {{ epicrisis.fecha_proxima_consulta|date:"d/m/Y" }} {{ epicrisis.hora_proxima_consulta }}
+

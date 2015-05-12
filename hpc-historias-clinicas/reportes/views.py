@@ -7,6 +7,7 @@ from ..historias.models import Historias
 from ..evoluciones.models import Evoluciones
 from ..inter_consultas.models import InterConsultas
 from ..fojas_quirurgicas.models import FojasQuirurgicas
+from ..epicrisis.models import Epicrisis
 
 
 class ReporteHistoriaClinica(DetailView):
@@ -60,4 +61,16 @@ class ReporteFojaQuirurgica(PDFTemplateView):
         foja = get_object_or_404(FojasQuirurgicas, pk=pk)
         ctx['historia'] = foja.historia
         ctx['foja'] = foja
+        return ctx
+
+
+class ReporteEpicrisis(PDFTemplateView):
+    """
+    Impresion de una hoja de Epicrisis
+    """
+    template_name = 'reportes/epicrisis.html'
+
+    def get_context_data(self, pk):
+        ctx = super(ReporteEpicrisis, self).get_context_data()
+        ctx['epicrisis'] = get_object_or_404(Epicrisis, pk=pk)
         return ctx
