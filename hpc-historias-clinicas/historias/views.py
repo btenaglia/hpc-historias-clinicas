@@ -176,6 +176,7 @@ class HistoriaEstadoUpdateView(LoginRequiredMixin, HistoriasMixin, UpdateView):
                 if epicrisis:
                     self.success_url = '/epicrisis/update/'+str(epicrisis[0].id)+'/'+str(form.instance.id)
                 else:
+                    self.success_msg +=" Ahora puede completar la Epicrisis."
                     self.success_url = '/epicrisis/create/'+str(form.instance.id)
 
         return super(HistoriaEstadoUpdateView, self).form_valid(form)
