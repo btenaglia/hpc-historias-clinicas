@@ -1,5 +1,7 @@
 {% load historias_tags %}
 {% load epicrisis_tags %}
+{% load static %}
+{% load thumbnail %}
 
 <!-- info de la historia -->
 <div class="panel panel-primary">
@@ -10,6 +12,23 @@
         <div class="well well-lg">
           <label><strong>Nº Historia: </strong></label>
           <span class="label label-success">{{ historia.codigo }}</span>
+          <br>
+          <label><strong>Estado:</strong></label>
+            {% if historia.estado == None %}
+                <span class="label label-warning">Open</span>
+            {% else %}
+                {% if historia.estado == 1 %}
+                    <span class="label label-success">Alta</span>
+                {% else %}
+                    {% if historia.estado == 2 %}
+                        <span class="label label-danger">Óbito</span>
+                    {% else %}
+                        {% if historia.estado == 3 %}
+                            <span class="label label-primary">Pase de servicio</span>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endif %}
           <br>
           <label><strong>Fecha Ingreso: </strong></label>
           {{ historia.fecha_ingreso|date:"SHORT_DATE_FORMAT" }}
@@ -28,31 +47,39 @@
     </div>
     <div class="panel-body">
         <div class="well well-lg">
-          <label><strong>Nombre: </strong></label>
-          {{ historia.paciente.nombre }}
-          <br>
-          <label><strong>Apellido: </strong></label>
-          {{ historia.paciente.apellido }}
-          <br>
-          <label><strong>Sexo: </strong></label>
-          {% if historia.paciente.sexo == 0 %}Masculino{% else %}Femenino{% endif %}
-          <br>
-          <label><strong>Madre: </strong></label>
-          {{ historia.paciente.madre }}
-          <br>
-          <label><strong>F. nacimiento: </strong></label>
-          {{ historia.paciente.fecha_nacimiento|date:"SHORT_DATE_FORMAT" }}
-          <br>
-          <label><strong>Estado civil: </strong></label>
-          {% if historia.paciente.estado_civil == 0 %}
+            <!-- foto del paciente -->
+            {% if historia.paciente.foto %}
+                <img src='{% thumbnail historia.paciente.foto 80x80 crop %}'>
+            {% else %}
+                <img src='{% static "images/paciente_sin_foto.jpg" %}'>
+            {% endif %}
+            <!-- / foto del paciente -->
+            <br>
+            <label><strong>Nombre: </strong></label>
+            {{ historia.paciente.nombre }}
+            <br>
+            <label><strong>Apellido: </strong></label>
+            {{ historia.paciente.apellido }}
+            <br>
+            <label><strong>Sexo: </strong></label>
+            {% if historia.paciente.sexo == 0 %}Masculino{% else %}Femenino{% endif %}
+            <br>
+            <label><strong>Madre: </strong></label>
+            {{ historia.paciente.madre }}
+            <br>
+            <label><strong>F. nacimiento: </strong></label>
+            {{ historia.paciente.fecha_nacimiento|date:"SHORT_DATE_FORMAT" }}
+            <br>
+            <label><strong>Estado civil: </strong></label>
+            {% if historia.paciente.estado_civil == 0 %}
             Soltero
-          {% elif historia.paciente.estado_civil == 1 %}
+            {% elif historia.paciente.estado_civil == 1 %}
             Casado
-          {% elif historia.paciente.estado_civil == 2 %}
+            {% elif historia.paciente.estado_civil == 2 %}
             Viudo
-          {% elif historia.paciente.estado_civil == 3 %}
+            {% elif historia.paciente.estado_civil == 3 %}
             Divorciado
-          {% endif %}
+            {% endif %}
         </div>
     </div>
 </div>

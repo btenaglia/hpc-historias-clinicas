@@ -25,6 +25,8 @@
         <link  rel="stylesheet" href="{% static 'libs/datepicker/css/datepicker.css' %}">
         <!-- Project specific CSS -->
         <link href="{% static 'css/project.css' %}" rel="stylesheet">
+        <!-- Footer CSS -->
+        <link href="{% static 'css/footer.css' %}" rel="stylesheet">
 <!-- end include data table Js -->
 
     {% endblock %}
@@ -46,6 +48,9 @@
         {% endblock content %}
 
     </div> <!-- /container -->
+
+    {% include '_footer.html' %}
+
     {% block modal %}{% endblock modal %}
 
         <!-- Le javascript

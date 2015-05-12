@@ -1,0 +1,23 @@
+.footer {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: #f4f4f4;
+  color: #777;
+    font-size: 15px;
+}
+
+.footer a {
+  color:#777;
+  font-size: 15px;
+}
+.footer li.python {
+  background-image: url(/static/images/python-footer.png);
+  margin-left: 25px;
+  padding-right: 52px;
+}
+li.python {
+  background-position: right center;
+  background-repeat: no-repeat;
+  float: left;
+  text-align: right;
+}
