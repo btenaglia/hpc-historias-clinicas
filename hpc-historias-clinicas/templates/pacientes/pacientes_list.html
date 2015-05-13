@@ -36,7 +36,7 @@
                                         {% if paciente.foto %}
                                             <img src="{% thumbnail paciente.foto 50x50 crop %}" title="No foto">
                                         {% else %}
-                                            <img src="{% static 'images/paciente_sin_foto.jpg' %}" title="No foto">
+                                            <img src="{% static 'images/persona_sin_foto.jpg' %}" title="No foto">
                                         {% endif %}
                                     </td>
                                     <td>{{ paciente.nombre }}</td>
