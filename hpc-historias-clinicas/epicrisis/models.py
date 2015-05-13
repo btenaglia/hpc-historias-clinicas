@@ -36,8 +36,10 @@ class Epicrisis(TimeStampedModel):
     equipo_referencia_alta = models.CharField(max_length=150, blank=True, null=True,
                                               verbose_name=u"Equipo y centro de referencia al alta",
                                               default=u"Cirugía general, Otro")
-    fecha_proxima_consulta = models.DateField(verbose_name=u"Fecha de la próxima consulta")
-    hora_proxima_consulta = models.TimeField(verbose_name=u"Hora de la próxima consulta")
+    fecha_proxima_consulta = models.DateField(verbose_name=u"Fecha de la próxima consulta",
+                                              blank=True, null=True)
+    hora_proxima_consulta = models.TimeField(verbose_name=u"Hora de la próxima consulta",
+                                             blank=True, null=True)
 
 
 
