@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import messages
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from braces.views import LoginRequiredMixin
 
 from .models import Pacientes
@@ -15,6 +15,10 @@ class PacientesMixin(object):
     def get_success_url(self):
         messages.success(self.request, self.success_msg)
         return super(PacientesMixin, self).get_success_url()
+
+
+class PacientesDetailView(LoginRequiredMixin, DetailView):
+    model = Pacientes
 
 
 class PacientesListView(LoginRequiredMixin, ListView):

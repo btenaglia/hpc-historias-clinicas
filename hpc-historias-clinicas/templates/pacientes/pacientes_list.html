@@ -68,6 +68,11 @@
                                                     </a>
                                                 </li>
                                                 <li role="presentation">
+                                                    <a role="menuitem" tabindex="-1" href="{% url 'pacientes:detail' paciente.id %}">
+                                                        <i class="fa fa-eye"></i> Detalles
+                                                    </a>
+                                                </li>
+                                                <li role="presentation">
                                                     <a role="menuitem" tabindex="-1" href="{% url 'pacientes:update' paciente.id %}">
                                                         <i class="fa fa-pencil"></i> Editar paciente
                                                     </a>
