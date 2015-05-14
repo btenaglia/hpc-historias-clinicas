@@ -1,15 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'delete.html' %}
 
-{% block title %}Eliminar Paciente{% endblock title %}
+{% block titulo %}
+	Eliminar Paciente
+{% endblock titulo %}
 
-{% block content %}
+{% block pregunta %}
+	Está seguro de eliminar el paciente "{{ object.nombre }} {{ object.apellido }}"?
+{% endblock %}
 
-    <h1 class="page-header">Eliminar Paciente</h1>
-    <form action="" method="post">{% csrf_token %}
-        <p><b>ATENCIÓN:</b> Está seguro de eliminar el paciente "{{ object.nombre }} {{ object.apellido }}"?</p>
-        <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
-        <a href="{% url 'pacientes:list' %}">Volver</a>
-    </form>
-
-
+{%block volver_url%}
+	{% url 'pacientes:list' %}
 {% endblock %}

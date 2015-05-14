@@ -1,16 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'delete.html' %}
 
-{% block title %}Eliminar Procedimiento Quirúrgico{% endblock title %}
+{% block titulo %}
+	Eliminar Procedimiento Quirúrgico
+{% endblock titulo %}
 
-{% block content %}
+{% block pregunta %}
+	Está seguro de eliminar el procedimiento quirúrgico "{{ object.nombre }}"?
+{% endblock %}
 
-    <h1 class="page-header">Eliminar Procedimiento Quirúrgico</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <p><b>ATENCIÓN:</b> Está seguro de eliminar el procedimiento quirúrgico "{{ object.nombre }}"?</p>
-        <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
-        <a href="{% url 'procedimientos_quirurgicos:list' %}">Volver</a>
-    </form>
-
-
+{%block volver_url %}
+	{% url 'procedimientos_quirurgicos:list' %}
 {% endblock %}

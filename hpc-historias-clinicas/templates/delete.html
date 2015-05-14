@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar{% endblock title %}
+
+{% block content %}
+
+	<div class='alert alert-danger' role='alert'>
+			
+		<h1 class="page-header">
+    		<i class='fa fa-warning'></i> 
+    		{% block titulo %}
+    			<!-- bloque para ubicar el titulo -->
+    		{% endblock titulo %}
+	    </h1>
+	    <form action="" method="post">
+	    	{% csrf_token %}
+	        <p>
+	        	<b>ATENCIÓN:</b> 
+	        	{% block pregunta %}
+		        	<!-- bloque para ubicar la pregunta antes del borrado -->
+	        	{% endblock pregunta %}
+	        	<br>
+	        	- Tenga en cuenta que se eliminarán todos los registros relacionados.<br>
+	        	- Los datos eliminados no se podrán volver a recuperar.
+	        </p>
+	        <button type="submit" class='btn btn-danger'>
+	        	<i class="fa fa-trash-o"></i> Eliminar
+	        </button>
+	        <a href="{% block volver_url %}{% endblock %}">Cancelar</a>
+	    </form>
+
+	</div>
+
+{% endblock %}

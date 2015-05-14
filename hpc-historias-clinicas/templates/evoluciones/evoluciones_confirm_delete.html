@@ -1,19 +1,13 @@
-{% extends 'evoluciones/_evoluciones_base.html' %}
+{% extends 'delete.html' %}
 
-{% block evoluciones_titulo %} Eliminar Evolución {% endblock evoluciones_titulo %}
+{% block titulo %}
+	Eliminar Evolución
+{% endblock titulo %}
 
-{% block evoluciones_volver %}
-    <!-- link Volver -->
-    <a href="{% url 'evoluciones:list' historia.id %}"><i class="fa fa-reply"> Volver</i></a>
-    <!-- / link Volver -->
-{% endblock evoluciones_volver %}
+{% block pregunta %}
+	Está seguro de eliminar la evolución?
+{% endblock %}
 
-{% block evoluciones_contenido %}
-
-    <form action="" method="post">{% csrf_token %}
-        <p><b>ATENCIÓN:</b> Está seguro de eliminar la evolucion"?</p>
-        <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
-        <a href="{% url 'evoluciones:list' historia.id%}">Volver</a>
-    </form>
-
-{% endblock evoluciones_contenido %}
+{%block volver_url%}
+	{% url 'evoluciones:list' historia.id %}
+{% endblock %}

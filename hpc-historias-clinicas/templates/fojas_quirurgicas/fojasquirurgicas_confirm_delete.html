@@ -1,19 +1,13 @@
-{% extends 'fojas_quirurgicas/_fojas_quirurgicas_base.html' %}
+{% extends 'delete.html' %}
 
-{% block fq_titulo %} Eliminar Foja Quirurgica {% endblock fq_titulo %}
+{% block titulo %}
+	Eliminar Foja Quirúrgica
+{% endblock titulo %}
 
-{% block fq_volver %}
-    <!-- link Volver -->
-    <a href="{% url 'fojas_quirurgicas:list' historia.id %}"><i class="fa fa-reply"> Volver</i></a>
-    <!-- / link Volver -->
-{% endblock fq_volver %}
+{% block pregunta %}
+	Está seguro de eliminar la foja quirúrgica?
+{% endblock %}
 
-{% block fq_contenido %}
-
-    <form action="" method="post">{% csrf_token %}
-        <p><b>ATENCIÓN:</b> Está seguro de eliminar la foja quirurgica"?</p>
-        <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
-        <a href="{% url 'fojas_quirurgicas:list' historia.id%}">Volver</a>
-    </form>
-
-{% endblock fq_contenido %}
+{%block volver_url%}
+	{% url 'fojas_quirurgicas:list' historia.id %}
+{% endblock %}

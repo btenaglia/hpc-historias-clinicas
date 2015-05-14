@@ -1,19 +1,13 @@
-{% extends 'inter_consultas/_interconsultas_base.html' %}
+{% extends 'delete.html' %}
 
-{% block ic_titulo %} Eliminar Inter Consultas {% endblock ic_titulo %}
+{% block titulo %}
+	Eliminar Inter Consulta
+{% endblock titulo %}
 
-{% block ic_volver %}
-    <!-- link Volver -->
-    <a href="{% url 'inter_consultas:list' historia.id %}"><i class="fa fa-reply"> Volver</i></a>
-    <!-- / link Volver -->
-{% endblock ic_volver %}
+{% block pregunta %}
+	Está seguro de eliminar la inter consulta?
+{% endblock %}
 
-{% block ic_contenido %}
-
-    <form action="" method="post">{% csrf_token %}
-        <p><b>ATENCIÓN:</b> Está seguro de eliminar la inter consulta"?</p>
-        <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
-        <a href="{% url 'inter_consultas:list' historia.id%}">Volver</a>
-    </form>
-
-{% endblock ic_contenido %}
+{%block volver_url %}
+	{% url 'inter_consultas:list' historia.id %}
+{% endblock %}
