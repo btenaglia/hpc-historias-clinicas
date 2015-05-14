@@ -1,15 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'delete.html' %}
 
-{% block title %}Eliminar Motivo de consulta{% endblock title %}
+{% block titulo %}
+	Eliminar Motivo de consulta
+{% endblock titulo %}
 
-{% block content %}
+{% block pregunta %}
+	Está seguro de eliminar el motivo de consulta "{{ object.motivo }}"?
+{% endblock %}
 
-    <h1 class="page-header">Eliminar Motivo de consulta</h1>
-    <form action="" method="post">{% csrf_token %}
-        <p><b>ATENCIÓN:</b> Está seguro de eliminar el motivo de consulta "{{ object.motivo }}"?</p>
-        <button type="submit" class='btn btn-danger'><i class="fa fa-trash-o"></i> Eliminar</button>
-        <a href="{% url 'diagnosticos:list' %}">Volver</a>
-    </form>
-
-
+{%block volver_url %}
+	{% url 'diagnosticos:list' %}
 {% endblock %}
