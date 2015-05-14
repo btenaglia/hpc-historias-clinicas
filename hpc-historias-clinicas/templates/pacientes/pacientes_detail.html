@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}Paciente{% endblock title %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <a href="{% url 'pacientes:list' %}"><i class="fa fa-reply"> Volver</i></a>
+            <h1 class="page-header">
+                {{  object.nombre }} {{  object.apellido }}
+            </h1>
+            <div class="row">
+                <div class="col-lg-12">
+                    {% if object.foto %}
+                        <img src="{% thumbnail object.foto 50x50 crop %}" title="No foto">
+                    {% else %}
+                        <img src="{% static 'images/persona_sin_foto.jpg' %}" title="No foto">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong>Sexo: </strong>
+                    {% if object.sexo == 1 %}
+                        Femenino
+                    {% else %}
+                        Masculino
+                    {% endif %}
+                </div>
+                <div class="col-lg-6">
+                    <strong>Nombre de la madre: </strong>
+                    {{  object.madre  }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong>Domicilio: </strong>
+                    {{  object.domicilio  }}
+                </div>
+                <div class="col-lg-6">
+                    <strong>N° Domicilio: </strong>
+                    {{  object.domicilio_numero  }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong>Ciudad: </strong>
+                    {{ object.ciudad }}
+                </div>
+                <div class="col-lg-6">
+                    <strong>Provincia: </strong>
+                    {{  object.provincia }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong>Telefono: </strong>
+                    {{  object.telefono }}
+                </div>
+                <div class="col-lg-6">
+                    <strong>Edad: </strong>
+                    {{  object.edad  }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong>Fecha de Nacimientos: </strong>
+                    {{  object.fecha_nacimiento|date:"SHORT_DATE_FORMAT" }}
+                </div>
+                <div class="col-lg-6">
+                    <strong>Dni: </strong>
+                    {{  object.documento }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <strong>Estado civil: </strong>
+                    {% if object.estado_civil == 0 %}
+                        Soltero
+                    {% else %}
+                        {% if object.estado_civil == 1 %}
+                            Casado
+                        {% else %}
+                            {% if object.estado_civil == 2 %}
+                                Viudo
+                            {% else %}
+                                Divorciado
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col-lg-4">
+                    <strong>Ocupacion: </strong>
+                    {{  object.ocupacion  }}
+                </div>
+                <div class="col-lg-4">
+                    <strong>Religion: </strong>
+                    {{  object.religion  }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong>Procedencia: </strong>
+                    {{  object.procedencia  }}
+                </div>
+                <div class="col-lg-6">
+                    <strong>Nacionalidad: </strong>
+                    {{  object.nacionalidad  }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong>Obra social: </strong>
+                    {{  object.obra_social  }}
+                </div>
+                <div class="col-lg-6">
+                    <strong>Numero de afiliado: </strong>
+                    {{  object.numero_afiliado  }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <strong>Hora de ingreso: </strong>
+                    {{  object.hora_ingreso  }}
+                </div>
+                <div class="col-lg-6">
+                    <strong>Fecha de ingreso: </strong>
+                    {{  object.fecha_ingreso|date:"SHORT_DATE_FORMAT" }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
