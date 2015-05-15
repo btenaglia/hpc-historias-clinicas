@@ -74,3 +74,16 @@ class ReporteEpicrisis(PDFTemplateView):
         ctx = super(ReporteEpicrisis, self).get_context_data()
         ctx['epicrisis'] = get_object_or_404(Epicrisis, pk=pk)
         return ctx
+
+
+class ReporteHistoriaClinicaPagina1(PDFTemplateView):
+    """
+    Impresion de historia clinica
+    Pagina 1
+    """
+    template_name = 'reportes/historia_clinica_page1.html'
+
+    def get_context_data(self, pk):
+        ctx = super(ReporteHistoriaClinicaPagina1, self).get_context_data()
+        ctx['historia'] = get_object_or_404(Historias, pk=pk)
+        return ctx
