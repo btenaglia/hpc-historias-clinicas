@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^users/', include("hpc-historias-clinicas.users.urls", namespace="users")),
     url(r'^accounts/', include('allauth.urls')),
 
+    # Contacto
+    url(r'^contacto', include("hpc-historias-clinicas.contacto.urls", namespace="contacto")),
     # Medicos
     url(r'^medicos/', include("hpc-historias-clinicas.medicos.urls", namespace="medicos")),
     # Ayudantes

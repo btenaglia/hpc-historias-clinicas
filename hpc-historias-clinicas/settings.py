@@ -123,6 +123,7 @@ THIRD_PARTY_APPS = (
     'pagination', # paginacion
     'easy_pdf',
     'easy_thumbnails',
+    'djrill',
 )
 # Apps specific for this project go here.
 LOCAL_APPS = (
