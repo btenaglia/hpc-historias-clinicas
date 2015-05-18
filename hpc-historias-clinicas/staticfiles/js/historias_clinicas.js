@@ -1,7 +1,7 @@
 $(document).ready(function() { 
 
 
-   /* --------------------------------------------
+    /* --------------------------------------------
         Lanzar modal para crear historia clinica
     --------------------------------------------- */
     $('#nueva_historia').click(function(){
@@ -25,14 +25,14 @@ $(document).ready(function() {
     $("#id_anamnesis-motivo_consulta").on('change', traer_enfermedad);
     function traer_enfermedad() {
         $.ajax({
-    		data: { 'pk': $(this).val() },
-    		url: '/motivos/traer/enfermedad/',
-    		type: 'GET',
-    		success: function(data){
+            data: { 'pk': $(this).val() },
+            url: '/motivos/traer/enfermedad/',
+            type: 'GET',
+            success: function(data){
                            $("#id_anamnesis-enfermedad_actual").val("");
-    			$("#id_anamnesis-enfermedad_actual").val( data[0].fields.descripcion );
-		    }
-	     });
+                $("#id_anamnesis-enfermedad_actual").val( data[0].fields.descripcion );
+            }
+         });
     }
 
     /* ------------------------------------------
@@ -44,6 +44,19 @@ $(document).ready(function() {
         diagnostico = $("#id_diagnostico-tipo_diagnostico option:selected").text();
         $("#id_planteos-planteo").val( diagnostico  );
     }
+
+
+    /* ----------------------------------------
+        Impresion historias clinicas
+        - grupo de páginas (1, 3, 5 y 7)
+    ------------------------------------------- */
+    $('#grp1').click(function(e){
+        e.preventDefault();
+        $('#historia_clinica_p1')[0].click();
+        $('#historia_clinica_p3')[0].click();
+        $('#historia_clinica_p5')[0].click();
+        $('#historia_clinica_p7')[0].click();
+    });
 
 
 
