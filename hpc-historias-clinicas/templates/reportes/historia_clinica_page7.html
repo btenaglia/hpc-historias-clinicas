@@ -1,0 +1,43 @@
+{% extends 'reportes/_cabecera.html' %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <br>
+        {{ historia.planteos.planteo }}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+        {% if metodologias %}
+            {% for metodologia in metodologias %}
+                    {{metodologia.tipo_metodologia.nombre}} <br>
+            {% endfor %}
+        {% endif %}
+
+{% endblock %}

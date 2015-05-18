@@ -8,6 +8,7 @@ from ..evoluciones.models import Evoluciones
 from ..inter_consultas.models import InterConsultas
 from ..fojas_quirurgicas.models import FojasQuirurgicas
 from ..epicrisis.models import Epicrisis
+from ..metodologias.models import Metodologias
 
 
 class ReporteHistoriaClinica(DetailView):
@@ -87,3 +88,47 @@ class ReporteHistoriaClinicaPagina1(PDFTemplateView):
         ctx = super(ReporteHistoriaClinicaPagina1, self).get_context_data()
         ctx['historia'] = get_object_or_404(Historias, pk=pk)
         return ctx
+
+
+class ReporteHistoriaClinicaMixin(PDFTemplateView):
+    """
+    Mixin para imprimir las diferentes hojas
+    de las historias clinicas
+    """
+    def get_context_data(self, **kwargs):
+        ctx = super(ReporteHistoriaClinicaMixin, self).get_context_data(**kwargs)
+        ctx['historia'] = get_object_or_404(Historias, pk=self.kwargs['pk'])
+        ctx['madre'] = True
+        return ctx
+
+
+class ReporteHistoriaClinicaPagina3(ReporteHistoriaClinicaMixin):
+    """
+    Impresion de historia clinica
+    Pagina 3
+    """
+    template_name = 'reportes/historia_clinica_page3.html'
+
+
+class ReporteHistoriaClinicaPagina5(ReporteHistoriaClinicaMixin):
+    """
+    Impresion de historia clinica
+    Pagina 5
+    """
+    template_name = 'reportes/historia_clinica_page5.html'
+
+
+class ReporteHistoriaClinicaPagina7(ReporteHistoriaClinicaMixin):
+    """
+    Impresion de historia clinica
+    Pagina 7
+    """
+    template_name = 'reportes/historia_clinica_page7.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ReporteHistoriaClinicaPagina7, self).get_context_data(**kwargs)
+        ctx['metodologias'] = Metodologias.objects.filter(historia=self.kwargs['pk']).all()
+        return ctx
+
+
+

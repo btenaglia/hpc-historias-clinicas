@@ -231,7 +231,9 @@ def crear_historia(request, paciente):
 
             editar_metodologias(request.POST.getlist('metodologias-tipo_metodologias'), historia)
 
-            messages.success(request, 'La historia clinica se creó con éxito, ahora asignele una ubicación al paciente.')
+            messages.success(request, 'La historia clínica se creó con éxito, ahora ubíque al paciente '
+                                      'o <a href="/reportes/historia/%s">imprima la historia clínica</a>.'
+                                    % str(historia.id))
             return redirect('historias:ubicacion_create', pk=historia.id)
 
         else:

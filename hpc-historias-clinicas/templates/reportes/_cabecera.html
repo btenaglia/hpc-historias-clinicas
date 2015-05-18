@@ -1,56 +1,66 @@
-<style>
-    table {
-      border-collapse: collapse;
-    }
+<!DOCTYPE html>
+<html lang="en" ng-app>
+  <head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        html, body { height: 100%; padding-left: 30px}
 
-    td, th {
-      /*border: 1px solid #999;*/
-      padding: 6px;
-      text-align: left;
-    }
-</style>
+        table {
+          border-collapse: collapse;
+        }
 
-<div style='margin-left: 600px'>
-    {{ historia.codigo }}
-</div>
-<br>
-<br>
-<table>
-    <tr>
-        <td></td>
-        <td>
-            {{ historia.paciente.nombre }}
-        </td>
-        <td></td>
-        <td>
-            {{ historia.paciente.apellido }}
-        </td>
-        <td>
-            {{ historia.fecha_ingreso|date:'m' }}&nbsp;&nbsp;
-            {{ historia.fecha_ingreso|date:'d' }}&nbsp;&nbsp;
-            {{ historia.fecha_ingreso|date:'Y' }}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Sexo
-            &nbsp;
-            {% if historia.paciente.sexo == 0 %}
-             &nbsp;&nbsp;&nbsp;&nbsp;
-            {% else %}
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {% endif %}
-            X
-        </td>
-        <td></td>
-        <td>
-            {% if madre %}
-                {{ historia.paciente.madre }}
-            {% endif %}
-        </td>
-    </tr>
-</table>
+        td, th {
+          /*border: 1px solid #999;*/
+          padding: 6px;
+          text-align: left;
+        }
+    </style>
+  </head>
+  <body>
+    <div style='margin-left: 600px'>
+        {{ historia.codigo }}
+    </div>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td></td>
+            <td>
+                {{ historia.paciente.nombre }}
+            </td>
+            <td></td>
+            <td>
+                {{ historia.paciente.apellido }}
+            </td>
+            <td>
+                {{ historia.fecha_ingreso|date:'m' }}&nbsp;&nbsp;
+                {{ historia.fecha_ingreso|date:'d' }}&nbsp;&nbsp;
+                {{ historia.fecha_ingreso|date:'Y' }}
+            </td>
+        </tr>
+        <tr>
+            <td>
 
-{% block content %}
-        <!-- aca va el contenido del reporte -->
-{% endblock content%}
+                &nbsp;
+                {% if historia.paciente.sexo == 0 %}
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+                {% else %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endif %}
+                X
+            </td>
+            <td></td>
+            <td>
+                {% if madre %}
+                    {{ historia.paciente.madre }}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+
+    {% block content %}
+            <!-- aca va el contenido del reporte -->
+    {% endblock content%}
+
+  </body>
+</html>
