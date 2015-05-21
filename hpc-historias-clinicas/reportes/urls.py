@@ -9,7 +9,9 @@ from .views import (ReporteEvolucion,
                     ReporteHistoriaClinicaPagina1,
                     ReporteHistoriaClinicaPagina3,
                     ReporteHistoriaClinicaPagina5,
-                    ReporteHistoriaClinicaPagina7)
+                    ReporteHistoriaClinicaPagina7,
+                    ReporteHistoriaClinicaPagina6,
+                    ReporteHistoriaClinicaPagina4)
 
 urlpatterns = patterns('',
 
@@ -22,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^/historia/clinica/(?P<pk>\d+)/page3$', ReporteHistoriaClinicaPagina3.as_view(), name='historia_p3'),
     url(r'^/historia/clinica/(?P<pk>\d+)/page5$', ReporteHistoriaClinicaPagina5.as_view(), name='historia_p5'),
     url(r'^/historia/clinica/(?P<pk>\d+)/page7$', ReporteHistoriaClinicaPagina7.as_view(), name='historia_p7'),
+    url(r'^/historia/clinica/(?P<pk>\d+)/page4$', ReporteHistoriaClinicaPagina4.as_view(), name='historia_p4'),
+    url(r'^/historia/clinica/(?P<pk>\d+)/page6$', ReporteHistoriaClinicaPagina6.as_view(), name='historia_p6'),
 
 )
 

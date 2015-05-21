@@ -58,6 +58,16 @@ $(document).ready(function() {
         $('#historia_clinica_p7')[0].click();
     });
 
+    /* ----------------------------------------
+        Impresion historias clinicas
+        - grupo de páginas (4 y 6)
+    ------------------------------------------- */
+    $('#grp2').click(function(e){
+        e.preventDefault();
+        $('#historia_clinica_p4')[0].click();
+        $('#historia_clinica_p6')[0].click();
+    });
+
 
 
 });

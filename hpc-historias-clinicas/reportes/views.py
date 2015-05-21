@@ -131,4 +131,20 @@ class ReporteHistoriaClinicaPagina7(ReporteHistoriaClinicaMixin):
         return ctx
 
 
+class ReporteHistoriaClinicaPagina4(ReporteHistoriaClinicaMixin):
+    """
+    Impresion de historia clinica
+    Pagina 4
+    """
+    template_name = 'reportes/historia_clinica_page4.html'
+
+
+class ReporteHistoriaClinicaPagina6(ReporteHistoriaClinicaMixin):
+    """
+    Impresion de historia clinica
+    Pagina 6
+    """
+    template_name = 'reportes/historia_clinica_page6.html'
+
+
 

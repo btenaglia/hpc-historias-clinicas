@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <style type="text/css">
+        html, body { height: 100%; padding-left: 30px}
+
+        table {
+          border-collapse: collapse;
+        }
+
+        td, th {
+          /*border: 1px solid #999;*/
+          padding: 6px;
+          text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- antecedente personales -->
+<br>
+<br>
+<br>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_personales.enfermedad_infantil }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_personales.enfermedad_adulto }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_personales.alergia }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_personales.antecedentes_traumaticos }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_personales.antecedentes_quirurgicos }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_personales.internaciones_previas }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <!-- habitos -->
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.alcohol }}</td>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.tabaco }}</td>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.cafe }}</td>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.dieta }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td width="35%"></td>
+            <td>{{ historia.habitos.drogadiccion }}</td>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.sexualidad }}</td>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.sueno }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.medicamentos }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.catarsis }}</td>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.diuresis }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.peso }}</td>
+            <td width="30%"></td>
+            <td>{{ historia.habitos.talla }}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- antecedentes familiares -->
+    <table>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_familiares.padre }}</td>
+        </tr>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_familiares.madre }}</td>
+        </tr>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_familiares.hermanos }}</td>
+        </tr>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_familiares.hijos }}</td>
+        </tr>
+        <tr>
+            <td width="30%"></td>
+            <td>{{ historia.antecedentes_familiares.otros }}</td>
+        </tr>
+    </table>
+
+</body>
+</html>
