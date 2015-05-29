@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from braces.views import LoginRequiredMixin
 
-from .models import Evoluciones
+from .models import Evoluciones, Fotos
 from ..historias.models import Historias
 
 
@@ -96,3 +96,40 @@ class EvolucionesDeleteView(LoginRequiredMixin, EvolucionesMixin, DeleteView):
     """Eliminar evolucion"""
     model = Evoluciones
     success_msg = 'La evolución se eliminó con éxito.'
+
+
+class EvolucionesFotosMixin(object):
+
+    def get_context_data(self, **kwargs):
+        ctx = super(EvolucionesFotosMixin, self).get_context_data(**kwargs)
+        ctx['evolucion'] = Evoluciones.objects.filter(id=self.kwargs['evolucion']).get()
+        return ctx
+
+
+class EvolucionesFotosListView(LoginRequiredMixin, EvolucionesFotosMixin, ListView):
+    """
+    Listar fotos de una evolucion determinada
+    """
+    model = Fotos
+
+
+class EvolucionesFotosCreateView(LoginRequiredMixin, EvolucionesFotosMixin, CreateView):
+    """
+    Agregar una fotos para una evolucion
+    """
+    model = Fotos
+    fields = ['foto', 'comentario']
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+
+        form.instance.evolucion_id = self.kwargs['evolucion']
+        if form.is_valid():
+            form.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(**{'form': form})
+
+

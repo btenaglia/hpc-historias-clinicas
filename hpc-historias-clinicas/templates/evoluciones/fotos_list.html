@@ -1,0 +1,22 @@
+{% extends 'evoluciones/_fotos_base.html' %}
+
+{% block content %}
+
+    <a data-url="{% url 'evoluciones:fotos_create' evolucion.id %}"
+       class="btn btn-primary evoluciones_fotos_create">
+        <i class="fa fa-plus"> Nueva Foto</i>
+    </a>
+
+    <script>
+        $(".evoluciones_fotos_create").click(function(ev){
+            ev.preventDefault();
+            var url = $(this).data("url");
+            $("#evoluciones_fotos_modal").load(url, function() { // load the url into the modal
+                $("#evoluciones_fotos_modal").modal('show'); // display the modal on url load
+            });
+            return false;
+        });
+    </script>
+
+{% endblock %}
+

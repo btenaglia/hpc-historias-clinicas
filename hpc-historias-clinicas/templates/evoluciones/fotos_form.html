@@ -1,0 +1,61 @@
+{% extends 'evoluciones/_fotos_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <a data-url="{% url 'evoluciones:fotos' evolucion.id %}" class="back">
+        <i class="fa fa-reply"> Volver</i>
+    </a>
+
+    <h1 class="page-header">Agregar Foto</h1>
+
+    <form id='foto_evolucion_form' method="post" enctype="multipart/form-data" action="{% url 'evoluciones:fotos_create' evolucion.id %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-check"></i> Confirmar
+            </button>
+          </div>
+        </div>
+    </form>
+
+    <script>
+        $(".back").click(function(ev){
+            ev.preventDefault();
+            var url = $(this).data("url");
+            $("#evoluciones_fotos_modal").load(url, function() { // load the url into the modal
+                $("#evoluciones_fotos_modal").modal('show'); // display the modal on url load
+            });
+            return false;
+        });
+
+        $('#foto_evolucion_form').on('submit', function(e) {
+
+            e.preventDefault();
+
+            var formData = new FormData($(this)[0]);
+
+            $.ajax({
+                type: $(this).attr('method'),
+                url: this.action,
+                data: formData,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                async: false,
+                cache: false,
+                success: function(data, status) {
+                    $("#evoluciones_fotos_modal").html( data );
+                }
+            });
+
+            return false;
+
+        });
+
+    </script>
+
+{% endblock %}

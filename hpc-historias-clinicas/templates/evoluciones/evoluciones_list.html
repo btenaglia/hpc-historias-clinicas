@@ -41,6 +41,9 @@
                             <a href="{% url 'evoluciones:update' e.id e.historia_id %}"><i class="fa fa-pencil"></i></a>
                             <a href="{% url 'evoluciones:delete' e.id e.historia_id %}"><i class="fa fa-trash-o"></i></a>
                             <a href="{% url 'reportes:evolucion' e.id %}" target="_blank"><i class="fa fa-print"></i></a>
+                            <a class='evoluciones_fotos' data-url="{% url 'evoluciones:fotos' e.id %}">
+                                <i class="fa fa-picture-o"></i>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -48,5 +51,7 @@
         </tbody>
     </table>
     {% paginate %}
+
+    <div class="modal fade" id="evoluciones_fotos_modal"></div>
 
 {% endblock evoluciones_contenido %}
