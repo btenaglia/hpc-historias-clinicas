@@ -7,6 +7,11 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
       <i class="fa fa-bars"></i> Historia clínica
+        <div class="pull-right">
+            <a href="{% url 'historias:update' historia.id %}" title="Editar">
+                <i class="fa fa-pencil text-white"></i>
+            </a>
+        </div>
     </div>
     <div class="panel-body">
         <div class="well well-lg">
@@ -44,6 +49,11 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
       <i class="fa fa-user"></i> Paciente
+      <div class="pull-right">
+          <a href="{% url 'pacientes:update' historia.paciente.id %}" title="Editar">
+            <i class="fa fa-pencil text-white"></i>
+          </a>
+      </div>
     </div>
     <div class="panel-body">
         <div class="well well-lg">
@@ -51,7 +61,7 @@
             {% if historia.paciente.foto %}
                 <img src='{% thumbnail historia.paciente.foto 80x80 crop %}'>
             {% else %}
-                <img src='{% static "images/paciente_sin_foto.jpg" %}'>
+                <img src='{% static "images/persona_sin_foto.jpg" %}'>
             {% endif %}
             <!-- / foto del paciente -->
             <br>
@@ -110,10 +120,13 @@
             </a>
             <br>
           {% endif %}
-          <a href="{% url 'historias:estado_update' historia.id %}">
-            <i class="fa fa-cog"></i> Cambiar estado
-          </a>
-            <br>
+          {% if 'historias/estado' not in  request.get_full_path %}
+              <a href="{% url 'historias:estado_update' historia.id %}">
+                <i class="fa fa-cog"></i> Cambiar estado
+              </a>
+                <br>
+           {% endif %}
+
         {% if historia.estado == 1 %}
             {% tiene_epicrisis historia.id as epicrisis %}
             {% if epicrisis %}
@@ -130,16 +143,19 @@
               </a>
             <br>
           {% endif %}
-            {% if historia|tiene_ubicacion:historia.id == 1 %}
-                <a href="{% url 'historias:ubicacion_update' historia.id %}">
-                    <i class="fa fa-bed"></i> Reubicar paciente
-                </a>
-            {% else %}
-                <a href="{% url 'historias:ubicacion_create' historia.id %}">
-                    <i class="fa fa-bed"></i> Ubicar paciente
-                </a>
+            {% if 'historias/ubicacion' not in  request.get_full_path %}
+                {% if historia|tiene_ubicacion:historia.id == 1 %}
+                    <a href="{% url 'historias:ubicacion_update' historia.id %}">
+                        <i class="fa fa-bed"></i> Reubicar paciente
+                    </a>
+                {% else %}
+                    <a href="{% url 'historias:ubicacion_create' historia.id %}">
+                        <i class="fa fa-bed"></i> Ubicar paciente
+                    </a>
+                {% endif %}
+                 <br>
             {% endif %}
-          <br>
+
           <a href="{% url 'historias:update' historia.id %}">
             <i class="fa fa-pencil"></i> Editar historia clínica
           </a>

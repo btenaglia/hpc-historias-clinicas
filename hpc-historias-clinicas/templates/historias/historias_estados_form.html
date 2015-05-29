@@ -16,16 +16,14 @@
 
     <div class="row">
         <div class="col-lg-3">
-            <!-- info del paciente -->
-            {% include 'historias/_info_paciente.html' %}
-            <!-- / info del paciente -->
+            {% include '_info_historias_pacientes.html' %}
         </div>
         <div class="col-lg-9">
+            <div class="alert alert-dismissable alert-info">
+	            <i class="fa fa-exclamation-triangle"></i>
+                Dejar el estado en blanco significa que la historia clínica aún sigue abierta.
+            </div>
             <form method="POST">
-                <div class="well">
-                    <label>Nº Historia:</label>
-                    <span class="label label-success">{{ historia.codigo }}</span>
-                </div>
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Confirmar</button>

@@ -10,7 +10,7 @@
    {% if historia.paciente.foto %}
         <img src='{% thumbnail historia.paciente.foto 50x50 crop %}'>
     {% else %}
-        <img src='{% static 'images/paciente_sin_foto.jpg' %}'>
+        <img src='{% static 'images/persona_sin_foto.jpg' %}'>
     {% endif %}
     <br>
    <b>Paciente:</b> {{ historia.paciente.nombre }} {{ historia.paciente.apellido }}<br>
