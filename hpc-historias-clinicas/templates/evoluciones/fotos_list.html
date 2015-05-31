@@ -1,4 +1,9 @@
 {% extends 'evoluciones/_fotos_base.html' %}
+{% load thumbnail %}
+
+{% block title %}
+    Evolución del día {{ evolucion.creado|date:"SHORT_DATE_FORMAT" }}
+{% endblock %}
 
 {% block content %}
 
@@ -6,6 +11,37 @@
        class="btn btn-primary evoluciones_fotos_create">
         <i class="fa fa-plus"> Nueva Foto</i>
     </a>
+    <br>
+    <br>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dt_grid">
+        <thead>
+        <tr>
+            <th>Foto</th>
+            <th>Comentario</th>
+            <th></th>
+        </tr>
+    </thead>
+        <tbody>
+            {% for foto in object_list %}
+                <tr>
+                    <td>
+                        <img src="{% thumbnail foto.foto 50x50 crop %}" title="No foto">
+                    </td>
+                    <td>
+                        {% if foto.comentario|length > 70 %}
+                            {{ foto.comentario|truncatechars:70 }}
+                            <a href="">[+]</a>
+                        {% else %}
+                            {{ foto.comentario }}
+                        {% endif %}
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <script>
         $(".evoluciones_fotos_create").click(function(ev){

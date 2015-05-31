@@ -112,6 +112,9 @@ class EvolucionesFotosListView(LoginRequiredMixin, EvolucionesFotosMixin, ListVi
     """
     model = Fotos
 
+    def get_queryset(self):
+        return Fotos.objects.filter(evolucion=self.kwargs['evolucion']).all()
+
 
 class EvolucionesFotosCreateView(LoginRequiredMixin, EvolucionesFotosMixin, CreateView):
     """

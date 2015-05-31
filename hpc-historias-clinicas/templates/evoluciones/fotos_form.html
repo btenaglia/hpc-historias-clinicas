@@ -2,14 +2,17 @@
 
 {% load crispy_forms_tags %}
 
+{% block title %}
+    Agregar Foto - Evolución del día {{ evolucion.creado|date:"SHORT_DATE_FORMAT" }}
+{% endblock %}
+
 {% block content %}
 
     <a data-url="{% url 'evoluciones:fotos' evolucion.id %}" class="back">
         <i class="fa fa-reply"> Volver</i>
     </a>
-
-    <h1 class="page-header">Agregar Foto</h1>
-
+    <br>
+    <br>
     <form id='foto_evolucion_form' method="post" enctype="multipart/form-data" action="{% url 'evoluciones:fotos_create' evolucion.id %}">
         {% csrf_token %}
         {{ form|crispy }}
@@ -48,7 +51,12 @@
                 async: false,
                 cache: false,
                 success: function(data, status) {
-                    $("#evoluciones_fotos_modal").html( data );
+                    $("#evoluciones_fotos_modal").html( data )
+                    /*console.log ($('.help-block').val());
+                    if ( $('.help-block').val() != '' )
+                        ;
+                    else
+                        alert('se guardooo');*/
                 }
             });
 
