@@ -3,7 +3,12 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Agregar Foto - Evolución del día {{ evolucion.creado|date:"SHORT_DATE_FORMAT" }}
+    {% if form.instance.id %}
+            Editar
+    {% else %}
+            Agregar
+    {% endif %}
+     Foto -
 {% endblock %}
 
 {% block content %}
@@ -52,11 +57,6 @@
                 cache: false,
                 success: function(data, status) {
                     $("#evoluciones_fotos_modal").html( data )
-                    /*console.log ($('.help-block').val());
-                    if ( $('.help-block').val() != '' )
-                        ;
-                    else
-                        alert('se guardooo');*/
                 }
             });
 

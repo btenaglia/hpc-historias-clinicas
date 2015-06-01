@@ -100,6 +100,9 @@ class EvolucionesDeleteView(LoginRequiredMixin, EvolucionesMixin, DeleteView):
 
 class EvolucionesFotosMixin(object):
 
+    model = Fotos
+    fields = ['foto', 'comentario']
+
     def get_context_data(self, **kwargs):
         ctx = super(EvolucionesFotosMixin, self).get_context_data(**kwargs)
         ctx['evolucion'] = Evoluciones.objects.filter(id=self.kwargs['evolucion']).get()
@@ -110,8 +113,6 @@ class EvolucionesFotosListView(LoginRequiredMixin, EvolucionesFotosMixin, ListVi
     """
     Listar fotos de una evolucion determinada
     """
-    model = Fotos
-
     def get_queryset(self):
         return Fotos.objects.filter(evolucion=self.kwargs['evolucion']).all()
 
@@ -120,9 +121,6 @@ class EvolucionesFotosCreateView(LoginRequiredMixin, EvolucionesFotosMixin, Crea
     """
     Agregar una fotos para una evolucion
     """
-    model = Fotos
-    fields = ['foto', 'comentario']
-
     def post(self, request, *args, **kwargs):
         self.object = None
         form_class = self.get_form_class()
@@ -134,5 +132,9 @@ class EvolucionesFotosCreateView(LoginRequiredMixin, EvolucionesFotosMixin, Crea
             return self.form_valid(form)
         else:
             return self.form_invalid(**{'form': form})
+
+
+class EvolucionesFotosUpdateView(LoginRequiredMixin, EvolucionesFotosMixin, UpdateView):
+    pass
 
 
