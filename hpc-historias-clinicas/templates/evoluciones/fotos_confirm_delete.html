@@ -1,0 +1,29 @@
+{% extends 'evoluciones/_fotos_base.html' %}
+
+{% block content %}
+
+    <div class='alert alert-danger' role='alert'>
+
+		<h1 class="page-header">
+    		<i class='fa fa-warning'></i>
+    		Eliminar
+	    </h1>
+
+	    <form action="{% url 'evoluciones:fotos_delete' object.id evolucion.id%}"
+              method="post" id="foto_evoluciones_form">
+	    	{% csrf_token %}
+	        <p>
+	        	<b>ATENCIÓN:</b>
+	        	Está seguro que desea eliminar la foto?
+	        </p>
+	        <button type="submit" class='btn btn-danger'>
+	        	<i class="fa fa-trash-o"></i> Eliminar
+	        </button>
+	        <a data-url="{% url 'evoluciones:fotos' evolucion.id %}" class="back">
+                Cancelar
+            </a>
+	    </form>
+
+	</div>
+
+{% endblock %}

@@ -6,7 +6,8 @@ from .views import (EvolucionesListView,
                     EvolucionesDeleteView,
                     EvolucionesFotosListView,
                     EvolucionesFotosCreateView,
-                    EvolucionesFotosUpdateView)
+                    EvolucionesFotosUpdateView,
+                    EvolucionesFotosDeleteView)
 
 urlpatterns = patterns('',
 
@@ -17,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^/fotos/(?P<evolucion>\d+)$', EvolucionesFotosListView.as_view(), name='fotos'),
     url(r'^/fotos/create/(?P<evolucion>\d+)$', EvolucionesFotosCreateView.as_view(), name='fotos_create'),
     url(r'^/fotos/update/(?P<pk>\d+)/(?P<evolucion>\d+)$', EvolucionesFotosUpdateView.as_view(), name='fotos_update'),
+    url(r'^/fotos/delete/(?P<pk>\d+)/(?P<evolucion>\d+)$', EvolucionesFotosDeleteView.as_view(), name='fotos_delete'),
 
 )
 

@@ -4,9 +4,9 @@
 
 {% block title %}
     {% if form.instance.id %}
-            Editar
+        Editar
     {% else %}
-            Agregar
+        Agregar
     {% endif %}
      Foto -
 {% endblock %}
@@ -18,7 +18,13 @@
     </a>
     <br>
     <br>
-    <form id='foto_evolucion_form' method="post" enctype="multipart/form-data" action="{% url 'evoluciones:fotos_create' evolucion.id %}">
+    <form id='foto_evoluciones_form' method="post" enctype="multipart/form-data"
+          {% if form.instance.id %}
+            action="{% url 'evoluciones:fotos_update' form.instance.id evolucion.id %}"
+          {% else %}
+            action="{% url 'evoluciones:fotos_create'  evolucion.id %}"
+          {% endif %}
+    >
         {% csrf_token %}
         {{ form|crispy }}
         <div class="control-group">
@@ -29,41 +35,5 @@
           </div>
         </div>
     </form>
-
-    <script>
-        $(".back").click(function(ev){
-            ev.preventDefault();
-            var url = $(this).data("url");
-            $("#evoluciones_fotos_modal").load(url, function() { // load the url into the modal
-                $("#evoluciones_fotos_modal").modal('show'); // display the modal on url load
-            });
-            return false;
-        });
-
-        $('#foto_evolucion_form').on('submit', function(e) {
-
-            e.preventDefault();
-
-            var formData = new FormData($(this)[0]);
-
-            $.ajax({
-                type: $(this).attr('method'),
-                url: this.action,
-                data: formData,
-                processData: false,
-                contentType: false,
-                type: 'POST',
-                async: false,
-                cache: false,
-                success: function(data, status) {
-                    $("#evoluciones_fotos_modal").html( data )
-                }
-            });
-
-            return false;
-
-        });
-
-    </script>
 
 {% endblock %}

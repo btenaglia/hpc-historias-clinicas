@@ -135,6 +135,15 @@ class EvolucionesFotosCreateView(LoginRequiredMixin, EvolucionesFotosMixin, Crea
 
 
 class EvolucionesFotosUpdateView(LoginRequiredMixin, EvolucionesFotosMixin, UpdateView):
+    """
+    Editar una fotos de una evolucion
+    """
     pass
+
+
+class EvolucionesFotosDeleteView(LoginRequiredMixin, EvolucionesFotosMixin, DeleteView):
+    """Eliminar foto de evolucion"""
+    def get_success_url(self):
+        return '/evoluciones/fotos/%s' % (self.kwargs['evolucion'])
 
 

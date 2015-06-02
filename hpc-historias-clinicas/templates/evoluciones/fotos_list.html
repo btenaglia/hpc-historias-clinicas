@@ -1,6 +1,8 @@
 {% extends 'evoluciones/_fotos_base.html' %}
 {% load thumbnail %}
 
+{% block title %}Fotos - {% endblock %}
+
 {% block content %}
 
     <!-- btn para agregar nueva Foto -->
@@ -34,26 +36,19 @@
                         {% endif %}
                     </td>
                     <td>
-                        <!-- btn para editar nueva Foto -->
+                        <!-- btn para editar una Foto -->
                         <a data-url="{% url 'evoluciones:fotos_update' foto.id evolucion.id %}" class="evoluciones_fotos_link">
                             <i class="fa fa-pencil"></i>
-                        </a><!-- / btn para editar nueva Foto -->
+                        </a><!-- / btn para editar una Foto -->
+                        <!-- btn para eliminar  nueva Foto -->
+                        <a data-url="{% url 'evoluciones:fotos_delete' foto.id evolucion.id %}" class="evoluciones_fotos_link">
+                            <i class="fa fa-trash-o"></i>
+                        </a><!-- / btn para eliminar  nueva Foto -->
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
-    <script>
-        $(".evoluciones_fotos_link").click(function(ev){
-            ev.preventDefault();
-            var url = $(this).data("url");
-            $("#evoluciones_fotos_modal").load(url, function() { // load the url into the modal
-                $("#evoluciones_fotos_modal").modal('show'); // display the modal on url load
-            });
-            return false;
-        });
-    </script>
 
 {% endblock %}
 
