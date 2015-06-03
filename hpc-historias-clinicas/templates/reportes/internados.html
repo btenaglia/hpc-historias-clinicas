@@ -2,56 +2,75 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-        <style type="text/css">
-        html, body { height: 100%; padding-left: 30px}
+     <style type="text/css">
+        html, body {
+            height: 100%;
+            padding-left: 30px;
+            font-size: 10px;
+        }
 
         table {
           border-collapse: collapse;
         }
 
         td, th {
-          border: 1px solid #999;
-          padding: 6px;
+          /*border: 1px solid #999;*/
+          padding: 2px;
           text-align: left;
+        }
+
+        .bck {
+            background-color: grey;
+            padding: 5px;
+            color: white;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-
+    Pacientes Internados - {{fecha}}
     <table width="100%" style="border: 1px solid">
 
         {% for i in internados %}
             <tr>
                 <td>
-                    <div style="background-color: blue">{{ i.sala }}</div>
+                    <div class="bck">{{ i.sala }}</div>
 
                     <table>
                         <tr>
-                            <td width="20%" style="background-color: blue">
-                                CAMA: <br>{{ i.cama }}
+                            <td width="10%" class="bck">
+                                CAMA: {{ i.cama }}
                             </td>
-                            <td width="80%">
-                                {{ i.historia.paciente.nombre }} {{ i.historia.paciente.apellido }}
+                            <td width="40%">
+                                <b>Paciente: </b>{{ i.historia.paciente.nombre }} {{ i.historia.paciente.apellido }}<br>
+                                <b>Edad: </b> {{ i.historia.paciente.edad }}<br>
+                                <b>Fecha de ingreso: </b> {{ i.historia.fecha_ingreso|date:"d-m-Y" }}<br>
+                                <b>Diagnóstico: </b> {{ i.historia.diagnostico.tipo_diagnostico.nombre }}<br>
+                                <b>HC: </b> {{ i.historia.codigo }}<br>
+                                <b>Médico responsable: </b> {{ i.historia.medico.nombre }} {{ i.historia.medico.apellido }}
+                            </td>
+                            <td width="50%" valign="top">
+                                <table>
+                                    <tr>
+                                        <td><b>Fecha</b></td>
+                                        <td><b>Procedimiento</b></td>
+                                        <td><b>Cirujano</b></td>
+                                    </tr>
+                                    {% obtener_fojas_quirurgicas i.historia.id as fojas %}
+                                    {% for fq in fojas %}
+                                        <tr>
+                                            <td>{{ fq.fecha|date:"d-m-Y" }}</td>
+                                            <td>{{ fq.procedimiento_quirurgico.nombre }}</td>
+                                            <td>{{ fq.cirujano.nombre }} {{ fq.cirujano.apellido }}</td>
+                                        </tr>
+                                    {% endfor%}
+                                </table>
                             </td>
                         </tr>
                     </table>
-
-
                 </td>
             </tr>
         {% endfor%}
     </table>
-
-
- {% for i in internados %}
-    {{ i.sala }}
-
-    {% obtener_fojas_quirurgicas i.historia.id as fojas %}
-    {% for fq in fojas%}
-        {{ fq.hora_comienzo }}
-    {% endfor%}
-
- {% endfor%}
-
 </body>
 </html>

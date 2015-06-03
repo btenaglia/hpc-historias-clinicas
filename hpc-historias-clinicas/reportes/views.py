@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response, HttpResponse
+from datetime import datetime
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, TemplateView
 from easy_pdf.views import PDFTemplateView
@@ -154,6 +154,7 @@ class ReportesInternados(PDFTemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(ReportesInternados, self).get_context_data(**kwargs)
         ctx['internados'] = Ubicaciones.objects.order_by('sala').all()
+        ctx['fecha'] = datetime.now()
         return ctx
 
 
