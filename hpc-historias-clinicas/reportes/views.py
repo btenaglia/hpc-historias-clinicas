@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, HttpResponse
 from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 from easy_pdf.views import PDFTemplateView
-from ..historias.models import Historias
+from ..historias.models import Historias, Ubicaciones
 from ..evoluciones.models import Evoluciones
 from ..inter_consultas.models import InterConsultas
 from ..fojas_quirurgicas.models import FojasQuirurgicas
@@ -145,6 +145,16 @@ class ReporteHistoriaClinicaPagina6(ReporteHistoriaClinicaMixin):
     Pagina 6
     """
     template_name = 'reportes/historia_clinica_page6.html'
+
+
+class ReportesInternados(PDFTemplateView):
+
+    template_name = 'reportes/internados.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ReportesInternados, self).get_context_data(**kwargs)
+        ctx['internados'] = Ubicaciones.objects.order_by('sala').all()
+        return ctx
 
 
 

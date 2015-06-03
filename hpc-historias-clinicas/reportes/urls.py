@@ -11,7 +11,8 @@ from .views import (ReporteEvolucion,
                     ReporteHistoriaClinicaPagina5,
                     ReporteHistoriaClinicaPagina7,
                     ReporteHistoriaClinicaPagina6,
-                    ReporteHistoriaClinicaPagina4)
+                    ReporteHistoriaClinicaPagina4,
+                    ReportesInternados)
 
 urlpatterns = patterns('',
 
@@ -26,6 +27,7 @@ urlpatterns = patterns('',
     url(r'^/historia/clinica/(?P<pk>\d+)/page7$', ReporteHistoriaClinicaPagina7.as_view(), name='historia_p7'),
     url(r'^/historia/clinica/(?P<pk>\d+)/page4$', ReporteHistoriaClinicaPagina4.as_view(), name='historia_p4'),
     url(r'^/historia/clinica/(?P<pk>\d+)/page6$', ReporteHistoriaClinicaPagina6.as_view(), name='historia_p6'),
+    url(r'^/internados$', ReportesInternados.as_view(), name='internados'),
 
 )
 
