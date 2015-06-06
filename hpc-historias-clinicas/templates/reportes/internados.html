@@ -1,4 +1,4 @@
-{% load fojas_quirurgicas_tags %}
+{% load fojas_quirurgicas_tags historias_tags %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    Pacientes Internados - {{fecha}}
+    Pacientes Internados - {{fecha|date:"SHORT_DATETIME_FORMAT"}}
     <table width="100%" style="border: 1px solid">
 
         {% for i in internados %}
@@ -44,7 +44,8 @@
                             <td width="40%">
                                 <b>Paciente: </b>{{ i.historia.paciente.nombre }} {{ i.historia.paciente.apellido }}<br>
                                 <b>Edad: </b> {{ i.historia.paciente.edad }}<br>
-                                <b>Fecha de ingreso: </b> {{ i.historia.fecha_ingreso|date:"d-m-Y" }}<br>
+                                <b>Fecha de ingreso: </b> {{ i.historia.fecha_ingreso|date:"d-m-Y" }}
+                                (hace {{ i.historia.fecha_ingreso|calcular_diferencia_dias }} días)<br>
                                 <b>Diagnóstico: </b> {{ i.historia.diagnostico.tipo_diagnostico.nombre }}<br>
                                 <b>HC: </b> {{ i.historia.codigo }}<br>
                                 <b>Médico responsable: </b> {{ i.historia.medico.nombre }} {{ i.historia.medico.apellido }}
@@ -59,7 +60,7 @@
                                     {% obtener_fojas_quirurgicas i.historia.id as fojas %}
                                     {% for fq in fojas %}
                                         <tr>
-                                            <td>{{ fq.fecha|date:"d-m-Y" }}</td>
+                                            <td>{{ fq.fecha|date:"d-m-Y" }} ({{ fq.fecha|calcular_diferencia_dias }} d) </td>
                                             <td>{{ fq.procedimiento_quirurgico.nombre }}</td>
                                             <td>{{ fq.cirujano.nombre }} {{ fq.cirujano.apellido }}</td>
                                         </tr>
