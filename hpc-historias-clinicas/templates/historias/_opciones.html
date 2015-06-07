@@ -59,14 +59,20 @@
         </a>
     </li>
     <li role="presentation">
-        {% if historia|tiene_ubicacion:historia.id == 1 %}
-            <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_update' historia.id %}">
-                <i class="fa fa-bed"></i> Reubicar paciente
-            </a>
-        {% else %}
-            <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_create' historia.id %}">
-                <i class="fa fa-bed"></i> Ubicar paciente
-            </a>
+        <!--
+            Solo es posible asignar ubicacion a las historias clinicas
+            con estado Open o estado vacio (NO obito, alta o pase de servicio)
+        -->
+        {% if historia.estado == None %}
+            {% if historia|tiene_ubicacion:historia.id == 1 %}
+                <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_update' historia.id %}">
+                    <i class="fa fa-bed"></i> Reubicar paciente
+                </a>
+            {% else %}
+                <a role="menuitem" tabindex="-1" href="{% url 'historias:ubicacion_create' historia.id %}">
+                    <i class="fa fa-bed"></i> Ubicar paciente
+                </a>
+            {% endif %}
         {% endif %}
     </li>
     <li role="presentation">
