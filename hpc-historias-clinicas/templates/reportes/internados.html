@@ -14,7 +14,7 @@
         }
 
         td, th {
-          /*border: 1px solid #999;*/
+          border: 1px solid #999;
           padding: 2px;
           text-align: left;
         }
@@ -29,49 +29,49 @@
 </head>
 <body>
     Pacientes Internados - {{fecha|date:"SHORT_DATETIME_FORMAT"}}
-    <table width="100%" style="border: 1px solid">
 
-        {% for i in internados %}
-            <tr>
-                <td>
-                    <div class="bck">{{ i.sala }}</div>
+    {% if internados %}
+        <table width="100%" style="border: 1px solid">
+            {% for i in internados %}
+                {% if forloop.counter|divisibleby:2 == False %}
+                    <tr>
+                {% endif %}
+                        <td width="50%" valign="TOP">
+                            <div class="bck">{{ i.sala }} - CAMA: {{ i.cama }}</div>
+                            <!-- nombre y appellido del paciente -->
+                            {{ i.historia.paciente.nombre }} {{ i.historia.paciente.apellido }}
+                            <!-- edada -->
+                            ({{ i.historia.paciente.edad }})|
+                            <!-- fecha de ingreso -->
+                            Ing. {{ i.historia.fecha_ingreso|date:"d-m-Y" }}
+                            <!-- cantidad de dias -->
+                            ({{ i.historia.fecha_ingreso|calcular_diferencia_dias }} d)|
+                            <!-- diagnostico -->
+                            con Diag. {{ i.historia.diagnostico.tipo_diagnostico.nombre }}
 
-                    <table>
-                        <tr>
-                            <td width="10%" class="bck">
-                                CAMA: {{ i.cama }}
-                            </td>
-                            <td width="40%">
-                                <b>Paciente: </b>{{ i.historia.paciente.nombre }} {{ i.historia.paciente.apellido }}<br>
-                                <b>Edad: </b> {{ i.historia.paciente.edad }}<br>
-                                <b>Fecha de ingreso: </b> {{ i.historia.fecha_ingreso|date:"d-m-Y" }}
-                                (hace {{ i.historia.fecha_ingreso|calcular_diferencia_dias }} días)<br>
-                                <b>Diagnóstico: </b> {{ i.historia.diagnostico.tipo_diagnostico.nombre }}<br>
-                                <b>HC: </b> {{ i.historia.codigo }}<br>
-                                <b>Médico responsable: </b> {{ i.historia.medico.nombre }} {{ i.historia.medico.apellido }}
-                            </td>
-                            <td width="50%" valign="top">
-                                <table>
-                                    <tr>
-                                        <td><b>Fecha</b></td>
-                                        <td><b>Procedimiento</b></td>
-                                        <td><b>Cirujano</b></td>
-                                    </tr>
-                                    {% obtener_fojas_quirurgicas i.historia.id as fojas %}
-                                    {% for fq in fojas %}
-                                        <tr>
-                                            <td>{{ fq.fecha|date:"d-m-Y" }} ({{ fq.fecha|calcular_diferencia_dias }} d) </td>
-                                            <td>{{ fq.procedimiento_quirurgico.nombre }}</td>
-                                            <td>{{ fq.cirujano.nombre }} {{ fq.cirujano.apellido }}</td>
-                                        </tr>
-                                    {% endfor%}
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        {% endfor%}
-    </table>
+                            <br><br>
+                            <!-- fojas quirurgicas -->
+                            {% obtener_fojas_quirurgicas i.historia.id as fojas %}
+                            {% for fq in fojas %}
+                                {{ fq.fecha|date:"d-m-Y" }} ({{ fq.fecha|calcular_diferencia_dias }} d)
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                {{ fq.procedimiento_quirurgico.nombre }}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                {{ fq.cirujano.nombre }} {{ fq.cirujano.apellido }}
+                                <br>
+                            {% endfor%}
+                            <br>
+                            HC: {{ i.historia.codigo }}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{ i.historia.medico.nombre }} {{ i.historia.medico.apellido }}
+                        </td>
+                {% if forloop.counter|divisibleby:2 %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    {% endif %}
 </body>
 </html>
